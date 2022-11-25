@@ -1,0 +1,24 @@
+<img width="2032" alt="Screenshot 2022-11-08 at 09 57 26" src="https://user-images.githubusercontent.com/180050/200533966-4fe489dc-e0ac-4d33-b81e-75f0a60ad5f4.png">
+
+- The current window has syntax highlighting (inactive windows are greyed out).
+  - I have LSP configured to provide additional information (e.g. see popup context window).
+- The winbar displays the current LSP symbol structure (e.g. where is my cursor currently).
+- Top of the buffer uses TreeSitter to show the current function.
+  - This only shows when the function is so long the signature isn't visible to the buffer viewport.
+- Right side of the main window is a 'mini map' of the file content (uses TreeSitter to add colour).
+- The statusline bar displays:
+  - Neovim current 'mode'
+  - The current git branch
+  - LSP diagnostics
+  - Relative file path
+  - File encoding
+  - The filetype
+  - The scroll percentage
+  - The line:column
+- Bottom window are LSP diagnostics.
+- Left window is a file tree view of my project.
+  - It's not normally that wide, I manually widened because I wanted to see the full path without scrolling.
+- Top of the Neovim editor our tabs will display a filetype icon.
+  - e.g. gopher icon for the `.go` file open in the screenshot.
+- Neovim is running inside of the Zellij terminal emulator.
+  - e.g. The two shell instances: "dotfiles", "terraform" can be seen at the top of the screenshot.

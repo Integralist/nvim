@@ -1,0 +1,6 @@
+fastly
+cli
+os
+toml
+VCL
+vcl
