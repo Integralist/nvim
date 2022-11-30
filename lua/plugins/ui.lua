@@ -129,6 +129,9 @@ return function(use)
   -- zn to keep selected items.
   -- zN to filter selected items.
   -- zf to fuzzy search items.
+  --
+  -- <Ctrl-f> scroll down
+  -- <Ctrl-b> scroll up
   use { "junegunn/fzf",
     run = function()
       vim.fn["fzf#install"]()
