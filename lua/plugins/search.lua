@@ -104,8 +104,7 @@ return function(use)
   -- search indexer
   use { "kevinhwang91/nvim-hlslens",
     config = function()
-      -- require("hlslens").setup() -- not required when using scrollbar plugin.
-      require("scrollbar.handlers.search").setup()
+      require("hlslens").setup()
     end
   }
   use { "haya14busa/vim-asterisk",

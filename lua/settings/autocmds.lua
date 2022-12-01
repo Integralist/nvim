@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     "*"
   },
   callback = function()
+    -- TODO: Replace with vim.api.nvim_set_hl
     vim.cmd("highlight BufDimText guibg='NONE' guifg=darkgrey guisp=darkgrey gui='NONE'")
   end
 })

@@ -2,10 +2,10 @@ return function(use)
   -- word usage highlighter
   use { "RRethy/vim-illuminate",
     config = function()
-      -- vim.cmd("highlight illuminatedWord guifg=red guibg=white")
-      -- vim.api.nvim_command [[ highlight LspReferenceText guifg=red guibg=white ]]
-      -- vim.api.nvim_command [[ highlight LspReferenceWrite guifg=red guibg=white ]]
-      -- vim.api.nvim_command [[ highlight LspReferenceRead guifg=red guibg=white ]]
+      -- vim.api.nvim_set_hl(0, "illuminatedWord", { fg = "Red", bg = "White" })
+      -- vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "Red", bg = "White" })
+      -- vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "Red", bg = "White" })
+      -- vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "Red", bg = "White" })
     end
   }
 

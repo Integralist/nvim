@@ -38,8 +38,6 @@ return function(use)
           map('n', '<leader><leader>gd', gs.diffthis, { desc = "git diff (:q to close)" })
         end
       })
-
-      require("scrollbar.handlers.gitsigns").setup()
     end
   }
 

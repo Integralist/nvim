@@ -60,9 +60,6 @@ function export.on_attach(client, bufnr)
 
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   end
-
-  -- Fix scrollbar highlight which doesn't seem to get set when called within ../plugins/ui.lua
-  vim.cmd("highlight! link ScrollbarHandle StatusLine")
 end
 
 return export

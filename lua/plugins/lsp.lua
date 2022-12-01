@@ -115,7 +115,7 @@ return function(use)
     "gorbit99/codewindow.nvim",
     config = function()
       require("codewindow").setup({
-        auto_enable = true,
+        auto_enable = false,
         use_treesitter = true, -- disable to lose colours
         exclude_filetypes = { "Outline", "neo-tree", "qf", "packer", "help", "noice", "Trouble" }
       })
@@ -211,9 +211,8 @@ return function(use)
 
       -- autocommands can overlap and consequently not run
       -- for example, a generic "*" wildcard pattern will override another autocmd even if it has a more specific pattern
-      local id = vim.api.nvim_create_augroup("GoLint", { clear = true })
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        group = id,
+        group = vim.api.nvim_create_augroup("GoLint", { clear = true }),
         pattern = "*.go",
         callback = function()
           -- NOTE: ../../settings/shared.lua has a broader wildcard executing formatting.
