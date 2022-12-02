@@ -76,6 +76,8 @@ return function(use)
           tfproviderlintx,
           revive,
           require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
+          require("null-ls").builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
+          require("null-ls").builtins.formatting.isort, -- https://github.com/PyCQA/isort
         }
       })
     end

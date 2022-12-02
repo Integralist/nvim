@@ -21,6 +21,15 @@ return function(use)
       "tsserver",
       "yamlls",
     }
+    --[[
+    Python:
+      - autoflake
+      - isort (use null-ls)
+      - python-lsp-server
+      - mypy
+      - autopep8 (use null-ls)
+      - flake8
+    --]]
   })
 
   mason_lspconfig.setup_handlers({
