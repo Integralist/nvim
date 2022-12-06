@@ -19,11 +19,13 @@ function export.on_attach(client, bufnr)
   vim.keymap.set('n', ']r', "<Cmd>lua vim.diagnostic.open_float()<CR>", bufopts)
   vim.keymap.set('n', ']s', "<Cmd>lua vim.diagnostic.show()<CR>", bufopts)
 
-  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = vim.api.nvim_create_augroup("SharedLspFormatting", { clear = true }),
-    pattern = "*",
-    command = "lua vim.lsp.buf.format()",
-  })
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+      group = vim.api.nvim_create_augroup("SharedLspFormatting", { clear = true }),
+      pattern = "*",
+      command = "lua vim.lsp.buf.format()",
+    })
+  end
 
   if client.server_capabilities.documentSymbolProvider then
     -- WARNING: ../plugins/lsp.lua must be loaded first to avoid error loading navic plugin.
