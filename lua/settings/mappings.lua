@@ -4,6 +4,7 @@ Mappings for plugins are inside ~/.config/nvim/plugin/<name>.lua
 --]]
 
 vim.keymap.set("", "<leader><leader>ps", "<Cmd>PackerSync<CR>", { desc = "update vim plugins" })
+vim.keymap.set("", "<leader><leader>pc", "<Cmd>PackerCompile<CR>", { desc = "packer compile" })
 vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>", { desc = "turn off search highlight" })
 
 -- Terminal mappings
