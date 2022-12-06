@@ -87,7 +87,7 @@ return function(use)
         end
       })
 
-      vim.cmd("colorscheme gruvbox")
+      vim.cmd("colorscheme nightfox")
 
       -- EXAMPLE:
       -- ExtendHL('Comment', { italic = true })

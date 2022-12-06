@@ -11,8 +11,10 @@ return function(use)
 
   mason_lspconfig.setup({
     ensure_installed = {
+      "bashls",
       "eslint",
-      "gopls", -- WARNING: This could be an issue with goenv switching.
+      "gopls",
+      "jsonls",
       "marksman",
       "rust_analyzer",
       "sumneko_lua",

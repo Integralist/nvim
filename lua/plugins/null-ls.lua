@@ -41,40 +41,40 @@ return function(use)
         }),
       }
 
-      local config = vim.fn.expand("$HOME/revive-single-file.toml")
-      local revive = {
-        name = "revive",
-        method = null_ls.methods.DIAGNOSTICS,
-        filetypes = { "go" },
-        generator = helpers.generator_factory({
-          args = {
-            "-set_exit_status",
-            "-config=" .. config,
-            "-exclude=vendor/...",
-            "$FILENAME"
-          },
-          check_exit_code = function(code)
-            return code < 1
-          end,
-          command = "revive",
-          format = "line",
-          from_stderr = true,
-          on_output = helpers.diagnostics.from_patterns({
-            {
-              -- EXAMPLE:
-              -- /Users/integralist/Code/EXAMPLE/example.go:123:456: whoops you did X wrong
-              pattern = "([^:]+):(%d+):(%d+):%s(.+)", -- Lua patterns https://www.lua.org/pil/20.2.html
-              groups = { "path", "row", "col", "message" },
-            },
-          }),
-          to_stdin = true,
-        }),
-      }
+      -- local config = vim.fn.expand("$HOME/revive-single-file.toml")
+      -- local revive = {
+      --   name = "revive",
+      --   method = null_ls.methods.DIAGNOSTICS,
+      --   filetypes = { "go" },
+      --   generator = helpers.generator_factory({
+      --     args = {
+      --       "-set_exit_status",
+      --       "-config=" .. config,
+      --       "-exclude=vendor/...",
+      --       "$FILENAME"
+      --     },
+      --     check_exit_code = function(code)
+      --       return code < 1
+      --     end,
+      --     command = "revive",
+      --     format = "line",
+      --     from_stderr = true,
+      --     on_output = helpers.diagnostics.from_patterns({
+      --       {
+      --         -- EXAMPLE:
+      --         -- /Users/integralist/Code/EXAMPLE/example.go:123:456: whoops you did X wrong
+      --         pattern = "([^:]+):(%d+):(%d+):%s(.+)", -- Lua patterns https://www.lua.org/pil/20.2.html
+      --         groups = { "path", "row", "col", "message" },
+      --       },
+      --     }),
+      --     to_stdin = true,
+      --   }),
+      -- }
 
       null_ls.setup({
         sources = {
           tfproviderlintx,
-          revive,
+          -- revive,
           require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
           require("null-ls").builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
           require("null-ls").builtins.formatting.isort, -- https://github.com/PyCQA/isort
