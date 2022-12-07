@@ -7,6 +7,9 @@ vim.keymap.set("", "<leader><leader>ps", "<Cmd>PackerSync<CR>", { desc = "update
 vim.keymap.set("", "<leader><leader>pc", "<Cmd>PackerCompile<CR>", { desc = "packer compile" })
 vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>", { desc = "turn off search highlight" })
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down and then center the cursorline" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up and then center the cursorline" })
+
 -- Terminal mappings
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
