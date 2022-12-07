@@ -16,22 +16,19 @@ return function(use)
       "gopls",
       "jsonls",
       "marksman",
+      "pylsp",
       "rust_analyzer",
       "sumneko_lua",
       "terraformls",
       "tflint",
       "tsserver",
       "yamlls",
+      -- "autoflake",
+      -- "autopep8",
+      -- "flake8",
+      -- "isort",
+      -- "mypy",
     }
-    --[[
-    Python:
-      - autoflake
-      - isort (use null-ls)
-      - python-lsp-server
-      - mypy
-      - autopep8 (use null-ls)
-      - flake8
-    --]]
   })
 
   mason_lspconfig.setup_handlers({
@@ -153,17 +150,6 @@ return function(use)
   }
 
   use {
-    "mfussenegger/nvim-lint",
-    config = function()
-      local lint = require("lint")
-      lint.linters_by_ft = {
-        go = { "golangcilint" }, -- ~/.golangci.yml
-      }
-      -- see ./lsp.lua for calls to this plugin's try_lint() function.
-    end
-  }
-
-  use {
     "weilbith/nvim-code-action-menu",
     config = function()
       vim.keymap.set("n", "<leader><leader>la", "<Cmd>CodeActionMenu<CR>", {
@@ -192,21 +178,6 @@ return function(use)
     require("lspconfig").util.default_config.on_attach = function()
   --]]
 
-  local function org_imports(wait_ms)
-    local params = vim.lsp.util.make_range_params()
-    params.context = { only = { "source.organizeImports" } }
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-    for _, res in pairs(result or {}) do
-      for _, r in pairs(res.result or {}) do
-        if r.edit then
-          vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
-        else
-          vim.lsp.buf.execute_command(r.command)
-        end
-      end
-    end
-  end
-
   require("lspconfig").gopls.setup({
     on_attach = function(client, bufnr)
       require("settings/shared").on_attach(client, bufnr)
@@ -220,18 +191,6 @@ return function(use)
       require("lsp-inlayhints").on_attach(client, bufnr)
       require("illuminate").on_attach(client)
 
-      -- autocommands can overlap and consequently not run
-      -- for example, a generic "*" wildcard pattern will override another autocmd even if it has a more specific pattern
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        group = vim.api.nvim_create_augroup("GoLint", { clear = true }),
-        pattern = "*.go",
-        callback = function()
-          -- NOTE: ../../settings/shared.lua has a broader wildcard executing formatting.
-          org_imports(1000)
-          require("lint").try_lint() -- golangci-lint configuration via ./nvim-lint.lua
-        end,
-      })
-
       vim.keymap.set(
         "n", "<leader><leader>lv",
         "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
@@ -239,7 +198,7 @@ return function(use)
           noremap = true,
           silent = true,
           buffer = bufnr,
-          desc = "lint project code"
+          desc = "lint project code (revive)"
         }
       )
     end,

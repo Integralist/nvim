@@ -44,9 +44,27 @@ return function(use)
       null_ls.setup({
         sources = {
           tfproviderlintx,
+          require("null-ls").builtins.code_actions.shellcheck, -- https://www.shellcheck.net/
           require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
+          require("null-ls").builtins.diagnostics.codespell, -- https://github.com/codespell-project/codespell
+          require("null-ls").builtins.diagnostics.commitlint, -- https://commitlint.js.org/ (npm install -g @commitlint/cli @commitlint/config-conventional @commitlint/format)
+          require("null-ls").builtins.diagnostics.golangci_lint, -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
+          require("null-ls").builtins.diagnostics.semgrep, -- https://semgrep.dev/
+          require("null-ls").builtins.diagnostics.write_good, -- https://github.com/btford/write-good
+          require("null-ls").builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
           require("null-ls").builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
+          require("null-ls").builtins.formatting.codespell, -- https://github.com/codespell-project/codespell
+          require("null-ls").builtins.formatting.fixjson, -- https://github.com/rhysd/fixjson
+          require("null-ls").builtins.formatting.goimports_reviser, -- https://pkg.go.dev/github.com/incu6us/goimports-reviser
           require("null-ls").builtins.formatting.isort, -- https://github.com/PyCQA/isort
+          require("null-ls").builtins.formatting.lua_format, -- https://github.com/Koihik/LuaFormatter
+          require("null-ls").builtins.formatting.markdown_toc, -- https://github.com/jonschlinkert/markdown-toc
+          require("null-ls").builtins.formatting.mdformat, -- https://github.com/executablebooks/mdformat
+          require("null-ls").builtins.formatting.ocdc, -- https://github.com/mdwint/ocdc
+          require("null-ls").builtins.formatting.shfmt, -- https://github.com/mvdan/sh
+          require("null-ls").builtins.formatting.taplo, -- https://taplo.tamasfe.dev/
+          require("null-ls").builtins.formatting.terraform_fmt, -- https://www.terraform.io/docs/cli/commands/fmt.html
+          require("null-ls").builtins.formatting.yamlfmt, -- https://github.com/google/yamlfmt
         }
       })
     end

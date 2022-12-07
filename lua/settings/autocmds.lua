@@ -26,12 +26,18 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = {
-    "*"
-  },
+  pattern = "*",
   callback = function()
-    -- TODO: Replace with vim.api.nvim_set_hl
-    vim.cmd("highlight BufDimText guibg='NONE' guifg=darkgrey guisp=darkgrey gui='NONE'")
+    -- vim.cmd("highlight BufDimText guibg='NONE' guifg=darkgrey guisp=darkgrey gui='NONE'")
+
+    -- vim-illuminate
+    vim.api.nvim_set_hl(0, "illuminatedWord", { fg = "#FF0000", bg = "#FFFFFF" })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FF0000", bg = "#FFFFFF" })
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#FF0000", bg = "#FFFFFF" })
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000", bg = "#FFFFFF" })
+
+    -- eyeliner
+    vim.api.nvim_set_hl(0, "EyelinerPrimary", { underline = true })
   end
 })
 
