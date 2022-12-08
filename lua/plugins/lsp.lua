@@ -143,9 +143,11 @@ return function(use)
           ensure_installed = {
             "bashls",
             "eslint",
+            "gopls",
             "jsonls",
             "marksman",
             "pylsp",
+            "rust_analyzer",
             "sumneko_lua",
             "terraformls",
             "tflint",
