@@ -47,7 +47,6 @@ return function(use)
           require("null-ls").builtins.code_actions.shellcheck, -- https://www.shellcheck.net/
           require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
           require("null-ls").builtins.diagnostics.codespell, -- https://github.com/codespell-project/codespell
-          require("null-ls").builtins.diagnostics.commitlint, -- https://commitlint.js.org/ (npm install -g @commitlint/cli @commitlint/config-conventional @commitlint/format)
           require("null-ls").builtins.diagnostics.golangci_lint, -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
           require("null-ls").builtins.diagnostics.semgrep, -- https://semgrep.dev/
           require("null-ls").builtins.diagnostics.write_good, -- https://github.com/btford/write-good

@@ -66,7 +66,6 @@ return function(use)
             "autopep8",
             "checkmate",
             "codespell",
-            "commitlint",
             "fixjson",
             "flake8",
             "goimports_reviser",
