@@ -1,17 +1,140 @@
 return function(use)
+  use "Afourcat/treesitter-terraform-doc.nvim"
   use {
     "neovim/nvim-lspconfig",
-    "Afourcat/treesitter-terraform-doc.nvim"
+    config = function()
+      require("lspconfig").gopls.setup({
+        on_attach = function(client, bufnr)
+          require("settings/shared").on_attach(client, bufnr)
+          require("lsp-inlayhints").setup({
+            inlay_hints = {
+              type_hints = {
+                prefix = "=> "
+              },
+            },
+          })
+          require("lsp-inlayhints").on_attach(client, bufnr)
+          require("illuminate").on_attach(client)
+
+          vim.keymap.set(
+            "n", "<leader><leader>lv",
+            "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
+            {
+              noremap = true,
+              silent = true,
+              buffer = bufnr,
+              desc = "lint project code (revive)"
+            }
+          )
+        end,
+        settings = {
+          gopls = {
+            analyses = {
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            experimentalPostfixCompletions = true,
+            gofumpt = true,
+            staticcheck = true,
+            usePlaceholders = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            }
+          },
+        },
+      })
+    end
   }
+
+  use {
+    "simrat39/rust-tools.nvim",
+    requires = "neovim/nvim-lspconfig",
+    after = "nvim-lspconfig",
+    config = function()
+      require("rust-tools").setup({
+        -- rust-tools options
+        tools = {
+          autoSetHints = true,
+          inlay_hints = {
+            show_parameter_hints = true,
+            parameter_hints_prefix = "<- ",
+            other_hints_prefix = "=> ",
+          },
+        },
+
+        -- all the opts to send to nvim-lspconfig
+        -- these override the defaults set by rust-tools.nvim
+        --
+        -- REFERENCE:
+        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+        -- https://rust-analyzer.github.io/manual.html#configuration
+        -- https://rust-analyzer.github.io/manual.html#features
+        --
+        -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
+        --       <section> should be an object.
+        --       <property> should be a primitive.
+        server = {
+          on_attach = function(client, bufnr)
+            require("settings/shared").on_attach(client, bufnr)
+            require("illuminate").on_attach(client)
+
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
+            vim.keymap.set('n', '<leader><leader>rr', "<Cmd>RustRunnables<CR>", bufopts)
+            vim.keymap.set('n', 'K', "<Cmd>RustHoverActions<CR>", bufopts)
+          end,
+          ["rust-analyzer"] = {
+            assist = {
+              importEnforceGranularity = true,
+              importPrefix = "crate"
+            },
+            cargo = {
+              allFeatures = true
+            },
+            checkOnSave = {
+              -- default: `cargo check`
+              command = "clippy",
+              allFeatures = true,
+            },
+          },
+          inlayHints = { -- NOT SURE THIS IS VALID/WORKS 😬
+            lifetimeElisionHints = {
+              enable = true,
+              useParameterNames = true
+            },
+          },
+        }
+      })
+    end
+  }
+
+  use {
+    "lvimuser/lsp-inlayhints.nvim",
+    requires = "neovim/nvim-lspconfig",
+    after = "nvim-lspconfig"
+  } -- rust-tools already provides this feature, but gopls doesn't
+
   use {
     "williamboman/mason.nvim",
+    after = "nvim-lspconfig",
     config = function()
       require("mason").setup()
     end
   }
+
   use {
     "williamboman/mason-lspconfig.nvim",
-    after = "mason.nvim",
+    after = {
+      "mason.nvim",
+      "treesitter-terraform-doc.nvim",
+    },
     config = function()
       local mason_lspconfig = require("mason-lspconfig")
 
@@ -20,11 +143,9 @@ return function(use)
           ensure_installed = {
             "bashls",
             "eslint",
-            "gopls",
             "jsonls",
             "marksman",
             "pylsp",
-            "rust_analyzer",
             "sumneko_lua",
             "terraformls",
             "tflint",
@@ -37,27 +158,36 @@ return function(use)
       mason_lspconfig.setup_handlers(
         {
           function(server_name)
-            require("lspconfig")[server_name].setup(
-              {
-                on_attach = function(client, bufnr)
-                  require("settings/shared").on_attach(client, bufnr)
-                  require("illuminate").on_attach(client)
+            -- Skip gopls and rust_analyzer as we manually configure them.
+            -- Otherwise the following `setup()` would override our config.
+            if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
+              require("lspconfig")[server_name].setup(
+                {
+                  on_attach = function(client, bufnr)
+                    print("mason server_name is", server_name)
+                    require("settings/shared").on_attach(client, bufnr)
+                    require("illuminate").on_attach(client)
 
-                  if server_name == "terraformls" then
-                    require("treesitter-terraform-doc").setup()
+                    if server_name == "terraformls" then
+                      require("treesitter-terraform-doc").setup()
+                    end
                   end
-                end
-              }
-            )
+                }
+              )
+            end
           end
         }
       )
     end
   }
+
   use {
     "jayp0521/mason-null-ls.nvim",
     requires = "jose-elias-alvarez/null-ls.nvim",
-    after = "mason.nvim",
+    after = {
+      "mason.nvim",
+      "null-ls.nvim",
+    },
     config = function()
       require("mason-null-ls").setup(
         {
@@ -211,117 +341,4 @@ return function(use)
       require("crates").setup()
     end,
   }
-
-  use "simrat39/rust-tools.nvim"
-  use "lvimuser/lsp-inlayhints.nvim" -- rust-tools already provides this feature, but gopls doesn't
-
-  --[[
-    NOTE: I currently manually attach my shared mappings for each LSP server.
-    But, we can set a generic one using lspconfig:
-
-    require("lspconfig").util.default_config.on_attach = function()
-  --]]
-
-  require("lspconfig").gopls.setup({
-    on_attach = function(client, bufnr)
-      require("settings/shared").on_attach(client, bufnr)
-      require("lsp-inlayhints").setup({
-        inlay_hints = {
-          type_hints = {
-            prefix = "=> "
-          },
-        },
-      })
-      require("lsp-inlayhints").on_attach(client, bufnr)
-      require("illuminate").on_attach(client)
-
-      vim.keymap.set(
-        "n", "<leader><leader>lv",
-        "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
-        {
-          noremap = true,
-          silent = true,
-          buffer = bufnr,
-          desc = "lint project code (revive)"
-        }
-      )
-    end,
-    settings = {
-      gopls = {
-        analyses = {
-          nilness = true,
-          unusedparams = true,
-          unusedwrite = true,
-          useany = true,
-        },
-        experimentalPostfixCompletions = true,
-        gofumpt = true,
-        staticcheck = true,
-        usePlaceholders = true,
-        hints = {
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          compositeLiteralTypes = true,
-          constantValues = true,
-          functionTypeParameters = true,
-          parameterNames = true,
-          rangeVariableTypes = true,
-        }
-      },
-    },
-  })
-
-  require("rust-tools").setup({
-    -- rust-tools options
-    tools = {
-      autoSetHints = true,
-      inlay_hints = {
-        show_parameter_hints = true,
-        parameter_hints_prefix = "<- ",
-        other_hints_prefix = "=> ",
-      },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    --
-    -- REFERENCE:
-    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-    -- https://rust-analyzer.github.io/manual.html#configuration
-    -- https://rust-analyzer.github.io/manual.html#features
-    --
-    -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
-    --       <section> should be an object.
-    --       <property> should be a primitive.
-    server = {
-      on_attach = function(client, bufnr)
-        require("settings/shared").on_attach(client, bufnr)
-        require("illuminate").on_attach(client)
-
-        local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', '<leader><leader>rr', "<Cmd>RustRunnables<CR>", bufopts)
-        vim.keymap.set('n', 'K', "<Cmd>RustHoverActions<CR>", bufopts)
-      end,
-      ["rust-analyzer"] = {
-        assist = {
-          importEnforceGranularity = true,
-          importPrefix = "crate"
-        },
-        cargo = {
-          allFeatures = true
-        },
-        checkOnSave = {
-          -- default: `cargo check`
-          command = "clippy",
-          allFeatures = true,
-        },
-      },
-      inlayHints = { -- NOT SURE THIS IS VALID/WORKS 😬
-        lifetimeElisionHints = {
-          enable = true,
-          useParameterNames = true
-        },
-      },
-    }
-  })
 end
