@@ -68,6 +68,7 @@ return function(use)
             "codespell",
             "fixjson",
             "flake8",
+            "gofumpt",
             "goimports_reviser",
             "golangci_lint",
             "isort",
