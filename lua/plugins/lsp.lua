@@ -1,50 +1,94 @@
 return function(use)
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    "Afourcat/treesitter-terraform-doc.nvim",
+    "Afourcat/treesitter-terraform-doc.nvim"
   }
-
-  require("mason").setup()
-  local mason_lspconfig = require("mason-lspconfig")
-
-  mason_lspconfig.setup({
-    ensure_installed = {
-      "bashls",
-      "eslint",
-      "gopls",
-      "jsonls",
-      "marksman",
-      "pylsp",
-      "rust_analyzer",
-      "sumneko_lua",
-      "terraformls",
-      "tflint",
-      "tsserver",
-      "yamlls",
-      -- "autoflake",
-      -- "autopep8",
-      -- "flake8",
-      -- "isort",
-      -- "mypy",
-    }
-  })
-
-  mason_lspconfig.setup_handlers({
-    function(server_name)
-      require("lspconfig")[server_name].setup({
-        on_attach = function(client, bufnr)
-          require("settings/shared").on_attach(client, bufnr)
-          require("illuminate").on_attach(client)
-
-          if server_name == "terraformls" then
-            require("treesitter-terraform-doc").setup()
-          end
-        end
-      })
+  use {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
     end
-  })
+  }
+  use {
+    "williamboman/mason-lspconfig.nvim",
+    after = "mason.nvim",
+    config = function()
+      local mason_lspconfig = require("mason-lspconfig")
+
+      mason_lspconfig.setup(
+        {
+          ensure_installed = {
+            "bashls",
+            "eslint",
+            "gopls",
+            "jsonls",
+            "marksman",
+            "pylsp",
+            "rust_analyzer",
+            "sumneko_lua",
+            "terraformls",
+            "tflint",
+            "tsserver",
+            "yamlls"
+          }
+        }
+      )
+
+      mason_lspconfig.setup_handlers(
+        {
+          function(server_name)
+            require("lspconfig")[server_name].setup(
+              {
+                on_attach = function(client, bufnr)
+                  require("settings/shared").on_attach(client, bufnr)
+                  require("illuminate").on_attach(client)
+
+                  if server_name == "terraformls" then
+                    require("treesitter-terraform-doc").setup()
+                  end
+                end
+              }
+            )
+          end
+        }
+      )
+    end
+  }
+  use {
+    "jayp0521/mason-null-ls.nvim",
+    requires = "jose-elias-alvarez/null-ls.nvim",
+    after = "mason.nvim",
+    config = function()
+      require("mason-null-ls").setup(
+        {
+          ensure_installed = {
+            "autoflake",
+            "autopep8",
+            "checkmate",
+            "codespell",
+            "commitlint",
+            "fixjson",
+            "flake8",
+            "goimports_reviser",
+            "golangci_lint",
+            "isort",
+            "lua_format",
+            "markdown_toc",
+            "mdformat",
+            "mypy",
+            "ocdc",
+            "semgrep",
+            "shellcheck",
+            "shfmt",
+            "taplo",
+            "terraform_fmt",
+            "write_good",
+            "yamlfmt"
+          }
+        }
+      )
+    end
+  }
 
   use { "j-hui/fidget.nvim",
     config = function()
