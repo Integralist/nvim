@@ -166,7 +166,6 @@ return function(use)
               require("lspconfig")[server_name].setup(
                 {
                   on_attach = function(client, bufnr)
-                    print("mason server_name is", server_name)
                     require("settings/shared").on_attach(client, bufnr)
                     require("illuminate").on_attach(client)
 
