@@ -5,6 +5,9 @@ return function(use)
       local cmp = require("cmp")
 
       cmp.setup({
+        experimental = {
+          ghost_text = true,
+        },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
