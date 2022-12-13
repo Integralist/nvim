@@ -22,7 +22,7 @@ return function(use)
       ts.setup({
         defaults = {
           layout_strategy = 'vertical',
-          layout_config = { height = 0.95 },
+          layout_config = { height = 0.65, preview_height = 0.7 },
           mappings = {
             i = {
               ["<esc>"] = actions.close,
