@@ -4,7 +4,7 @@ return function(use)
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       --[[
-          Opening mulitple files doesn't work by default.
+          Opening multiple files doesn't work by default.
 
           You can either following the implementation detailed here:
           https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1220846367
@@ -24,15 +24,11 @@ return function(use)
           mappings = {
             i = {
               ["<esc>"] = actions.close,
-              ["<C-o>"] = actions.send_selected_to_qflist,
-            },
-          },
+              ["<C-o>"] = actions.send_selected_to_qflist
+            }
+          }
         },
-        extensions = {
-          heading = {
-            treesitter = true,
-          },
-        },
+        extensions = { heading = { treesitter = true } }
       })
 
       ts.load_extension("changed_files")
@@ -97,26 +93,28 @@ return function(use)
     end
   }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  use { "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      require("telescope").setup({})
-    end
+  use {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function() require("telescope").setup({}) end
   }
   use "kyoh86/telescope-windows.nvim"
   use "crispgm/telescope-heading.nvim"
   use "xiyaowong/telescope-emoji.nvim"
   use "axkirillov/telescope-changed-files"
-  use { "LukasPietzschmann/telescope-tabs",
+  use {
+    "LukasPietzschmann/telescope-tabs",
     config = function()
-      vim.keymap.set("n", "<leader>t", "<Cmd>lua require('telescope-tabs').list_tabs()<CR>", { desc = "search tabs" })
+      vim.keymap.set("n", "<leader>t",
+        "<Cmd>lua require('telescope-tabs').list_tabs()<CR>",
+        { desc = "search tabs" })
     end
   }
 
   -- surface any TODO or NOTE code references
-  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup()
-    end
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function() require("todo-comments").setup() end
   }
 
   -- pattern searching
@@ -128,22 +126,38 @@ return function(use)
   }
 
   -- search indexer
-  use { "kevinhwang91/nvim-hlslens",
-    config = function()
-      require("hlslens").setup()
-    end
+  use {
+    "kevinhwang91/nvim-hlslens",
+    config = function() require("hlslens").setup() end
   }
-  use { "haya14busa/vim-asterisk",
+  use {
+    "haya14busa/vim-asterisk",
     config = function()
-      vim.api.nvim_set_keymap('n', '*', [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', '#', [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', 'g*', [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', 'g#', [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap('n', '*',
+        [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('n', '#',
+        [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('n', 'g*',
+        [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('n', 'g#',
+        [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
 
-      vim.api.nvim_set_keymap('x', '*', [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', '#', [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', 'g*', [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', 'g#', [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap('x', '*',
+        [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('x', '#',
+        [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('x', 'g*',
+        [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.api.nvim_set_keymap('x', 'g#',
+        [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
     end
   }
 
@@ -153,13 +167,11 @@ return function(use)
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("spectre").setup({
-        replace_engine = {
-          ["sed"] = {
-            cmd = "gsed",
-          },
-        },
+        replace_engine = { ["sed"] = { cmd = "gsed" } }
       })
-      vim.keymap.set("n", "<leader>S", "<Cmd>lua require('spectre').open()<CR>", { desc = "search and replace" })
+      vim.keymap.set("n", "<leader>S",
+        "<Cmd>lua require('spectre').open()<CR>",
+        { desc = "search and replace" })
     end
   }
 end
