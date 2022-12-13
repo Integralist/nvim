@@ -2,13 +2,21 @@
 These are general purpose mappings and LSP mappings.
 Mappings for plugins are inside ~/.config/nvim/plugin/<name>.lua
 --]]
+vim.keymap.set("", "<leader><leader>ps", "<Cmd>PackerSync<CR>",
+  { desc = "update vim plugins" })
 
-vim.keymap.set("", "<leader><leader>ps", "<Cmd>PackerSync<CR>", { desc = "update vim plugins" })
-vim.keymap.set("", "<leader><leader>pc", "<Cmd>PackerCompile<CR>", { desc = "packer compile" })
-vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>", { desc = "turn off search highlight" })
+vim.keymap.set("", "<leader><leader>pc",
+  ":PackerCompile<CR>:echo 'PackerCompile complete'<CR>",
+  { desc = "packer compile" })
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down and then center the cursorline" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up and then center the cursorline" })
+vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>",
+  { desc = "turn off search highlight" })
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz",
+  { desc = "scroll down and then center the cursorline" })
+
+vim.keymap.set("n", "<C-u>", "<C-u>zz",
+  { desc = "scroll up and then center the cursorline" })
 
 -- Terminal mappings
 function _G.set_terminal_keymaps()
