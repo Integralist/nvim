@@ -21,14 +21,15 @@ return function(use)
 
       ts.setup({
         defaults = {
-          layout_strategy = 'vertical',
-          layout_config = { height = 0.65, preview_height = 0.7 },
+          layout_strategy = "vertical",
+          layout_config = { height = 0.75, preview_height = 0.7 },
           mappings = {
             i = {
               ["<esc>"] = actions.close,
               ["<C-o>"] = actions.send_selected_to_qflist
             }
-          }
+          },
+          scroll_strategy = "limit"
         },
         extensions = { heading = { treesitter = true } }
       })
