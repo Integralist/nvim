@@ -14,16 +14,18 @@ NOTE: The plugin mappings defined have the following convention:
 * Double <leader> for all other mappings
 
 This helps to avoid overlap in letters.
---]]
-
--- The following configuration ensures that when we clone these dotfiles to a
+--]] -- The following configuration ensures that when we clone these dotfiles to a
 -- new laptop, that they'll continue to work without any manual intervention.
 -- Check the bottom of the .startup() function for our call to packer_bootstrap.
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') ..
+      '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    fn.system({
+      'git', 'clone', '--depth', '1',
+      'https://github.com/wbthomason/packer.nvim', install_path
+    })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -42,19 +44,15 @@ return require("packer").startup({
       "DaikyXendo/nvim-material-icon",
       requires = "nvim-tree/nvim-web-devicons",
       config = function()
-        local web_devicons_ok, web_devicons = pcall(require, "nvim-web-devicons")
-        if not web_devicons_ok then
-          return
-        end
+        local web_devicons_ok, web_devicons = pcall(require,
+          "nvim-web-devicons")
+        if not web_devicons_ok then return end
 
-        local material_icon_ok, material_icon = pcall(require, "nvim-material-icon")
-        if not material_icon_ok then
-          return
-        end
+        local material_icon_ok, material_icon = pcall(require,
+          "nvim-material-icon")
+        if not material_icon_ok then return end
 
-        web_devicons.setup({
-          override = material_icon.get_icons(),
-        })
+        web_devicons.setup({ override = material_icon.get_icons() })
 
         require("nvim-material-icon").setup()
       end
@@ -63,9 +61,13 @@ return require("packer").startup({
     -- The following code loads our plugins based on their category group (e.g. autocomplete, lsp, search etc).
     local plugins = vim.api.nvim_get_runtime_file("lua/plugins/*.lua", true)
     for _, abspath in ipairs(plugins) do
-      for _, filename in ipairs(vim.split(abspath, "/lua/", { trimempty = true })) do
-        if vim.endswith(filename, ".lua") and not vim.endswith(filename, "init.lua") then
-          for _, name in ipairs(vim.split(filename, "[.]lua", { trimempty = true })) do
+      for _, filename in ipairs(vim.split(abspath, "/lua/",
+        { trimempty = true })) do
+        if vim.endswith(filename, ".lua") and
+            not vim.endswith(filename, "init.lua") then
+          for _, name in ipairs(
+            vim.split(filename, "[.]lua",
+              { trimempty = true })) do
             require(name)(use)
           end
         end
@@ -74,13 +76,7 @@ return require("packer").startup({
 
     -- automatically set up your configuration after cloning packer.nvim
     -- put this at the end after all plugins
-    if packer_bootstrap then
-      require("packer").sync()
-    end
+    if packer_bootstrap then require("packer").sync() end
   end,
-  config = {
-    git = {
-      clone_timeout = 120
-    }
-  }
+  config = { git = { clone_timeout = 120 } }
 })
