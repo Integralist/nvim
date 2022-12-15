@@ -117,7 +117,17 @@ return function(use)
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
-    config = function() require("todo-comments").setup() end
+    config = function()
+      require("todo-comments").setup({
+        keywords = {
+          WARN = {
+            icon = " ",
+            color = "warning",
+            alt = { "WARNING", "XXX", "IMPORTANT" }
+          }
+        }
+      })
+    end
   }
 
   -- pattern searching
