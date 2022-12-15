@@ -1,6 +1,7 @@
 return function(use)
   use "EdenEast/nightfox.nvim"
-  use { "ellisonleao/gruvbox.nvim",
+  use {
+    "ellisonleao/gruvbox.nvim",
     config = function()
       -- require("gruvbox").setup({
       --   contrast = "hard",
@@ -56,33 +57,47 @@ return function(use)
           faded_purple = "#8f3f71",
           faded_aqua = "#427b58",
           faded_orange = "#af3a03",
-          gray = "#928374",
-        },
+          gray = "#928374"
+        }
       })
 
       -- We remove the Vim builtin colorschemes so they don't show in Telescope.
       vim.cmd("silent !rm $VIMRUNTIME/colors/*.vim &> /dev/null")
 
       vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("FixGruvboxForNoice", { clear = true }),
+        group = vim.api.nvim_create_augroup("FixGruvboxForNoice",
+          { clear = true }),
         pattern = "*",
         callback = function()
           if vim.g.colors_name == "gruvbox" then
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderFilter", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderHelp", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderInput", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderLua", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = "#fabd2f", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderFilter",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderHelp",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderInput",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderLua",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch",
+              { fg = "#fabd2f", bg = "NONE" })
 
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconFilter", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconLua", { fg = "#83a598", bg = "NONE" })
-            vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = "#fabd2f", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconFilter",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconLua",
+              { fg = "#83a598", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch",
+              { fg = "#fabd2f", bg = "NONE" })
 
-            vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { fg = "#000000", bg = "#fabd2f" })
+            vim.api.nvim_set_hl(0, "NeoTreeCursorLine",
+              { fg = "#000000", bg = "#fabd2f" })
           end
         end
       })
