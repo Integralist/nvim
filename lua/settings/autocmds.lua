@@ -1,27 +1,21 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("PackerCompiler", { clear = true }),
   pattern = "*.lua",
-  command = "source <afile> | PackerCompile | LuaCacheClear",
+  command = "source <afile> | PackerCompile | LuaCacheClear"
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = {
-    "*.lua"
-  },
+  pattern = { "*.lua" },
   command = "source ~/.config/nvim/init.lua"
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "sh", "go", "rust"
-  },
+  pattern = { "sh", "go", "rust" },
   command = "setlocal textwidth=80"
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = {
-    "*.mdx"
-  },
+  pattern = { "*.mdx" },
   command = "set filetype=markdown"
 })
 
@@ -31,10 +25,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     -- vim.cmd("highlight BufDimText guibg='NONE' guifg=darkgrey guisp=darkgrey gui='NONE'")
 
     -- vim-illuminate
-    vim.api.nvim_set_hl(0, "illuminatedWord", { fg = "#FF0000", bg = "#FFFFFF" })
-    vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FF0000", bg = "#FFFFFF" })
-    vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#FF0000", bg = "#FFFFFF" })
-    vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000", bg = "#FFFFFF" })
+    --
+    -- DISABLED as it was getting quite noisy.
+    --
+    -- vim.api.nvim_set_hl(0, "illuminatedWord", { fg = "#FF0000", bg = "#FFFFFF" })
+    -- vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FF0000", bg = "#FFFFFF" })
+    -- vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#FF0000", bg = "#FFFFFF" })
+    -- vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FF0000", bg = "#FFFFFF" })
 
     -- eyeliner
     vim.api.nvim_set_hl(0, "EyelinerPrimary", { underline = true })
@@ -43,9 +40,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("WrapLineInMarkdown", { clear = true }),
-  pattern = {
-    "markdown"
-  },
+  pattern = { "markdown" },
   command = "setlocal wrap"
 })
 
