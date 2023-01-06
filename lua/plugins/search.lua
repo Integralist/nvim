@@ -76,7 +76,7 @@ return function(use)
         "<Cmd>Telescope lsp_references<CR>",
         { desc = "search lsp code reference" })
       vim.keymap.set("n", "<leader>ls",
-        "<Cmd>Telescope lsp_document_symbols<CR>",
+        "<Cmd>lua require('telescope.builtin').lsp_document_symbols({show_line = true})<CR>",
         { desc = "search lsp document tree" })
       vim.keymap.set("n", "<leader>m", "<Cmd>Telescope heading<CR>",
         { desc = "search markdown headings" })
