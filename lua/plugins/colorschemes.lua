@@ -102,8 +102,6 @@ return function(use)
         end
       })
 
-      vim.cmd("colorscheme nightfox")
-
       -- EXAMPLE:
       -- ExtendHL('Comment', { italic = true })
       function ExtendHL(name, def)
@@ -126,5 +124,8 @@ return function(use)
     end
   }
   use "fenetikm/falcon"
+  use "savq/melange-nvim"
   use "vito-c/jq.vim" -- not a colourscheme but syntax highlighting
+
+  vim.cmd("colorscheme nightfox")
 end
