@@ -3,9 +3,6 @@ return function(use)
   use {
     "ellisonleao/gruvbox.nvim",
     config = function()
-      -- require("gruvbox").setup({
-      --   contrast = "hard",
-      -- })
       require("gruvbox").setup({
         undercurl = true,
         underline = true,
