@@ -116,13 +116,27 @@ return function(use)
   use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
   -- window bar breadcrumbs
-  use {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
+  -- use {
+  --   "SmiteshP/nvim-navic",
+  --   requires = "neovim/nvim-lspconfig",
+  --   config = function()
+  --     require("nvim-navic").setup({ highlight = true })
+  --   end
+  -- }
+  use({
+    "utilyre/barbecue.nvim",
+    tag = "*",
+    requires = {
+      "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons"
+    },
     config = function()
-      require("nvim-navic").setup({ highlight = true })
+      require("barbecue").setup({
+        attach_navic = false -- prevent barbecue from automatically attaching nvim-navic
+        -- this is so ../settings/shared.lua can handle attaching only when LSP running
+      })
     end
-  }
+  })
 
   -- scrollbar
   use {
