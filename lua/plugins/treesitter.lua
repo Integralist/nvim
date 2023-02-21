@@ -26,24 +26,23 @@ return function(use)
         "regex",
         "ruby",
         "rust",
+        "terraform",
         "toml",
         "vim",
         "yaml",
         "zig",
-        ensure_installed = {
-        },
-        highlight = {
-          enable = true,
-        },
+        ensure_installed = {},
+        highlight = { enable = true },
         rainbow = {
           enable = true,
           extended_mode = true,
-          max_file_lines = nil,
+          max_file_lines = nil
         }
       })
     end
   }
-  use { "nvim-treesitter/nvim-treesitter-textobjects",
+  use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -53,61 +52,69 @@ return function(use)
             init_selection = "gnn", -- start treesitter selection process
             scope_incremental = "gnm", -- increment selection to surrounding scope
             node_incremental = ";", -- increment selection to next 'node'
-            node_decremental = ",", -- decrement selection to prev 'node'
-          },
+            node_decremental = "," -- decrement selection to prev 'node'
+          }
         },
-        indent = {
-          enable = true
-        },
+        indent = { enable = true },
         textobjects = {
           select = {
             enable = true,
             lookahead = true,
             include_surrounding_whitespace = false,
             keymaps = {
-              ["af"] = { query = "@function.outer", desc = "select around a function" },
-              ["if"] = { query = "@function.inner", desc = "select inner part of a function" },
-              ["ac"] = { query = "@class.outer", desc = "select around a class" },
-              ["ic"] = { query = "@class.inner", desc = "select inner part of a class" },
+              ["af"] = {
+                query = "@function.outer",
+                desc = "select around a function"
+              },
+              ["if"] = {
+                query = "@function.inner",
+                desc = "select inner part of a function"
+              },
+              ["ac"] = {
+                query = "@class.outer",
+                desc = "select around a class"
+              },
+              ["ic"] = {
+                query = "@class.inner",
+                desc = "select inner part of a class"
+              }
             },
             selection_modes = {
               ['@parameter.outer'] = 'v',
               ['@function.outer'] = 'V',
-              ['@class.outer'] = '<c-v>',
-            },
+              ['@class.outer'] = '<c-v>'
+            }
           },
           move = {
             enable = true,
             set_jumps = true,
             goto_next_start = {
               ["]]"] = "@function.outer",
-              ["]\\"] = "@class.outer",
+              ["]\\"] = "@class.outer"
             },
             goto_previous_start = {
               ["[["] = "@function.outer",
-              ["[\\"] = "@class.outer",
-            },
-          },
-        },
+              ["[\\"] = "@class.outer"
+            }
+          }
+        }
       })
     end
   }
-  use { "lewis6991/spellsitter.nvim",
-    config = function()
-      require("spellsitter").setup()
-    end
+  use {
+    "lewis6991/spellsitter.nvim",
+    config = function() require("spellsitter").setup() end
   }
-  use { "m-demare/hlargs.nvim",
+  use {
+    "m-demare/hlargs.nvim",
     requires = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("hlargs").setup()
-    end
+    config = function() require("hlargs").setup() end
   }
-  use { "nvim-treesitter/nvim-treesitter-context", requires = "nvim-treesitter/nvim-treesitter",
+  use {
+    "nvim-treesitter/nvim-treesitter-context",
+    requires = "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("treesitter-context").setup({
-        separator = "-",
-      })
+      require("treesitter-context").setup({ separator = "-" })
     end
   } -- buffer scroll context
 end
