@@ -163,10 +163,12 @@ return function(use)
     config = function()
       local mason_lspconfig = require("mason-lspconfig")
 
+      -- NOTE: sumneko_lua -> lua_ls
+      -- https://github.com/williamboman/mason-lspconfig.nvim/pull/148
       mason_lspconfig.setup({
         ensure_installed = {
           "bashls", "eslint", "gopls", "jsonls", "marksman", "pylsp",
-          "rust_analyzer", "sumneko_lua", "terraformls", "tflint",
+          "rust_analyzer", "lua_ls", "terraformls", "tflint",
           "tsserver", "yamlls"
         }
       })
