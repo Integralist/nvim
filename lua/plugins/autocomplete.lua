@@ -32,9 +32,9 @@ return function(use)
         },
         sources = cmp.config.sources({
           -- ordered by priority
-          { name = "nvim_lsp" }, { name = "nvim_lsp_signature_help" },
-          { name = "path" }, { name = "buffer" }, { name = "luasnip" },
-          { name = "nvim_lua" }
+          { name = "nvim_lsp", keyword_length = 1 },
+          { name = "nvim_lsp_signature_help" }, { name = "luasnip" },
+          { name = "path" }, { name = "buffer" }, { name = "nvim_lua" }
         })
       })
 
