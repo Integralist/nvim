@@ -47,16 +47,16 @@ return function(use)
       null_ls.setup({
         debug = true,
         sources = {
-          tfproviderlintx,
+          -- tfproviderlintx,
           require("null-ls").builtins.code_actions.shellcheck, -- https://www.shellcheck.net/
           require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
           require("null-ls").builtins.diagnostics.codespell, -- https://github.com/codespell-project/codespell
           require("null-ls").builtins.diagnostics.golangci_lint, -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
-          require("null-ls").builtins.diagnostics.semgrep.with({
-            args = { "--config", "auto", "-q", "--json", "$FILENAME" },
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-            timeout = 30000 -- 30 seconds
-          }), -- https://semgrep.dev/
+          -- require("null-ls").builtins.diagnostics.semgrep.with({
+          --   args = { "--config", "auto", "-q", "--json", "$FILENAME" },
+          --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+          --   timeout = 30000 -- 30 seconds
+          -- }), -- https://semgrep.dev/
           require("null-ls").builtins.diagnostics.write_good, -- https://github.com/btford/write-good
           require("null-ls").builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
           require("null-ls").builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
