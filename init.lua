@@ -48,84 +48,24 @@ local function shared_on_attach(client, bufnr)
     end
 
     if client.server_capabilities.documentSymbolProvider then
-        -- WARNING: ../plugins/lsp.lua must be loaded first to avoid error loading navic plugin.
         require("nvim-navic").attach(client, bufnr)
-
-        vim.api.nvim_set_hl(0, "NavicIconsFile",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsModule",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsNamespace",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsPackage",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsClass",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsMethod",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsProperty",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsField",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsConstructor",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsEnum",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsInterface",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsFunction",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsVariable",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsConstant",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsString",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsNumber",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsBoolean",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsArray",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsObject",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsKey",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsNull",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsEnumMember",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsStruct",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsEvent",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsOperator",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicIconsTypeParameter",
-                            {default = true, bg = "#000000", fg = "#83a598"})
-        vim.api.nvim_set_hl(0, "NavicText",
-                            {default = true, bg = "#000000", fg = "#ffffff"})
-        vim.api.nvim_set_hl(0, "NavicSeparator",
-                            {default = true, bg = "#000000", fg = "#fabd2f"})
-
         vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end
 end
 
 require("lazy").setup({
-    --
-    -- COLORSCHEME
     {
+        -- COLORSCHEME
         "EdenEast/nightfox.nvim",
         lazy = false, -- make sure we load this during startup as it is our main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function() vim.cmd([[colorscheme nightfox]]) end
-    }, --
-    --
-    -- SYNTAX HIGHLIGHTING
-    {"vito-c/jq.vim", lazy = true}, --
-    -- AUTOCOMPLETE
-    {
+    }, {
+        -- SYNTAX HIGHLIGHTING
+        "vito-c/jq.vim",
+        lazy = true
+    }, {
+        -- AUTOCOMPLETE
         "hrsh7th/nvim-cmp",
         config = function()
             local cmp = require("cmp")
@@ -188,10 +128,12 @@ require("lazy").setup({
                    "<cmd>lua require('luasnip').jump(-1)<CR>", opts)
             require("luasnip.loaders.from_lua").load({paths = "~/.snippets"})
         end
-    }, {"folke/neodev.nvim", config = function() require("neodev").setup() end},
-    --
-    -- DEBUGGING
-    {
+    }, {
+        -- NEOVIM DEVELOPMENT HELPERS
+        "folke/neodev.nvim",
+        config = function() require("neodev").setup() end
+    }, {
+        -- DEBUGGING
         "mfussenegger/nvim-dap",
         config = function()
             vim.keymap.set("n", "<leader><leader>dc",
@@ -232,11 +174,8 @@ require("lazy").setup({
         "theHamsta/nvim-dap-virtual-text",
         dependencies = {"mfussenegger/nvim-dap"},
         config = function() require("nvim-dap-virtual-text").setup() end
-    }, --
-    -- GIT
-    --
-    -- git change indicator
-    {
+    }, {
+        -- GIT CHANGE INDICATOR
         "lewis6991/gitsigns.nvim",
         config = function()
             vim.api.nvim_set_hl(0, "GitSignsChange",
@@ -282,9 +221,8 @@ require("lazy").setup({
                 end
             })
         end
-    }, --
-    -- git history
-    {
+    }, {
+        -- GIT HISTORY
         "sindrets/diffview.nvim",
         dependencies = {"nvim-lua/plenary.nvim"},
         config = function()
@@ -297,19 +235,16 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader><leader>gc", "<Cmd>DiffviewClose<CR>",
                            {desc = "diff close"})
         end
-    }, --
-    -- open lines in github
-    {
+    }, {
+        -- OPEN LINES IN GITHUB
         "ruanyl/vim-gh-line",
         config = function() vim.g.gh_line_map = "<leader><leader>gl" end
-    }, --
-    -- indentation autopairing
-    {
+    }, {
+        -- INDENTATION AUTOPAIRING
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
-    }, --
-    -- whitespace management
-    {
+    }, {
+        -- WHITESPACE MANAGEMENT
         "zakharykaplan/nvim-retrail",
         config = function()
             require("retrail").setup({
@@ -323,22 +258,27 @@ require("lazy").setup({
                 }
             })
         end
-    }, --
-    -- word usage highlighter
-    "RRethy/vim-illuminate", --
-    -- jump to word indictors
-    "jinh0/eyeliner.nvim", --
-    -- cursor movement highlighter
-    "DanilaMihailov/beacon.nvim", --
-    -- highlight yanked region
-    "machakann/vim-highlightedyank", --
-    -- suggest mappings
-    {
+    }, {
+        -- WORD USAGE HIGHLIGHTER
+        "RRethy/vim-illuminate"
+    }, {
+        -- JUMP TO WORD INDICTORS
+        "jinh0/eyeliner.nvim"
+    }, {
+        -- CURSOR MOVEMENT HIGHLIGHTER
+        "DanilaMihailov/beacon.nvim"
+    }, {
+        -- HIGHLIGHT YANKED REGION
+        "machakann/vim-highlightedyank"
+    }, {
+        -- SUGGEST MAPPINGS
         "folke/which-key.nvim",
         config = function() require("which-key").setup() end
-    }, --
-    -- LSP
-    "Afourcat/treesitter-terraform-doc.nvim", {
+    }, {
+        -- TERRAFORM DOCS
+        "Afourcat/treesitter-terraform-doc.nvim"
+    }, {
+        -- LSP
         "neovim/nvim-lspconfig",
         config = function()
             -- fix_imports ensures that imports are sorted and grouped correctly.
@@ -359,6 +299,7 @@ require("lazy").setup({
                 end
             end
 
+            -- GOLANG LSP
             require("lspconfig").gopls.setup({
                 on_attach = function(client, bufnr)
                     shared_on_attach(client, bufnr)
@@ -417,6 +358,7 @@ require("lazy").setup({
             })
         end
     }, {
+        -- RUST LSP
         "simrat39/rust-tools.nvim",
         dependencies = "neovim/nvim-lspconfig",
         config = function()
@@ -478,8 +420,13 @@ require("lazy").setup({
                 }
             })
         end
-    }, {"lvimuser/lsp-inlayhints.nvim", dependencies = "neovim/nvim-lspconfig"}, -- rust-tools already provides this feature, but gopls doesn't
-    {
+    }, {
+        -- LSP INLAY HINTS
+        -- rust-tools already provides this feature, but gopls doesn't
+        "lvimuser/lsp-inlayhints.nvim",
+        dependencies = "neovim/nvim-lspconfig"
+    }, {
+        -- LSP SERVER MANAGEMENT
         "williamboman/mason.nvim",
         dependencies = "nvim-lspconfig",
         config = function() require("mason").setup() end
@@ -518,8 +465,12 @@ require("lazy").setup({
                 end
             })
         end
-    }, {"j-hui/fidget.nvim", config = function() require("fidget").setup() end},
-    {
+    }, {
+        -- LSP PROGRESS STATUS
+        "j-hui/fidget.nvim",
+        config = function() require("fidget").setup() end
+    }, {
+        -- LSP DIAGNOSTICS
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
@@ -542,6 +493,7 @@ require("lazy").setup({
                            "<Cmd>TroubleToggle loclist<CR>", bufopts)
         end
     }, {
+        -- LSP VIRTUAL TEXT
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- See also: https://github.com/Maan2003/lsp_lines.nvim
         config = function()
             require("lsp_lines").setup()
@@ -550,6 +502,7 @@ require("lazy").setup({
             vim.diagnostic.config({virtual_text = false})
         end
     }, {
+        -- DOCUMENT/CODE SYNTAX TREE
         "simrat39/symbols-outline.nvim",
         config = function()
             require("symbols-outline").setup({
@@ -589,6 +542,7 @@ require("lazy").setup({
             })
         end
     }, {
+        -- MINIMAP
         "gorbit99/codewindow.nvim",
         config = function()
             require("codewindow").setup({
@@ -608,6 +562,7 @@ require("lazy").setup({
             })
         end
     }, {
+        -- CODE ACTION LIGHTBULB
         "kosayoda/nvim-lightbulb",
         config = function()
             vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
@@ -616,9 +571,11 @@ require("lazy").setup({
             })
         end
     }, {
+        -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
         "folke/lsp-colors.nvim",
         config = function() require("lsp-colors").setup() end
     }, {
+        -- CODE ACTIONS POPUP
         "weilbith/nvim-code-action-menu",
         config = function()
             vim.keymap.set("n", "<leader><leader>la", "<Cmd>CodeActionMenu<CR>",
@@ -626,14 +583,12 @@ require("lazy").setup({
             vim.g.code_action_menu_window_border = "single"
         end
     }, {
+        -- MANAGE CREATE DEPENDENCIES
         "saecki/crates.nvim",
         dependencies = {"nvim-lua/plenary.nvim"},
         config = function() require("crates").setup() end
-    }, -- ICONS
-    --
-    "nvim-tree/nvim-web-devicons", --
-    -- replacement for nvim-web-devicons
-    {
+    }, {
+        -- REPLACEMENT FOR NVIM-WEB-DEVICONS
         "DaikyXendo/nvim-material-icon",
         dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
@@ -649,11 +604,8 @@ require("lazy").setup({
 
             require("nvim-material-icon").setup()
         end
-    }, --
-    -- MOTION
-    --
-    -- camel case motion support
-    {
+    }, {
+        -- CAMEL CASE MOTION SUPPORT
         "bkad/CamelCaseMotion",
         config = function()
             vim.keymap.set('', 'w', '<Plug>CamelCaseMotion_w', {silent = true})
@@ -662,9 +614,8 @@ require("lazy").setup({
             vim.keymap
                 .set('', 'ge', '<Plug>CamelCaseMotion_ge', {silent = true})
         end
-    }, --
-    -- move lines around
-    {
+    }, {
+        -- MOVE LINES AROUND
         "fedepujol/move.nvim",
         config = function()
             local opts = {noremap = true, silent = true}
@@ -680,9 +631,8 @@ require("lazy").setup({
             vim.keymap.set('v', '<S-h>', ':MoveHBlock(-1)<CR>', opts)
             vim.keymap.set('v', '<S-l>', ':MoveHBlock(1)<CR>', opts)
         end
-    }, --
-    -- NAVIGATION
-    {
+    }, {
+        -- NAVIGATION
         "nvim-neo-tree/neo-tree.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -734,9 +684,8 @@ require("lazy").setup({
                 }
             })
         end
-    }, --
-    -- NULL-LS
-    {
+    }, {
+        -- NULL-LS
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
@@ -812,12 +761,11 @@ require("lazy").setup({
                 }
             })
         end
-    }, -- OPERATORS
-    --
-    -- make dot operator work in a sensible way
-    "tpope/vim-repeat", --
-    -- SEARCH
-    {
+    }, {
+        -- MAKE DOT OPERATOR WORK IN A SENSIBLE WAY
+        "tpope/vim-repeat"
+    }, {
+        -- SEARCH
         "nvim-telescope/telescope.nvim",
         dependencies = {"nvim-lua/plenary.nvim"},
         config = function()
@@ -912,19 +860,36 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>x", "<Cmd>Telescope live_grep<CR>",
                            {desc = "search text"})
         end
-    }, {"nvim-telescope/telescope-fzf-native.nvim", build = "make"}, {
+    }, {
+        -- FZF SORTER FOR TELESCOPE WRITTEN IN C
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make"
+    }, {
+        -- USE TELESCOPE FOR UI ELEMENTS
         "nvim-telescope/telescope-ui-select.nvim",
         config = function() require("telescope").setup({}) end
-    }, "kyoh86/telescope-windows.nvim", "crispgm/telescope-heading.nvim",
-    "xiyaowong/telescope-emoji.nvim", "axkirillov/telescope-changed-files", {
+    }, {
+        -- SEARCH WINDOWS IN TELESCOPE
+        "kyoh86/telescope-windows.nvim"
+    }, {
+        -- SEARCH MARKDOWN HEADINGS IN TELESCOPE
+        "crispgm/telescope-heading.nvim"
+    }, {
+        -- SEARCH EMOJIS IN TELESCOPE
+        "xiyaowong/telescope-emoji.nvim"
+    }, {
+        -- SEARCH CHANGED GIT FILES IN TELESCOPE
+        "axkirillov/telescope-changed-files"
+    }, {
+        -- SEARCH TABS IN TELESCOPE
         "LukasPietzschmann/telescope-tabs",
         config = function()
             vim.keymap.set("n", "<leader>t",
                            "<Cmd>lua require('telescope-tabs').list_tabs()<CR>",
                            {desc = "search tabs"})
         end
-    }, -- surface any TODO or NOTE code references
-    {
+    }, {
+        -- SEARCH NOTES/TODOS IN TELESCOPE
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         config = function()
@@ -938,11 +903,12 @@ require("lazy").setup({
                 }
             })
         end
-    }, -- search indexer
-    {
+    }, {
+        -- SEARCH INDEXER
         "kevinhwang91/nvim-hlslens",
         config = function() require("hlslens").setup() end
     }, {
+        -- IMPROVES ASTERISK BEHAVIOR
         "haya14busa/vim-asterisk",
         config = function()
             vim.api.nvim_set_keymap('n', '*',
@@ -971,8 +937,8 @@ require("lazy").setup({
                                     [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
                                     {})
         end
-    }, -- search and replace
-    {
+    }, {
+        -- SEARCH AND REPLACE
         "nvim-pack/nvim-spectre",
         dependencies = {"nvim-lua/plenary.nvim"},
         config = function()
@@ -983,9 +949,8 @@ require("lazy").setup({
                            "<Cmd>lua require('spectre').open()<CR>",
                            {desc = "search and replace"})
         end
-    }, --
-    -- TERMINAL
-    {
+    }, {
+        -- TERMINAL
         "akinsho/toggleterm.nvim",
         version = "v2.*",
         config = function()
@@ -1012,11 +977,9 @@ require("lazy").setup({
                            "<Cmd>ToggleTerm direction=float<CR>",
                            {desc = "toggle floating terminal"})
         end
-    }, --
-    -- TREESITTER
-    --
-    -- syntax tree parsing for more intelligent syntax highlighting and code navigation
-    {
+    }, {
+        -- TREESITTER
+        -- Syntax tree parsing for more intelligent syntax highlighting and code navigation
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
@@ -1116,24 +1079,24 @@ require("lazy").setup({
             })
         end
     }, {
+        -- TREESITTER POWERED SPELLCHECKER
         "lewis6991/spellsitter.nvim",
         config = function() require("spellsitter").setup() end
     }, {
+        -- HIGHLIGHT ARGUMENTS' DEFINITIONS AND USAGES, USING TREESITTER
         "m-demare/hlargs.nvim",
         dependencies = {"nvim-treesitter/nvim-treesitter"},
         config = function() require("hlargs").setup() end
     }, {
+        -- SHOWS THE CONTEXT OF THE CURRENTLY VISIBLE BUFFER CONTENTS
         "nvim-treesitter/nvim-treesitter-context",
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = function()
             require("treesitter-context").setup({separator = "-"})
         end
-    }, -- buffer scroll context
-    --
-    -- UI
-    --
-    -- status line
-    {
+    }, {
+        -- UI
+        -- status line
         "nvim-lualine/lualine.nvim",
         dependencies = {"nvim-tree/nvim-web-devicons", opt = true},
         config = function()
@@ -1150,13 +1113,12 @@ require("lazy").setup({
                 }
             })
         end
-    }, -- ui improvements
-    {
+    }, {
+        -- UI IMPROVEMENTS
         "stevearc/dressing.nvim",
         config = function() require("dressing").setup() end
-    },
-    -- NOTE: `:Noice` to open message history + `:Noice telescope` to open message history in Telescope.
-    {
+    }, {
+        -- NOTE: `:Noice` to open message history + `:Noice telescope` to open message history in Telescope.
         "folke/noice.nvim",
         event = "VimEnter",
         config = function()
@@ -1213,8 +1175,8 @@ require("lazy").setup({
             })
         end,
         dependencies = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}
-    }, -- tab ui improvements
-    {
+    }, {
+        -- TAB UI IMPROVEMENTS
         "akinsho/bufferline.nvim",
         version = "v3.*",
         dependencies = 'nvim-tree/nvim-web-devicons',
@@ -1229,18 +1191,24 @@ require("lazy").setup({
                 }
             })
         end
-    }, -- quickfix improvements
-    --
-    -- <Tab> to select items.
-    -- zn to keep selected items.
-    -- zN to filter selected items.
-    -- zf to fuzzy search items.
-    --
-    -- <Ctrl-f> scroll down
-    -- <Ctrl-b> scroll up
-    {"junegunn/fzf", build = function() vim.fn["fzf#install"]() end},
-    {"kevinhwang91/nvim-bqf", ft = "qf"}, -- window bar breadcrumbs
-    {
+    }, {
+        -- FZF USED BY BETTER-QUICKFIX PLUGIN
+        "junegunn/fzf",
+        build = function() vim.fn["fzf#install"]() end
+    }, {
+        -- QUICKFIX IMPROVEMENTS
+        --
+        -- <Tab> to select items.
+        -- zn to keep selected items.
+        -- zN to filter selected items.
+        -- zf to fuzzy search items.
+        --
+        -- <Ctrl-f> scroll down
+        -- <Ctrl-b> scroll up
+        "kevinhwang91/nvim-bqf",
+        ft = "qf"
+    }, {
+        -- WINDOW BAR BREADCRUMBS
         "utilyre/barbecue.nvim",
         name = "barbecue",
         version = "*",
@@ -1254,23 +1222,24 @@ require("lazy").setup({
                 -- this is so shared LSP attach handler can handle attaching only when LSP running
             })
         end
-    }, --
-    -- scrollbar
-    {
+    }, {
+        -- SCROLLBAR
         "petertriho/nvim-scrollbar",
         config = function() require("scrollbar").setup() end
-    }, --
-    -- UTILITIES
-    --
-    -- swappable arguments and list elements
-    {"mizlan/iswap.nvim", config = function() require("iswap").setup() end},
-    -- block sorter
-    "chiedo/vim-sort-blocks-by", -- modify surrounding characters
-    {
+    }, {
+        -- UTILITIES
+        -- swappable arguments and list elements
+        "mizlan/iswap.nvim",
+        config = function() require("iswap").setup() end
+    }, {
+        -- BLOCK SORTER
+        "chiedo/vim-sort-blocks-by"
+    }, {
+        -- MODIFY SURROUNDING CHARACTERS
         "kylechui/nvim-surround",
         config = function() require("nvim-surround").setup() end
-    }, -- code comments
-    {
+    }, {
+        -- CODE COMMENTS
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
@@ -1281,16 +1250,15 @@ require("lazy").setup({
                            "<Plug>(comment_toggle_linewise_visual)",
                            {desc = "comment multiple lines"})
         end
-    }, -- display hex colours
-    {
+    }, {
+        -- DISPLAY HEX COLOURS
         "norcalli/nvim-colorizer.lua",
         config = function() require("colorizer").setup() end
-    }, -- generate hex colours
-    "uga-rosa/ccc.nvim", --
-    -- WINDOWS
-    --
-    -- window picker
-    {
+    }, {
+        -- GENERATE HEX COLOURS
+        "uga-rosa/ccc.nvim"
+    }, {
+        -- WINDOW PICKER
         "s1n7ax/nvim-window-picker",
         version = "v1.*",
         config = function()
@@ -1303,9 +1271,10 @@ require("lazy").setup({
                 vim.api.nvim_set_current_win(picked_window_id)
             end, {desc = "Pick a window"})
         end
-    }, -- window zoom (avoids layout reset from <Ctrl-w>=)
-    -- Caveat: NeoZoom doesn't play well with workflows that use the quickfix window.
-    {
+    }, {
+        -- WINDOW ZOOM
+        -- (avoids layout reset from <Ctrl-w>=)
+        -- Caveat: NeoZoom doesn't play well with workflows that use the quickfix window.
         "nyngwang/NeoZoom.lua",
         config = function()
             require('neo-zoom').setup({
@@ -1317,8 +1286,8 @@ require("lazy").setup({
             vim.keymap.set("", "<leader><leader>z", "<Cmd>NeoZoomToggle<CR>",
                            {desc = "full screen active window"})
         end
-    }, -- windows.nvim is more like the traditional <Ctrl-w>_ and <Ctrl-w>|
-    {
+    }, {
+        -- windows.nvim is more like the traditional <Ctrl-w>_ and <Ctrl-w>|
         "anuvyklack/windows.nvim",
         dependencies = {"anuvyklack/middleclass"},
         config = function()
@@ -1340,9 +1309,8 @@ require("lazy").setup({
             vim.keymap.set("n", "<C-w>|", cmd "WindowsMaximizeHorizontally")
             vim.keymap.set("n", "<C-w>=", cmd "WindowsEqualize")
         end
-    }, --
-    -- WRITING
-    {
+    }, {
+        -- WRITING
         "marcelofern/vale.nvim",
         config = function()
             require("vale").setup({
@@ -1439,7 +1407,7 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- NETRW
-
+--
 -- https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
 
 -- keep the current directory and the browsing directory synced.
@@ -1456,10 +1424,7 @@ vim.g.netrw_winsize = 30
 vim.g.netrw_localcopydircmd = "cp -r"
 
 -- OPTIONS
-
---[[
-To see what an option is set to execute :lua = vim.o.<name>
---]]
+-- To see what an option is set to execute :lua = vim.o.<name>
 
 vim.o.background = "dark"
 vim.o.backup = false
@@ -1517,8 +1482,7 @@ vim.diagnostic.config({float = {border = "rounded", style = "minimal"}})
 -- NOTE: See https://github.com/kevinhwang91/nvim-bqf#customize-quickfix-window-easter-egg and ~/.config/nvim/syntax/qf.vim
 local fn = vim.fn
 
--- This will sort the quickfix results list.
---
+-- QUICKFIX RESULTS SORTER
 -- :lua _G.qfSort()
 function _G.qfSort()
     local items = fn.getqflist()
