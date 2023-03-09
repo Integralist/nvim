@@ -52,14 +52,26 @@ return {
   "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-nvim-lsp-signature-help",
   "hrsh7th/cmp-path", {
     "L3MON4D3/LuaSnip",
+    lazy = false,
     dependencies = { "saadparwaiz1/cmp_luasnip" },
+    keys = {
+      {
+        "<leader><leader>;",
+        function() require("luasnip").jump(1) end,
+        desc = "Jump forward a snippet placement",
+        mode = "i",
+        noremap = true,
+        silent = true
+      }, {
+        "<leader><leader>,",
+        function() require("luasnip").jump(-1) end,
+        desc = "Jump backward a snippet placement",
+        mode = "i",
+        noremap = true,
+        silent = true
+      }
+    },
     config = function()
-      local keymap = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-      keymap("i", "<leader><leader>'",
-        "<cmd>lua require('luasnip').jump(1)<CR>", opts)
-      keymap("i", "<leader><leader>;",
-        "<cmd>lua require('luasnip').jump(-1)<CR>", opts)
       require("luasnip.loaders.from_lua").load({ paths = "~/.snippets" })
     end
   }
