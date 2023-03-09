@@ -141,7 +141,7 @@ return {
   }, {
     -- SEARCH INDEXER
     "kevinhwang91/nvim-hlslens",
-    config = function() require("hlslens").setup() end
+    config = true
   }, {
     -- IMPROVES ASTERISK BEHAVIOR
     "haya14busa/vim-asterisk",

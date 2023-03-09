@@ -103,18 +103,16 @@ return {
   }, {
     -- TREESITTER POWERED SPELLCHECKER
     "lewis6991/spellsitter.nvim",
-    config = function() require("spellsitter").setup() end
+    config = true
   }, {
     -- HIGHLIGHT ARGUMENTS' DEFINITIONS AND USAGES, USING TREESITTER
     "m-demare/hlargs.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("hlargs").setup() end
+    config = true
   }, {
     -- SHOWS THE CONTEXT OF THE CURRENTLY VISIBLE BUFFER CONTENTS
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("treesitter-context").setup({ separator = "-" })
-    end
+    opts = { separator = "-" }
   }
 }

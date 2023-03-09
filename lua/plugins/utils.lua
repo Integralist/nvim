@@ -5,14 +5,14 @@ return {
   }, {
     -- SWAPPABLE ARGUMENTS AND LIST ELEMENTS
     "mizlan/iswap.nvim",
-    config = function() require("iswap").setup() end
+    config = true
   }, {
     -- BLOCK SORTER
     "chiedo/vim-sort-blocks-by"
   }, {
     -- MODIFY SURROUNDING CHARACTERS
     "kylechui/nvim-surround",
-    config = function() require("nvim-surround").setup() end
+    config = true
   }, {
     -- CODE COMMENTS
     "numToStr/Comment.nvim",

@@ -20,7 +20,7 @@ return {
   }, {
     -- UI IMPROVEMENTS
     "stevearc/dressing.nvim",
-    config = function() require("dressing").setup() end
+    config = true
   }, {
     -- NOTE: `:Noice` to open message history + `:Noice telescope` to open message history in Telescope.
     "folke/noice.nvim",
@@ -129,6 +129,6 @@ return {
   }, {
     -- SCROLLBAR
     "petertriho/nvim-scrollbar",
-    config = function() require("scrollbar").setup() end
+    config = true
   }
 }

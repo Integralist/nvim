@@ -155,7 +155,7 @@ return {
     -- LSP SERVER MANAGEMENT
     "williamboman/mason.nvim",
     dependencies = "nvim-lspconfig",
-    config = function() require("mason").setup() end
+    config = true
   }, {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "mason.nvim", "treesitter-terraform-doc.nvim" },
@@ -194,7 +194,7 @@ return {
   }, {
     -- LSP PROGRESS STATUS
     "j-hui/fidget.nvim",
-    config = function() require("fidget").setup() end
+    config = true
   }, {
     -- LSP DIAGNOSTICS
     "folke/trouble.nvim",
@@ -239,7 +239,7 @@ return {
   }, {
     -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
     "folke/lsp-colors.nvim",
-    config = function() require("lsp-colors").setup() end
+    config = true
   }, {
     -- CODE ACTIONS POPUP
     "weilbith/nvim-code-action-menu",
