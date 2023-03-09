@@ -1,7 +1,8 @@
 return {
   {
     -- TERRAFORM DOCS
-    "Afourcat/treesitter-terraform-doc.nvim"
+    "Afourcat/treesitter-terraform-doc.nvim",
+    dependencies = { "nvim-treesitter" }
   }, {
     -- LSP
     "neovim/nvim-lspconfig",
