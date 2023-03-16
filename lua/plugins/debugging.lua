@@ -64,6 +64,8 @@ return {
             local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
             require("dap-python").setup(mason_path ..
                                             "packages/debugpy/venv/bin/python")
+            -- https://github.com/mfussenegger/nvim-dap-python/issues/46#issuecomment-1124175484
+            require("dap").configurations.python[1].justMyCode = false
         end
     }
 }
