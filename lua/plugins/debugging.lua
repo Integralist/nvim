@@ -29,28 +29,38 @@ return {
         { desc = "toggle dap ui" })
     end
   }, {
-    -- Refer to the following help file for REPL commands.
-    -- :h dap.repl.open()
-    --
-    -- REPL Examples:
-    -- .n == next
-    -- .c == continue
-    -- .into == step in
-    -- .out == step out
-    -- .scopes == print variables
-    --
-    -- Just typing an expression (e.g. typing a variable name) should evaluate its value.
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = true
-  }, {
-    "leoluz/nvim-dap-go",
-    dependencies = { "mfussenegger/nvim-dap" },
-    build = "go install github.com/go-delve/delve/cmd/dlv@latest",
-    config = true
-  }, {
-    "theHamsta/nvim-dap-virtual-text",
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = true
-  }
+  -- Refer to the following help file for REPL commands.
+  -- :h dap.repl.open()
+  --
+  -- REPL Examples:
+  -- .n == next
+  -- .c == continue
+  -- .into == step in
+  -- .out == step out
+  -- .scopes == print variables
+  --
+  -- Just typing an expression (e.g. typing a variable name) should evaluate its value.
+  "rcarriga/nvim-dap-ui",
+  dependencies = { "mfussenegger/nvim-dap" },
+  config = true
+}, {
+  "leoluz/nvim-dap-go",
+  dependencies = { "mfussenegger/nvim-dap" },
+  build = "go install github.com/go-delve/delve/cmd/dlv@latest",
+  config = true
+}, {
+  "theHamsta/nvim-dap-virtual-text",
+  dependencies = { "mfussenegger/nvim-dap" },
+  config = true
+}, {
+  "mfussenegger/nvim-dap-python",
+  dependencies = { "mfussenegger/nvim-dap" },
+  config = function()
+    -- source ~/.local/share/nvim/mason/packages/debugpy/venv/bin/activate
+    -- python3 -m pip install -r requirements.txt
+    local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+    require("dap-python").setup(mason_path ..
+      "packages/debugpy/venv/bin/python")
+  end
+}
 }
