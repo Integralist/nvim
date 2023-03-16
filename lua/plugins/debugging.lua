@@ -29,6 +29,17 @@ return {
         { desc = "toggle dap ui" })
     end
   }, {
+    -- Refer to the following help file for REPL commands.
+    -- :h dap.repl.open()
+    --
+    -- REPL Examples:
+    -- .n == next
+    -- .c == continue
+    -- .into == step in
+    -- .out == step out
+    -- .scopes == print variables
+    --
+    -- Just typing an expression (e.g. typing a variable name) should evaluate its value.
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
     config = true
