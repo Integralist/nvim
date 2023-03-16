@@ -30,7 +30,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       { fg = "#063970", bg = "#76b5c5" })
 
     -- eyeliner
-    vim.api.nvim_set_hl(0, "EyelinerPrimary", { underline = true })
+    vim.api.nvim_set_hl(0, 'EyelinerPrimary',
+      { fg = "#FF0000", bold = true, underline = true })
+    vim.api.nvim_set_hl(0, 'EyelinerSecondary',
+      { fg = "#FFFF00", underline = true })
   end
 })
 
