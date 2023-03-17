@@ -4,7 +4,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
-      local helpers = require("null-ls.helpers") -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/HELPERS.md
+      local helpers = require("null-ls.helpers")       -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/HELPERS.md
 
       local tfproviderlintx = {
         name = "tfproviderlintx",
@@ -22,7 +22,7 @@ return {
             {
               -- EXAMPLE:
               -- /Users/integralist/Code/EXAMPLE/example.go:123:456: an error code: whoops you did X wrong
-              pattern = "([^:]+):(%d+):(%d+):%s([^:]+):%s(.+)", -- Lua patterns https://www.lua.org/pil/20.2.html
+              pattern = "([^:]+):(%d+):(%d+):%s([^:]+):%s(.+)",               -- Lua patterns https://www.lua.org/pil/20.2.html
               groups = { "path", "row", "col", "code", "message" }
             }
           }),
@@ -47,32 +47,34 @@ return {
 
       null_ls.setup({
         debug = true,
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
         sources = {
           -- tfproviderlintx,
-          require("null-ls").builtins.code_actions.shellcheck, -- https://www.shellcheck.net/
-          require("null-ls").builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
-          require("null-ls").builtins.diagnostics.codespell, -- https://github.com/codespell-project/codespell
-          require("null-ls").builtins.diagnostics.golangci_lint, -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
+          require("null-ls").builtins.code_actions.shellcheck,             -- https://www.shellcheck.net/
+          require("null-ls").builtins.diagnostics.checkmake,               -- https://github.com/mrtazz/checkmake
+          require("null-ls").builtins.diagnostics.codespell,               -- https://github.com/codespell-project/codespell
+          require("null-ls").builtins.diagnostics.golangci_lint,           -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
           -- require("null-ls").builtins.diagnostics.semgrep.with({
           --   args = { "--config", "auto", "-q", "--json", "$FILENAME" },
           --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
           --   timeout = 30000 -- 30 seconds
           -- }), -- https://semgrep.dev/
-          require("null-ls").builtins.diagnostics.write_good, -- https://github.com/btford/write-good
-          require("null-ls").builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
-          require("null-ls").builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
-          require("null-ls").builtins.formatting.codespell, -- https://github.com/codespell-project/codespell
-          require("null-ls").builtins.formatting.fixjson, -- https://github.com/rhysd/fixjson
-          require("null-ls").builtins.formatting.goimports_reviser, -- https://pkg.go.dev/github.com/incu6us/goimports-reviser
-          require("null-ls").builtins.formatting.isort, -- https://github.com/PyCQA/isort
-          require("null-ls").builtins.formatting.lua_format, -- https://github.com/Koihik/LuaFormatter
-          require("null-ls").builtins.formatting.markdown_toc, -- https://github.com/jonschlinkert/markdown-toc
-          require("null-ls").builtins.formatting.mdformat, -- https://github.com/executablebooks/mdformat
-          require("null-ls").builtins.formatting.ocdc, -- https://github.com/mdwint/ocdc
-          require("null-ls").builtins.formatting.shfmt, -- https://github.com/mvdan/sh
-          require("null-ls").builtins.formatting.taplo, -- https://taplo.tamasfe.dev/
-          require("null-ls").builtins.formatting.terraform_fmt, -- https://www.terraform.io/docs/cli/commands/fmt.html
-          require("null-ls").builtins.formatting.yamlfmt -- https://github.com/google/yamlfmt
+          require("null-ls").builtins.diagnostics.write_good,                 -- https://github.com/btford/write-good
+          require("null-ls").builtins.diagnostics.zsh,                        -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
+          require("null-ls").builtins.formatting.black,                       -- https://github.com/psf/black
+          require("null-ls").builtins.formatting.autopep8,                    -- https://github.com/hhatto/autopep8
+          require("null-ls").builtins.formatting.codespell,                   -- https://github.com/codespell-project/codespell
+          require("null-ls").builtins.formatting.fixjson,                     -- https://github.com/rhysd/fixjson
+          require("null-ls").builtins.formatting.goimports_reviser,           -- https://pkg.go.dev/github.com/incu6us/goimports-reviser
+          require("null-ls").builtins.formatting.isort,                       -- https://github.com/PyCQA/isort
+          require("null-ls").builtins.formatting.lua_format,                  -- https://github.com/Koihik/LuaFormatter
+          require("null-ls").builtins.formatting.markdown_toc,                -- https://github.com/jonschlinkert/markdown-toc
+          require("null-ls").builtins.formatting.mdformat,                    -- https://github.com/executablebooks/mdformat
+          require("null-ls").builtins.formatting.ocdc,                        -- https://github.com/mdwint/ocdc
+          require("null-ls").builtins.formatting.shfmt,                       -- https://github.com/mvdan/sh
+          require("null-ls").builtins.formatting.taplo,                       -- https://taplo.tamasfe.dev/
+          require("null-ls").builtins.formatting.terraform_fmt,               -- https://www.terraform.io/docs/cli/commands/fmt.html
+          require("null-ls").builtins.formatting.yamlfmt                      -- https://github.com/google/yamlfmt
         }
       })
     end
