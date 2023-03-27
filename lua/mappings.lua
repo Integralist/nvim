@@ -1,9 +1,5 @@
-vim.keymap.set("", "<leader><leader>ps", "<Cmd>PackerSync<CR>",
+vim.keymap.set("", "<leader><leader>ps", "<Cmd>Lazy sync<CR>",
   { desc = "update vim plugins" })
-
-vim.keymap.set("", "<leader><leader>pc",
-  ":PackerCompile<CR>:echo 'PackerCompile complete'<CR>",
-  { desc = "packer compile" })
 
 vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>",
   { desc = "turn off search highlight" })
