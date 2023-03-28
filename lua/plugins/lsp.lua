@@ -246,5 +246,33 @@ return {
                            {noremap = true, desc = "code action menu"})
             vim.g.code_action_menu_window_border = "single"
         end
+    }, {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+            "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim"
+        },
+        keys = {
+            {
+                "<leader>lt",
+                function() require("nvim-navbuddy").open() end,
+                desc = "Navigate symbols via Navbuddy tree",
+                mode = "n",
+                noremap = true,
+                silent = true
+            }
+        },
+        config = function()
+            local navbuddy = require("nvim-navbuddy")
+            local actions = require("nvim-navbuddy.actions")
+            navbuddy.setup({
+                mappings = {
+                    ["<Down>"] = actions.next_sibling, -- down
+                    ["<Up>"] = actions.previous_sibling, -- up
+                    ["<Left>"] = actions.parent, -- Move to left panel
+                    ["<Right>"] = actions.children -- Move to right panel
+                }
+            })
+        end
     }
 }

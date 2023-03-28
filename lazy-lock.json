@@ -54,6 +54,7 @@
   "nvim-lightbulb": { "branch": "master", "commit": "56b9ce31ec9d09d560fe8787c0920f76bc208297" },
   "nvim-lspconfig": { "branch": "master", "commit": "c5505c70571b094663745167d40388edd40f6450" },
   "nvim-material-icon": { "branch": "main", "commit": "602088c2682e61cbebd7191de7dc88bfa90c6890" },
+  "nvim-navbuddy": { "branch": "master", "commit": "c6bc7c7b743aa399dca1d23c9ff179cafc2261d0" },
   "nvim-navic": { "branch": "master", "commit": "35731604fb5adab5fe939975879d22994aa8b575" },
   "nvim-notify": { "branch": "master", "commit": "50d037041ada0895aeba4c0215cde6d11b7729c4" },
   "nvim-retrail": { "branch": "main", "commit": "d04fdf1524057e9d8956a1f6aada9a23abd7a476" },
