@@ -55,7 +55,7 @@ return function(client, bufnr)
   vim.keymap.set('n', 'gp', buf_project, buf_project_opts)
   vim.keymap.set('n', 'gr', buf_ref, buf_ref_opts)
   vim.keymap.set('n', 'gs', buf_sym, buf_sym_opts)
-  vim.keymap.set('n', 'gt', buf_type, buf_type_opts)
+  vim.keymap.set('n', 'gy', buf_type, buf_type_opts)
 
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {
