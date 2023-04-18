@@ -92,7 +92,11 @@ return {
           find = "lines yanked"
         },
         opts = { skip = true }
-      }, { view = "notify", filter = { event = "msg_showmode" } }
+      },
+        {
+          view = "split",
+          filter = { event = "msg_show", min_height = 10 }
+        }
       },
       presets = { long_message_to_split = true, lsp_doc_border = true },
       documentation = {
