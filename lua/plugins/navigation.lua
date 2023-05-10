@@ -22,7 +22,7 @@ return {
                            {desc = "open file tree"})
             vim.keymap.set("n", "<leader>nr",
                            "<Cmd>Neotree reveal_force_cwd<CR>", {
-                desc = "change working directory to current file location"
+                desc = "Reveal current file in tree navigation bar"
             })
 
             -- Remap :Ex, :Sex to Neotree

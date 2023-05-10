@@ -184,16 +184,31 @@ return {
         -- Skip gopls and rust_analyzer as we manually configure them.
         -- Otherwise the following `setup()` would override our config.
         if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
-          require("lspconfig")[server_name].setup({
-            on_attach = function(client, bufnr)
-              require("shared/lsp")(client, bufnr)
-              require("illuminate").on_attach(client)
+          -- Unfortunately had to if/else so I could configure 'settings' for yamlls.
+          if server_name == "yamlls" then
+            require("lspconfig")[server_name].setup({
+              on_attach = function(client, bufnr)
+                require("shared/lsp")(client, bufnr)
+                require("illuminate").on_attach(client)
+              end,
+              settings = {
+                yaml = {
+                  keyOrdering = false                       -- Disable alphabetical ordering of keys
+                }
+              }
+            })
+          else
+            require("lspconfig")[server_name].setup({
+              on_attach = function(client, bufnr)
+                require("shared/lsp")(client, bufnr)
+                require("illuminate").on_attach(client)
 
-              if server_name == "terraformls" then
-                require("treesitter-terraform-doc").setup()
+                if server_name == "terraformls" then
+                  require("treesitter-terraform-doc").setup()
+                end
               end
-            end
-          })
+            })
+          end
         end
       end
     })
