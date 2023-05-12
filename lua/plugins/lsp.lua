@@ -291,10 +291,10 @@ return {
     local actions = require("nvim-navbuddy.actions")
     navbuddy.setup({
       mappings = {
-        ["<Down>"] = actions.next_sibling,               -- down
-        ["<Up>"] = actions.previous_sibling,             -- up
-        ["<Left>"] = actions.parent,                     -- Move to left panel
-        ["<Right>"] = actions.children                   -- Move to right panel
+        ["<Down>"] = actions.next_sibling(),               -- down
+        ["<Up>"] = actions.previous_sibling(),             -- up
+        ["<Left>"] = actions.parent(),                     -- Move to left panel
+        ["<Right>"] = actions.children()                   -- Move to right panel
       }
     })
   end
