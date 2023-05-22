@@ -20,7 +20,7 @@ return {
 
             vim.keymap.set("n", "<leader><Tab>", "<Cmd>Neotree toggle<CR>",
                            {desc = "open file tree"})
-            vim.keymap.set("n", "<leader>nr",
+            vim.keymap.set("n", "<leader><leader>r",
                            "<Cmd>Neotree reveal_force_cwd<CR>", {
                 desc = "Reveal current file in tree navigation bar"
             })
