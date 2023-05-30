@@ -10,7 +10,8 @@ return function(client, bufnr)
   local buf_code_action = "<Cmd>lua vim.lsp.buf.code_action()<CR>"
   local buf_code_action_opts = merge({ desc = "View code actions" }, opts)
   local buf_def = "<Cmd>lua vim.lsp.buf.definition()<CR>"
-  local buf_def_split = "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>"
+  local buf_def_split = "<Cmd>sp | lua vim.lsp.buf.definition()<CR>"
+  local buf_def_vsplit = "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>"
   local buf_doc_sym = "<Cmd>lua vim.lsp.buf.document_symbol()<CR>"
   local buf_doc_sym_opts = merge({ desc = "List doc symbols in qf win" }, opts)
   local buf_hover = "<Cmd>lua vim.lsp.buf.hover()<CR>"
@@ -39,7 +40,8 @@ return function(client, bufnr)
   local diag_show = "<Cmd>lua vim.diagnostic.show()<CR>"
   local diag_show_opts = merge({ desc = "Show project diagnostics" }, opts)
 
-  vim.keymap.set('n', '<c-\\>', buf_def_split, opts)
+  vim.keymap.set('n', '<c-s>', buf_def_split, opts)
+  vim.keymap.set('n', '<c-\\>', buf_def_vsplit, opts)
   vim.keymap.set('n', '<c-]>', buf_def, opts)
   vim.keymap.set('n', '[x', diag_prev, diag_prev_opts)
   vim.keymap.set('n', ']r', diag_open_float, diag_open_float_opts)
