@@ -94,6 +94,9 @@ return {
                            {desc = "search windows"})
             vim.keymap.set("n", "<leader>x", "<Cmd>Telescope live_grep<CR>",
                            {desc = "search text"})
+
+            -- Remove the Vim builtin colorschemes so they don't show in Telescope.
+            vim.cmd("silent !rm $VIMRUNTIME/colors/*.vim &> /dev/null")
         end
     }, {
         -- FZF SORTER FOR TELESCOPE WRITTEN IN C
