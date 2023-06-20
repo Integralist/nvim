@@ -45,7 +45,8 @@ return {
                         ["s"] = "split_with_window_picker",
                         ["v"] = "vsplit_with_window_picker"
                     }
-                }
+                },
+                auto_expand_width = true
             })
         end
     }, {
