@@ -48,8 +48,11 @@ return {
                            {desc = "search buffers"})
             vim.keymap.set("n", "<leader>c", "<Cmd>Telescope colorscheme<CR>",
                            {desc = "search colorschemes"})
-            vim.keymap.set("n", "<leader>d", "<Cmd>TodoTelescope<CR>",
-                           {desc = "search TODOs"})
+            vim.keymap.set("n", "<leader>da", "<Cmd>TodoTelescope<CR>",
+                           {desc = "search TODOs across all files"})
+            vim.keymap.set("n", "<leader>dc",
+                           "<Cmd>exe ':TodoQuickFix cwd=' .. fnameescape(expand('%:p'))<CR>",
+                           {desc = "search TODOs in current file"})
             vim.keymap.set("n", "<leader>e", "<Cmd>Telescope commands<CR>",
                            {desc = "search Ex commands"})
             vim.keymap.set("n", "<leader>f",
