@@ -9,9 +9,12 @@ return {
         debug = true,
         -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
         sources = {
-          null_ls.builtins.code_actions.shellcheck,             -- https://www.shellcheck.net/
-          null_ls.builtins.diagnostics.checkmake,               -- https://github.com/mrtazz/checkmake
-          null_ls.builtins.diagnostics.codespell,               -- https://github.com/codespell-project/codespell
+          null_ls.builtins.code_actions.shellcheck,           -- https://www.shellcheck.net/
+          null_ls.builtins.diagnostics.checkmake,             -- https://github.com/mrtazz/checkmake
+          -- null_ls.builtins.diagnostics.codespell,
+          require("null-ls").builtins.diagnostics.codespell.with({
+            extra_args = { "-L", "noice" }
+          }),                                                   -- https://github.com/codespell-project/codespell
           null_ls.builtins.diagnostics.golangci_lint,           -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
           -- require("null-ls").builtins.diagnostics.semgrep.with({
           --   args = { "--config", "auto", "-q", "--json", "$FILENAME" },
