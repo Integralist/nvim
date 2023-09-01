@@ -5,7 +5,8 @@ return {
   }, {
   -- JUMP TO WORD INDICTORS
   "jinh0/eyeliner.nvim",
-  opts = { highlight_on_key = false, dim = true }
+  lazy = false,
+  opts = { highlight_on_key = true, dim = true }
 }, {
   -- CURSOR MOVEMENT HIGHLIGHTER
   "DanilaMihailov/beacon.nvim"
