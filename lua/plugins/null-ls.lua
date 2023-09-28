@@ -13,7 +13,7 @@ return {
           null_ls.builtins.diagnostics.checkmake,             -- https://github.com/mrtazz/checkmake
           -- null_ls.builtins.diagnostics.codespell,
           require("null-ls").builtins.diagnostics.codespell.with({
-            extra_args = { "-L", "noice" }
+            extra_args = { "-L", "noice,crate" }
           }),                                                   -- https://github.com/codespell-project/codespell
           null_ls.builtins.diagnostics.golangci_lint,           -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
           -- require("null-ls").builtins.diagnostics.semgrep.with({
