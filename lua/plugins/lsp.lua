@@ -250,18 +250,9 @@ return {
     vim.diagnostic.config({ virtual_text = false })
   end
 }, {
-  -- CODE ACTION LIGHTBULB
-  "kosayoda/nvim-lightbulb",
-  config = function()
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-      pattern = "*",
-      command = "lua require('nvim-lightbulb').update_lightbulb()"
-    })
-  end
-}, {
-  -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
-  "folke/lsp-colors.nvim",
-  config = true
+  -- -- CODE ACTION INDICATOR
+  "luckasRanarison/clear-action.nvim",
+  opts = {}
 }, {
   -- CODE ACTIONS POPUP
   "weilbith/nvim-code-action-menu",
@@ -270,6 +261,10 @@ return {
       { noremap = true, desc = "code action menu" })
     vim.g.code_action_menu_window_border = "single"
   end
+}, {
+  -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
+  "folke/lsp-colors.nvim",
+  config = true
 }, {
   "SmiteshP/nvim-navbuddy",
   dependencies = {
