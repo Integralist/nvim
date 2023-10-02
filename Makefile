@@ -6,6 +6,7 @@ sync:
 	git push origin head
 	cd /Users/integralist/Code/shell/dotfiles/.config/nvim
 	git pull --rebase origin main
+	git log --head
 	cd /Users/integralist/Code/shell/dotfiles
 	git status
 	git add .
