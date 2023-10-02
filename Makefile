@@ -5,7 +5,7 @@ sync:
 	git commit -m "nvim updates"
 	git push origin head
 	cd /Users/integralist/Code/shell/dotfiles/.config/nvim
-	git pull --rebase origin
+	git pull --rebase origin main
 	cd ../
 	git commit -m "bump nvim"
 	git push origin head
