@@ -4,7 +4,7 @@ sync:
 	git add .
 	git commit -m "nvim updates"
 	git push origin head
-	pushd -P /Users/integralist/Code/shell/dotfiles/.config/nvim # -P to resolve symlinks
+	pushd -wP /Users/integralist/Code/shell/dotfiles/.config/nvim # -P to resolve symlinks
 	git pull --rebase origin
 	pushd ../
 	git commit -m "bump nvim"
