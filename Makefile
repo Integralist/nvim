@@ -1,4 +1,4 @@
-.PHONY: all clean sync test
+.PHONY: all clean sync test # 1
 
 sync:
 	git add .
