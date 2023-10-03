@@ -10,7 +10,8 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
 vim.o.expandtab = true
-vim.o.grepprg = "rg --smart-case --vimgrep --multiline-dotall --hidden --pcre2 --regexp"
+vim.o.grepprg =
+    "rg --smart-case --vimgrep --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 -- vim.o.lazyredraw = true (disabled as problematic with Noice plugin)
