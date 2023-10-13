@@ -41,6 +41,7 @@ return {
         -- .into == step in
         -- .out == step out
         -- .scopes == print variables
+        -- .frames == will show where you are in the program (aka stack trace).
         --
         -- Just typing an expression (e.g. typing a variable name) should evaluate its value.
         "rcarriga/nvim-dap-ui",
