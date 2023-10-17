@@ -19,7 +19,9 @@ return {
         -- Caveat: NeoZoom doesn't play well with workflows that use the quickfix window.
         "nyngwang/NeoZoom.lua",
         config = function()
-            require('neo-zoom').setup({})
+            require('neo-zoom').setup({
+                winopts = {left = 0, width = 150, height = 0.80}
+            })
             vim.keymap.set("", "<leader><leader>z", "<Cmd>NeoZoomToggle<CR>",
                            {desc = "full screen active window"})
         end
