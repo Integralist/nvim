@@ -1,5 +1,5 @@
 -- OPTIONS
--- To see what an option is set to execute :lua = vim.o.<name>
+-- To see what an option is set to execute `:lua = vim.o.<name>` -- NOTE: Include : before lua (e.g. type : to start Ex mode, then :lua...)
 -- change default copy command to be recursive by default.
 vim.g.netrw_localcopydircmd = "cp -r"
 
@@ -11,7 +11,7 @@ vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
 vim.o.expandtab = true
 vim.o.grepprg =
-    "rg --smart-case --vimgrep --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
+    "rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 -- vim.o.lazyredraw = true (disabled as problematic with Noice plugin)
