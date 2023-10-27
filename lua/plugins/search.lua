@@ -5,17 +5,30 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       --[[
-          Opening multiple files doesn't work by default.
+          NOTE: Scroll the preview window using <C-d> and <C-u>.
 
-          You can either following the implementation detailed here:
-          https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1220846367
+          Opening multiple files isn't a built-in feature of Telescope.
+          We can't get that behaviour without a lot of extra config.
+          The best we can do is send results to the quickfix window.
 
-          Or you can have a more complex workflow:
+          There are two different ways of approaching this:
+
+          1. Filtering files using a search pattern.
+          2. Manually selecting files.
+
+          For first scenario just type a search pattern (which will filter the
+          list), then press `<C-q>` to send filtered list to quickfix window.
+
+          For the second scenario you would need to:
+
           - Select multiple files using <Tab>
           - Send the selected files to the quickfix window using <C-o>
           - Search the quickfix window (using either :copen or <leader>q)
 
-          NOTE: Scroll the preview window using <C-d> and <C-u>.
+          The first approach is fine for simple cases. For example, you want to
+          open all Markdown files. You just type `.md` and then `<C-q>`. But if
+          you wanted to open specific Markdown files like README.md and HELP.md
+          then you'd need the second approach which gives finer-grain control.
         ]]
       local actions = require("telescope.actions")
       local ts = require("telescope")
