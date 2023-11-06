@@ -27,7 +27,7 @@ wk.register({
     ["<leader><leader>d"] = {name = "dap"},
     ["<leader><leader>g"] = {name = "git"},
     ["<leader><leader>l"] = {name = "lsp"},
-    ["<leader><leader>n"] = {name = "noice"},
+    -- ["<leader><leader>n"] = {name = "noice"},
     ["<leader><leader>p"] = {name = "plugins"},
     ["<leader><leader>q"] = {name = "quickfix"},
     ["<leader><leader>t"] = {name = "terminal"}

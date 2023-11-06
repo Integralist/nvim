@@ -14,7 +14,7 @@ vim.o.grepprg =
     "rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
--- vim.o.lazyredraw = true (disabled as problematic with Noice plugin)
+vim.o.lazyredraw = true -- (re-enabled when Noice is uninstalled)
 vim.o.number = true
 vim.o.scrolloff = 5
 vim.o.shiftwidth = 2
