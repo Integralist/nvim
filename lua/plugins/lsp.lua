@@ -92,11 +92,12 @@ return {
         end
     }, {
         -- RUST LSP
-        "simrat39/rust-tools.nvim",
-        dependencies = "neovim/nvim-lspconfig",
+        "mrcjkb/rustaceanvim",
+        version = "^3",
+        ft = {"rust"},
         config = function()
-            require("rust-tools").setup({
-                -- rust-tools options
+            vim.g.rustaceanvim = {
+                -- Plugin configuration
                 tools = {
                     autoSetHints = true,
                     inlay_hints = {
@@ -105,8 +106,7 @@ return {
                         other_hints_prefix = "=> "
                     }
                 },
-                -- all the opts to send to nvim-lspconfig
-                -- these override the defaults set by rust-tools.nvim
+                -- LSP configuration
                 --
                 -- REFERENCE:
                 -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -127,31 +127,33 @@ return {
                             buffer = bufnr
                         }
                         vim.keymap.set('n', '<leader><leader>rr',
-                                       "<Cmd>RustRunnables<CR>", bufopts)
-                        vim.keymap.set('n', 'K', "<Cmd>RustHoverActions<CR>",
-                                       bufopts)
+                                       "<Cmd>RustLsp runnables<CR>", bufopts)
+                        vim.keymap.set('n', 'K',
+                                       "<Cmd>RustLsp hover actions<CR>", bufopts)
                     end,
-                    ["rust-analyzer"] = {
-                        assist = {
-                            importEnforceGranularity = true,
-                            importPrefix = "create"
-                        },
-                        cargo = {allFeatures = true},
-                        checkOnSave = {
-                            -- default: `cargo check`
-                            command = "clippy",
-                            allFeatures = true
-                        }
-                    },
-                    inlayHints = {
-                        -- NOT SURE THIS IS VALID/WORKS 😬
-                        lifetimeElisionHints = {
-                            enable = true,
-                            useParameterNames = true
+                    settings = {
+                        -- rust-analyzer language server configuration
+                        ['rust-analyzer'] = {
+                            assist = {
+                                importEnforceGranularity = true,
+                                importPrefix = "create"
+                            },
+                            cargo = {allFeatures = true},
+                            checkOnSave = {
+                                -- default: `cargo check`
+                                command = "clippy",
+                                allFeatures = true
+                            },
+                            inlayHints = {
+                                lifetimeElisionHints = {
+                                    enable = true,
+                                    useParameterNames = true
+                                }
+                            }
                         }
                     }
                 }
-            })
+            }
         end
     }, {
         -- LSP INLAY HINTS

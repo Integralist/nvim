@@ -17,6 +17,7 @@ return {
         ["<leader><leader>o"] = { name = "outline" },
         ["<leader><leader>p"] = { name = "plugins" },
         ["<leader><leader>q"] = { name = "quickfix" },
+        ["<leader><leader>r"] = { name = "rust lsp" },
         ["<leader><leader>t"] = { name = "terminal" }
       })
     end
