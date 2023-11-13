@@ -5,7 +5,12 @@ return {
     "hedyhli/outline.nvim",
     cmd = { "Outline", "OutlineOpen" },
     keys = {
-      { "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" }
+      { "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" },
+      {
+        "<leader><leader>of",
+        "<cmd>OutlineFocus<CR>",
+        desc = "Focus cursor inside symbols outline window"
+      }
     },
     opts = { outline_window = { position = "left", width = 25 } }
   }, {
