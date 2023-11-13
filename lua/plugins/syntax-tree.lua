@@ -1,16 +1,13 @@
 return {
   {
     -- DOCUMENT/CODE SYNTAX TREE
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      require("symbols-outline").setup({
-        -- autofold_depth = 1, -- h: close, l: open, W: close all, E: open all
-        auto_close = false,
-        highlight_hovered_item = true,
-        position = "left",
-        width = 15
-      })
-    end
+    -- h: close, l: open, W: close all, E: open all
+    "hedyhli/outline.nvim",
+    cmd = { "Outline", "OutlineOpen" },
+    keys = {
+      { "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" }
+    },
+    opts = { outline_window = { position = "left", width = 25 } }
   }, {
   -- MINIMAP
   "gorbit99/codewindow.nvim",
