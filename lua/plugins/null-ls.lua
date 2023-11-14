@@ -5,6 +5,10 @@ return {
         config = function()
             local null_ls = require("null-ls")
 
+            vim.keymap.set("n", "<leader>lx",
+                           function() null_ls.disable({}) end,
+                           {desc = "Disable none-ls"})
+
             null_ls.setup({
                 debug = true,
                 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
