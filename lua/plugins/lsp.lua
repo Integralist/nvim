@@ -302,7 +302,7 @@ return {
       },
       window = {
         border = "rounded",
-        size = "80%",
+        size = "90%",
         sections = { left = { size = "30%" }, mid = { size = "40%" } }
       }
     })
