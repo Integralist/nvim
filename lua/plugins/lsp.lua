@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local namespace = vim.lsp.diagnostic.get_namespace(client.id)
+    vim.diagnostic.setqflist({ namespace = namespace })
+  end
+})
+
 return {
   {
     -- TERRAFORM DOCS
