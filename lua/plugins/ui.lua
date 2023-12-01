@@ -169,13 +169,13 @@ return {
         event = "BufReadPost", -- needed for folds to load in time
         keys = {
             {
-                "zr",
+                "zR",
                 function()
                     require("ufo").openFoldsExceptKinds {"comment"}
                 end,
                 desc = " 󱃄 Open All Folds except comments"
             }, {
-                "zm",
+                "zM",
                 function() require("ufo").closeAllFolds() end,
                 desc = " 󱃄 Close All Folds"
             }, {
