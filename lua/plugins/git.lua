@@ -3,9 +3,6 @@ return {
         -- GIT CHANGE INDICATOR
         "lewis6991/gitsigns.nvim",
         config = function()
-            vim.api.nvim_set_hl(0, "GitSignsChange",
-                                {link = "GruvboxYellowSign"})
-
             require("gitsigns").setup({
                 on_attach = function(bufnr)
                     local gs = package.loaded.gitsigns
