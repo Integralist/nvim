@@ -17,7 +17,7 @@ return {
       vim.fn.sign_define("DiagnosticSignInfo",
         { text = " ", texthl = "DiagnosticSignInfo" })
       vim.fn.sign_define("DiagnosticSignHint",
-        { text = "", texthl = "DiagnosticSignHint" })
+        { text = "󰌵", texthl = "DiagnosticSignHint" })
 
       vim.keymap.set("n", "<leader><Tab>", "<Cmd>Neotree toggle<CR>",
         { desc = "open file tree" })
