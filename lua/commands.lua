@@ -22,3 +22,19 @@ vim.cmd("command! -nargs=1 Find lua FindAndPopulateQuickfix(<args>)")
 -- Create a Neovim command called 'Grep' that works like normal :grep but prefixes with `silent` option.
 -- The silent option prevents Neovim showing a message asking for "ENTER" to be pressed before it opens the quickfix window.
 vim.cmd("command! -nargs=* -complete=command Grep silent grep! <args>")
+
+-- Create a Neovim command called 'Messages' that grabs the output from :messages and redirects it to a new vertical split.
+-- NOTE: We also use `<q-args>` instead of `<args>` to handle quoting of the input argument.
+function ExtractMessages(split)
+  vim.cmd('redir @m | silent messages | redir END')
+  if split and split == 'vnew' then
+    vim.cmd('vnew')
+  else
+    vim.cmd('new')
+  end
+  vim.cmd('put! m')
+  -- NOTE: If we had executed a single pipeline, then we'd have used `exec 'norm "mp'` rather than `put! m` because it would avoid having to press ENTER after :messages is displayed.
+  -- But as we've split the Ex commands over multiple vim.cmd calls it seems `put! m` is fine.
+end
+
+vim.cmd("command! -nargs=? Messages lua ExtractMessages(<q-args>)")
