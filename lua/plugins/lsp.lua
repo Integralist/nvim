@@ -325,10 +325,10 @@ return {
 
     vim.keymap.set("n", "<leader><leader>ln", function()
       require("trouble").next({ skip_groups = false, jump = true });
-    end)
+    end, { desc = "Next item" })
     vim.keymap.set("n", "<leader><leader>lp", function()
       require("trouble").previous({ skip_groups = false, jump = true });
-    end)
+    end, { desc = "Prev item" })
   end
 }, {
   -- LSP VIRTUAL TEXT
