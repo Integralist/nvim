@@ -35,6 +35,9 @@ return {
         ":command! Vex vert sp | Neotree toggle current reveal_force_cwd")
 
       require("neo-tree").setup({
+        default_component_configs = {
+          git_status = { symbols = { modified = "±" } }
+        },
         filesystem = {
           filtered_items = {
             hide_dotfiles = false,
