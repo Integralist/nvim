@@ -14,6 +14,25 @@ return {
   "kylechui/nvim-surround",
   config = true
 }, {
+  "junegunn/vim-easy-align",
+  keys = {
+    {
+      "<leader><leader>a",
+      "<Plug>(EasyAlign)",
+      desc = "Align for visual selection",
+      mode = "x",
+      noremap = true,
+      silent = true
+    }, {
+    "<leader><leader>a",
+    "<Plug>(EasyAlign)",
+    desc = "Align for motion/text object",
+    mode = "n",
+    noremap = true,
+    silent = true
+  }
+  }
+}, {
   -- CODE COMMENTS
   "numToStr/Comment.nvim",
   config = function()
