@@ -12,7 +12,15 @@ return {
                 desc = "Focus cursor inside symbols outline window on current node"
             }
         },
-        opts = {outline_window = {position = "left", width = 25}}
+        config = function()
+            require("outline").setup({
+                outline_window = {position = "left", width = 25}
+            })
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "Outline",
+                command = "setlocal nofoldenable"
+            })
+        end
     }, {
         -- MINIMAP
         "gorbit99/codewindow.nvim",
