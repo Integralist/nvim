@@ -10,8 +10,10 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
 vim.o.expandtab = true
+vim.o.foldcolumn = 1
+vim.o.foldmethod = "indent"                                                                        -- za to toggle, zR to open all, zM to close all
 vim.o.grepprg =
-    "rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
+"rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp"     -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.lazyredraw = true -- (re-enabled when Noice is uninstalled)
@@ -65,10 +67,10 @@ vim.cmd("packadd cfilter")
 --
 -- NOTE: Noice plugin will override these settings.
 vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"})
+    vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded"})
+    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 vim.diagnostic.config({
-    underline = true,
-    float = {border = "rounded", style = "minimal"}
+  underline = true,
+  float = { border = "rounded", style = "minimal" }
 })
