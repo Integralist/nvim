@@ -10,7 +10,9 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
 vim.o.expandtab = true
-vim.o.foldmethod = "indent"                                                                        -- za to toggle, zR to open all, zM to close all
+vim.o.foldcolumn = "1"
+vim.o.foldmethod =
+"indent"                                                                                           -- za to toggle all levels of current fold, zo/zc to open/close current fold, zR to open all folds, zM to close all folds
 vim.o.grepprg =
 "rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp"     -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
