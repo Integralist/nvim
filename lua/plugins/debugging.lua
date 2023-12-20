@@ -3,31 +3,31 @@ return {
         -- DEBUGGING
         "mfussenegger/nvim-dap",
         config = function()
-            vim.keymap.set("n", "<leader><leader>dc",
+            vim.keymap.set("n", "<leader><leader>bc",
                            "<Cmd>lua require('dap').continue()<CR>",
                            {desc = "start debugging"})
-            vim.keymap.set("n", "<leader><leader>dx",
+            vim.keymap.set("n", "<leader><leader>bx",
                            "<Cmd>lua require('dap').close()<CR>",
                            {desc = "stop debugging"})
-            vim.keymap.set("n", "<leader><leader>do",
+            vim.keymap.set("n", "<leader><leader>bo",
                            "<Cmd>lua require('dap').step_over()<CR>",
                            {desc = "step over"})
-            vim.keymap.set("n", "<leader><leader>di",
+            vim.keymap.set("n", "<leader><leader>bi",
                            "<Cmd>lua require('dap').step_into()<CR>",
                            {desc = "step into"})
-            vim.keymap.set("n", "<leader><leader>dt",
+            vim.keymap.set("n", "<leader><leader>bt",
                            "<Cmd>lua require('dap').step_out()<CR>",
                            {desc = "step out"})
-            vim.keymap.set("n", "<leader><leader>db",
+            vim.keymap.set("n", "<leader><leader>bb",
                            "<Cmd>lua require('dap').toggle_breakpoint()<CR>",
                            {desc = "toggle breakpoint"})
-            vim.keymap.set("n", "<leader><leader>dv",
+            vim.keymap.set("n", "<leader><leader>bv",
                            "<Cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
                            {desc = "toggle breakpoint"})
-            vim.keymap.set("n", "<leader><leader>dr",
+            vim.keymap.set("n", "<leader><leader>br",
                            "<Cmd>lua require('dap').repl.open()<CR>",
                            {desc = "open repl"})
-            vim.keymap.set("n", "<leader><leader>du",
+            vim.keymap.set("n", "<leader><leader>bu",
                            "<Cmd>lua require('dapui').toggle()<CR>",
                            {desc = "toggle dap ui"})
         end
