@@ -200,6 +200,10 @@ return {
       server = {
         on_attach = function(client, bufnr)
           mappings(client, bufnr)
+          require("lsp-inlayhints").setup({
+            inlay_hints = { type_hints = { prefix = "=> " } }
+          })
+          require("lsp-inlayhints").on_attach(client, bufnr)
           require("illuminate").on_attach(client)
 
           local bufopts = {
@@ -238,7 +242,6 @@ return {
   end
 }, {
   -- LSP INLAY HINTS
-  -- rust-tools already provides this feature, but gopls doesn't
   "lvimuser/lsp-inlayhints.nvim",
   dependencies = "neovim/nvim-lspconfig"
 }, {
