@@ -5,7 +5,7 @@ return {
         config = function()
             local null_ls = require("null-ls")
 
-            vim.keymap.set("n", "<leader>lx",
+            vim.keymap.set("n", "<leader><leader>lx",
                            function() null_ls.disable({}) end,
                            {desc = "Disable none-ls"})
 
