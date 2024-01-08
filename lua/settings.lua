@@ -11,10 +11,10 @@ vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
 vim.o.expandtab = true
 vim.o.foldcolumn = "1"
-vim.o.foldmethod =
-"indent"                                                                                           -- za to toggle all levels of current fold, zo/zc to open/close current fold, zR to open all folds, zM to close all folds
+-- DISABLED FOLDING AS IT JUST WASNT USEFUL
+-- vim.o.foldmethod = "indent"                                                                                           -- za to toggle all levels of current fold, zo/zc to open/close current fold, zR to open all folds, zM to close all folds
 vim.o.grepprg =
-"rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp"     -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
+    "rg --smart-case --vimgrep --no-heading --follow --multiline-dotall --hidden --pcre2 --regexp" -- IMPORTANT: pipes should be escaped! e.g. `"text\.(Success\|Info)\("`
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.lazyredraw = true -- (re-enabled when Noice is uninstalled)
@@ -68,10 +68,10 @@ vim.cmd("packadd cfilter")
 --
 -- NOTE: Noice plugin will override these settings.
 vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+    vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"})
 vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+    vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded"})
 vim.diagnostic.config({
-  underline = true,
-  float = { border = "rounded", style = "minimal" }
+    underline = true,
+    float = {border = "rounded", style = "minimal"}
 })
