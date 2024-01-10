@@ -93,7 +93,10 @@ return {
                 on_attach = function(client, bufnr)
                     mappings(client, bufnr)
                     require("lsp-inlayhints").setup({
-                        inlay_hints = {type_hints = {prefix = "=> "}}
+                        inlay_hints = {
+                            parameter_hints = {prefix = "in: "}, -- "<- "
+                            type_hints = {prefix = "out: "} -- "=> "
+                        }
                     })
                     require("lsp-inlayhints").on_attach(client, bufnr)
                     require("illuminate").on_attach(client)
@@ -183,8 +186,8 @@ return {
                     autoSetHints = true,
                     inlay_hints = {
                         show_parameter_hints = true,
-                        parameter_hints_prefix = "<- ",
-                        other_hints_prefix = "=> "
+                        parameter_hints_prefix = "in: ", -- "<- "
+                        other_hints_prefix = "out: " -- "=> "
                     }
                 },
                 -- LSP configuration
