@@ -126,14 +126,17 @@ return {
                         end
                     })
 
-                    vim.keymap.set("n", "<leader><leader>lv",
-                                   "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
-                                   {
-                        noremap = true,
-                        silent = true,
-                        buffer = bufnr,
-                        desc = "lint project code (revive)"
-                    })
+                    -- DISABLED:
+                    -- I don't use revive separately anymore. It's only used via golangci-lint.
+                    --
+                    -- vim.keymap.set("n", "<leader><leader>lv",
+                    --                "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
+                    --                {
+                    --     noremap = true,
+                    --     silent = true,
+                    --     buffer = bufnr,
+                    --     desc = "lint project code (revive)"
+                    -- })
                 end,
                 settings = {
                     -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
