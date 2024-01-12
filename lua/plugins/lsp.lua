@@ -1,3 +1,14 @@
+local function OpenAllFiles()
+  local files = vim.fn.globpath(vim.fn.getcwd(), '**', true, true)
+  for _, file in ipairs(files) do
+    if vim.fn.isdirectory(file) == 0 then
+      vim.cmd('edit ' .. vim.fn.fnameescape(file))
+    end
+  end
+  vim.cmd([[bufdo bd]])
+  require("trouble").toggle("workspace_diagnostics")
+end
+
 local function merge(t1, t2)
   for i = 1, #t2 do t1[#t1 + 1] = t2[i] end
   return t1
@@ -346,6 +357,8 @@ return {
     vim.keymap.set("n", "<leader><leader>lw",
       "<Cmd>TroubleToggle workspace_diagnostics<CR>",
       bufopts)
+    vim.keymap.set('n', '<leader><leader>lo', OpenAllFiles,
+      vim.tbl_extend('keep', bufopts, { desc = "Open all files (can be slow) before opening workspace_diagnostics" })) -- used as a workaround for workspace_diagnostics
     vim.keymap.set("n", "<leader><leader>lr",
       "<Cmd>TroubleToggle lsp_references<CR>", bufopts)
     vim.keymap.set("n", "<leader><leader>lq",
