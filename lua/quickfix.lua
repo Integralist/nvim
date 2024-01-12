@@ -76,7 +76,7 @@ function _G.qftf(info)
   else
     items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
   end
-  local limit = 31
+  local limit = 50
   local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's',
       '…%.' .. (limit - 1) .. 's'
   local validFmt = '%s │%5d:%-3d│%s %s'
@@ -112,4 +112,5 @@ function _G.qftf(info)
 end
 
 -- :h quickfixtextfunc
+-- NOTE: This helps align the columns in the quickfix window.
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
