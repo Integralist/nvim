@@ -14,7 +14,43 @@ return {
     },
     config = function()
       require("outline").setup({
-        outline_window = { position = "left", width = 25 }
+        outline_window = { position = "left", width = 25 },
+        symbols = {
+          icons = {
+            File = { icon = '󰈔', hl = 'Identifier' },
+            Module = { icon = '󰆧', hl = 'Include' },
+            Namespace = { icon = '󰅪', hl = 'Include' },
+            Package = { icon = '', hl = 'Include' }, -- 󰏗
+            Class = { icon = '𝓒', hl = 'Type' },
+            Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
+            Property = { icon = '', hl = 'Identifier' },
+            Field = { icon = '', hl = 'Identifier' }, -- 󰆨
+            Constructor = { icon = '', hl = 'Special' },
+            Enum = { icon = 'ℰ', hl = 'Type' },
+            Interface = { icon = '', hl = 'Type' }, -- 󰜰
+            Function = { icon = 'ƒ', hl = 'Function' }, -- 
+            Variable = { icon = '', hl = 'Constant' },
+            Constant = { icon = '', hl = 'Constant' },
+            String = { icon = '𝓢', hl = 'String' }, -- 𝓐
+            Number = { icon = '#', hl = 'Number' },
+            Boolean = { icon = '', hl = 'Boolean' }, -- ⊨
+            Array = { icon = '󰅪', hl = 'Constant' },
+            Object = { icon = '', hl = 'Type' }, -- ⦿
+            Key = { icon = '🔐', hl = 'Type' },
+            Null = { icon = 'NULL', hl = 'Type' },
+            EnumMember = { icon = '', hl = 'Identifier' },
+            Struct = { icon = '', hl = 'Structure' }, -- 𝓢
+            Event = { icon = '🗲', hl = 'Type' },
+            Operator = { icon = '', hl = 'Identifier' }, -- +
+            TypeParameter = { icon = '𝙏', hl = 'Identifier' },
+            Component = { icon = '󰅴', hl = 'Function' },
+            Fragment = { icon = '󰅴', hl = 'Constant' },
+            TypeAlias = { icon = ' ', hl = 'Type' }, -- 
+            Parameter = { icon = ' ', hl = 'Identifier' },
+            StaticMethod = { icon = ' ', hl = 'Function' },
+            Macro = { icon = ' ', hl = 'Function' },
+          },
+        }
       })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "Outline",
@@ -38,31 +74,31 @@ return {
         attach_navic = false,
         kinds = {
           File = "",
-          Module = "",
-          Namespace = "",
+          Module = "󰆧", -- 
+          Namespace = "󰅪", -- 
           Package = "",
-          Class = "",
-          Method = "",
-          Property = "",
-          Field = "",
-          Constructor = "",
-          Enum = "",
+          Class = "𝓒", -- 
+          Method = "", -- 
+          Property = "", -- 
+          Field = "", -- 
+          Constructor = "", -- 
+          Enum = "ℰ", -- 
           Interface = "",
-          Function = "",
-          Variable = "",
-          Constant = "",
-          String = "",
-          Number = "",
+          Function = "ƒ", -- 
+          Variable = "", -- 
+          Constant = "", -- 
+          String = "𝓢", -- 
+          Number = "#", -- 
           Boolean = "",
           Array = "",
           Object = "",
           Key = "",
           Null = "",
           EnumMember = "",
-          Struct = "",
+          Struct = "", -- 
           Event = "",
           Operator = "",
-          TypeParameter = "",
+          TypeParameter = "𝙏", -- 
         },
       })
     end
