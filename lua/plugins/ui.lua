@@ -9,9 +9,9 @@ return {
           lualine_c = {
             {
               "filename",
-              file_status = true,                -- displays file status (readonly status, modified status)
-              path = 1,                          -- relative path
-              shorting_target = 40               -- Shortens path to leave 40 space in the window
+              file_status = true,  -- displays file status (readonly status, modified status)
+              path = 1,            -- relative path
+              shorting_target = 40 -- Shortens path to leave 40 space in the window
             }
           }
         }
@@ -147,21 +147,6 @@ return {
   -- <Ctrl-b> scroll up
   "kevinhwang91/nvim-bqf",
   ft = "qf"
-}, {
-  -- WINDOW BAR BREADCRUMBS
-  "utilyre/barbecue.nvim",
-  name = "barbecue",
-  version = "*",
-  dependencies = {
-    "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons"
-  },
-  config = function()
-    require("barbecue").setup({
-      attach_navic = false           -- prevent barbecue from automatically attaching nvim-navic
-      -- this is so shared LSP attach handler can handle attaching only when LSP running
-    })
-  end
 }, {
   -- SCROLLBAR
   "petertriho/nvim-scrollbar",
