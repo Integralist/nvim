@@ -2,37 +2,38 @@ return {
   {
     -- TREESITTER
     -- Syntax tree parsing for more intelligent syntax highlighting and code navigation
+    -- IMPORTANT: If there are issues try `:TSInstall all` or `:TSUpdate`.
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        "bash",
-        "c",
-        "cmake",
-        "css",
-        "dockerfile",
-        "go",
-        "gomod",
-        "gowork",
-        "hcl",
-        "help",
-        "html",
-        "http",
-        "javascript",
-        "json",
-        "lua",
-        "make",
-        "markdown",
-        "python",
-        "regex",
-        "ruby",
-        "rust",
-        "terraform",
-        "toml",
-        "vim",
-        "yaml",
-        "zig",
-        ensure_installed = {},
+        ensure_installed = {
+          "bash",
+          "c",
+          "cmake",
+          "css",
+          "dockerfile",
+          "go",
+          "gomod",
+          "gowork",
+          "hcl",
+          "html",
+          "http",
+          "javascript",
+          "json",
+          "lua",
+          "make",
+          "markdown",
+          "python",
+          "regex",
+          "ruby",
+          "rust",
+          "terraform",
+          "toml",
+          "vim",
+          "yaml",
+          "zig",
+        },
         highlight = { enable = true },
         rainbow = {
           enable = true,
@@ -49,10 +50,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "gnn",                  -- start treesitter selection process
-          scope_incremental = "gnm",               -- increment selection to surrounding scope
-          node_incremental = ";",                  -- increment selection to next 'node'
-          node_decremental = ","                   -- decrement selection to prev 'node'
+          init_selection = "gnn",    -- start treesitter selection process
+          scope_incremental = "gnm", -- increment selection to surrounding scope
+          node_incremental = ";",    -- increment selection to next 'node'
+          node_decremental = ","     -- decrement selection to prev 'node'
         }
       },
       indent = { enable = true },
