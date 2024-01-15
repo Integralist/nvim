@@ -398,38 +398,5 @@ return {
   -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
   "folke/lsp-colors.nvim",
   config = true
-}, {
-  "SmiteshP/nvim-navbuddy",
-  dependencies = {
-    "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
-    "MunifTanjim/nui.nvim"
-  },
-  keys = {
-    {
-      "<leader>lt",
-      function() require("nvim-navbuddy").open() end,
-      desc = "Navigate symbols via Navbuddy tree",
-      mode = "n",
-      noremap = true,
-      silent = true
-    }
-  },
-  config = function()
-    local navbuddy = require("nvim-navbuddy")
-    local actions = require("nvim-navbuddy.actions")
-    navbuddy.setup({
-      mappings = {
-        ["<Down>"] = actions.next_sibling(),   -- down
-        ["<Up>"] = actions.previous_sibling(), -- up
-        ["<Left>"] = actions.parent(),         -- Move to left panel
-        ["<Right>"] = actions.children()       -- Move to right panel
-      },
-      window = {
-        border = "rounded",
-        size = "90%",
-        sections = { left = { size = "30%" }, mid = { size = "40%" } }
-      }
-    })
-  end
 }
 }

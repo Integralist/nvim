@@ -19,13 +19,13 @@ return {
           icons = {
             File = { icon = '󰈔', hl = 'Identifier' },
             Module = { icon = '󰆧', hl = 'Include' },
-            Namespace = { icon = '󰅪', hl = 'Include' },
+            Namespace = { icon = '󰌗', hl = 'Include' }, -- 󰅪
             Package = { icon = '', hl = 'Include' }, -- 󰏗
             Class = { icon = '𝓒', hl = 'Type' },
             Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
             Property = { icon = '', hl = 'Identifier' },
             Field = { icon = '', hl = 'Identifier' }, -- 󰆨
-            Constructor = { icon = '', hl = 'Special' },
+            Constructor = { icon = '', hl = 'Special' }, -- 
             Enum = { icon = 'ℰ', hl = 'Type' },
             Interface = { icon = '', hl = 'Type' }, -- 󰜰
             Function = { icon = 'ƒ', hl = 'Function' }, -- 
@@ -33,16 +33,16 @@ return {
             Constant = { icon = '', hl = 'Constant' },
             String = { icon = '𝓢', hl = 'String' }, -- 𝓐
             Number = { icon = '#', hl = 'Number' },
-            Boolean = { icon = '', hl = 'Boolean' }, -- ⊨
+            Boolean = { icon = '◩', hl = 'Boolean' }, -- ⊨ 
             Array = { icon = '󰅪', hl = 'Constant' },
             Object = { icon = '', hl = 'Type' }, -- ⦿
-            Key = { icon = '🔐', hl = 'Type' },
+            Key = { icon = '󰌋', hl = 'Type' }, -- 🔐
             Null = { icon = 'NULL', hl = 'Type' },
             EnumMember = { icon = '', hl = 'Identifier' },
             Struct = { icon = '', hl = 'Structure' }, -- 𝓢
             Event = { icon = '🗲', hl = 'Type' },
-            Operator = { icon = '', hl = 'Identifier' }, -- +
-            TypeParameter = { icon = '𝙏', hl = 'Identifier' },
+            Operator = { icon = '󰆕', hl = 'Identifier' }, -- + 
+            TypeParameter = { icon = '󰊄', hl = 'Identifier' }, -- 𝙏
             Component = { icon = '󰅴', hl = 'Function' },
             Fragment = { icon = '󰅴', hl = 'Constant' },
             TypeAlias = { icon = ' ', hl = 'Type' }, -- 
@@ -75,13 +75,13 @@ return {
         kinds = {
           File = "",
           Module = "󰆧", -- 
-          Namespace = "󰅪", -- 
+          Namespace = "󰌗", --  󰅪
           Package = "",
           Class = "𝓒", -- 
           Method = "", -- 
           Property = "", -- 
           Field = "", -- 
-          Constructor = "", -- 
+          Constructor = "", --  
           Enum = "ℰ", -- 
           Interface = "",
           Function = "ƒ", -- 
@@ -89,17 +89,79 @@ return {
           Constant = "", -- 
           String = "𝓢", -- 
           Number = "#", -- 
-          Boolean = "",
+          Boolean = "◩", -- 
           Array = "",
           Object = "",
-          Key = "",
+          Key = "󰌋", -- 
           Null = "",
-          EnumMember = "",
+          EnumMember = "", -- 
           Struct = "", -- 
           Event = "",
-          Operator = "",
-          TypeParameter = "𝙏", -- 
+          Operator = "󰆕", -- 
+          TypeParameter = "󰊄", --  𝙏
         },
+      })
+    end
+  },
+  {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim"
+    },
+    keys = {
+      {
+        "<leader>lt",
+        function() require("nvim-navbuddy").open() end,
+        desc = "Navigate symbols via Navbuddy tree",
+        mode = "n",
+        noremap = true,
+        silent = true
+      }
+    },
+    config = function()
+      local navbuddy = require("nvim-navbuddy")
+      local actions = require("nvim-navbuddy.actions")
+      navbuddy.setup({
+        icons = {
+          File          = "󰈙 ",
+          Module        = "󰆧 ", -- 
+          Namespace     = "󰌗 ",
+          Package       = " ", -- 
+          Class         = "𝓒 ", -- 󰌗
+          Method        = " ", -- 󰆧
+          Property      = " ", -- 
+          Field         = " ", -- 
+          Constructor   = " ",
+          Enum          = "ℰ", -- 󰕘
+          Interface     = "", -- 󰕘
+          Function      = "󰊕 ",
+          Variable      = " ", -- 󰆧
+          Constant      = "󰏿 ",
+          String        = "𝓢 ", -- 
+          Number        = "# ", -- 󰎠
+          Boolean       = "◩ ",
+          Array         = "󰅪 ",
+          Object        = " ", -- 󰅩
+          Key           = "󰌋 ",
+          Null          = " ", -- 󰟢
+          EnumMember    = " ",
+          Struct        = " ", -- 󰌗
+          Event         = " ", -- 
+          Operator      = "󰆕 ",
+          TypeParameter = "󰊄 ",
+        },
+        mappings = {
+          ["<Down>"] = actions.next_sibling(),   -- down
+          ["<Up>"] = actions.previous_sibling(), -- up
+          ["<Left>"] = actions.parent(),         -- Move to left panel
+          ["<Right>"] = actions.children()       -- Move to right panel
+        },
+        window = {
+          border = "rounded",
+          size = "90%",
+          sections = { left = { size = "30%" }, mid = { size = "40%" } }
+        }
       })
     end
   },
