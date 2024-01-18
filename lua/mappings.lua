@@ -31,6 +31,9 @@ vim.keymap.set("n", "zM", "zMzz",
 vim.keymap.set("n", "n", "nzz",
   { desc = "move to the next search match and then center the cursorline" })
 
+vim.keymap.set("n", "N", "Nzz",
+  { desc = "move to the prev search match and then center the cursorline" })
+
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
