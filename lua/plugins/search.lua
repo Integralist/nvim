@@ -43,7 +43,17 @@ return {
               ["<C-o>"] = actions.send_selected_to_qflist
             }
           },
-          scroll_strategy = "limit"
+          scroll_strategy = "limit",
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden' -- ADDED OVER ABOVE DEFAULTS (https://github.com/nvim-telescope/telescope.nvim/blob/301505da4bb72d11ffeee47ad45e0b677f70abe5/doc/telescope.txt#L540-L557)
+          },
         },
         extensions = { heading = { treesitter = true } }
       })
