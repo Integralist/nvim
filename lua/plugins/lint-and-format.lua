@@ -54,6 +54,7 @@ return {
       })
     end
   }, {
+  -- FORMATTING
   "stevearc/conform.nvim",
   config = function()
     local conform = require("conform")
@@ -61,9 +62,8 @@ return {
     conform.setup({
       formatters_by_ft = {
         -- https://github.com/mvdan/gofumpt
-        -- https://pkg.go.dev/golang.org/x/tools/cmd/goimports
-        -- https://github.com/incu6us/goimports-reviser
-        go = { "gofumpt", "goimports", "goimports-reviser" },
+        -- https://github.com/incu6us/goimports-reviser ("goimports" is original -- https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
+        go = { "gofumpt", "goimports-reviser" },
         -- https://github.com/mantoni/eslint_d.js/
         javascript = { "eslint_d" },
         -- https://github.com/stedolan/jq
