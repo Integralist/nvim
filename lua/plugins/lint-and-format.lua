@@ -80,6 +80,8 @@ return {
         terraform = { "terraform_fmt" },
         -- https://github.com/tamasfe/taplo
         toml = { "taplo" },
+        -- http://xmlsoft.org/xmllint.html
+        xml = { "xmllint" },
         -- https://github.com/koalaman/shellcheck
         zsh = { "shellcheck" }
       },
