@@ -84,3 +84,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "Jenkinsfile" },
+  command = "set filetype=groovy"
+})
