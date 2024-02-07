@@ -1,7 +1,7 @@
 -- NOTE: Use the following to disable warnings/errors.
 --
--- golangci-lint
--- //nolint:<TOOL>
+-- golangci-lint (don't try to add a <REASON> it doesn't work)
+-- //nolint:<TOOL>,<TOOL>
 --
 -- staticcheck (on same line as issue)
 -- //lint:ignore <CODE> <REASON>
