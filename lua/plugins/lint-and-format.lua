@@ -30,6 +30,8 @@ return {
         -- DISABLED: https://github.com/mpeterv/luacheck
         -- Was a problem with folke/neodev plugin
         -- lua = { "luacheck" },
+        -- https://github.com/mrtazz/checkmake
+        make = { "checkmake" },
         -- https://alexjs.com/
         -- https://github.com/DavidAnson/markdownlint
         -- https://docs.getwoke.tech/
