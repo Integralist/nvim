@@ -2,7 +2,15 @@ return {
   {
     -- STATUS LINE
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
+    dependencies = {
+      {
+        "nvim-tree/nvim-web-devicons",
+        opt = true,
+      }, {
+      "linrongbin16/lsp-progress.nvim",
+      config = true,
+    } },
+    event = "UIEnter",
     config = function()
       require("lualine").setup({
         sections = {
@@ -13,8 +21,45 @@ return {
               path = 1,            -- relative path
               shorting_target = 40 -- Shortens path to leave 40 space in the window
             }
-          }
+          },
+          lualine_x = {
+            {
+              function()
+                return require("lsp-progress").progress({
+                  max_size = 80,
+                  format = function(messages)
+                    local active_clients =
+                        vim.lsp.get_active_clients()
+                    if #messages > 0 then
+                      return table.concat(messages, " ")
+                    end
+                    local client_names = {}
+                    for _, client in ipairs(active_clients) do
+                      if client and client.name ~= "" then
+                        table.insert(
+                          client_names,
+                          1,
+                          client.name
+                        )
+                      end
+                    end
+                    return table.concat(client_names, "  ")
+                  end,
+                })
+              end,
+              icon = { "", align = "right" },
+            },
+            "diagnostics",
+          },
+          lualine_y = { "filetype", "encoding", "fileformat" },
+          lualine_z = { "location" },
         }
+      })
+      vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        group = "lualine_augroup",
+        pattern = "LspProgressStatusUpdated",
+        callback = require("lualine").refresh,
       })
     end
   }, {

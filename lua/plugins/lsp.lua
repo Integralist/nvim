@@ -1,3 +1,13 @@
+-- LSP PROGRESS STATUS
+--
+-- Previously used:
+--
+-- "j-hui/fidget.nvim",
+-- config = true
+--
+-- Now switched to linrongbin16/lsp-progress.nvim
+-- See ./ui.lua and the lualine configuration
+
 local function OpenAllFiles()
   local files = vim.fn.globpath(vim.fn.getcwd(), '**', true, true)
   for _, file in ipairs(files) do
@@ -337,10 +347,6 @@ return {
       end
     })
   end
-}, {
-  -- LSP PROGRESS STATUS
-  "j-hui/fidget.nvim",
-  config = true
 }, {
   -- LSP DIAGNOSTICS
   "folke/trouble.nvim",
