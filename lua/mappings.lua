@@ -4,6 +4,10 @@ vim.keymap.set("", "<leader><leader>ps", "<Cmd>Lazy sync<CR>",
 vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>",
   { desc = "turn off search highlight" })
 
+vim.keymap.set("n", "<leader><leader>lx", function()
+  vim.diagnostic.reset(nil, 0)
+end, { desc = "Reset diagnostic (temp disable)" })
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz",
   { desc = "scroll down and then center the cursorline" })
 
