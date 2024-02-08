@@ -6,6 +6,7 @@
 - Top of the buffer uses TreeSitter to show the current function †.
 
 > † **NOTE**: Not visible in screenshot as this only shows when the function is so long the signature isn't visible to the buffer viewport.
+
 - Right side of the main window is a 'mini map' of the file content (uses TreeSitter to add colour).
   - This isn't visible by default but I define a mapping for easy toggling.
 - The statusline bar displays:
