@@ -55,6 +55,7 @@ return {
         group = vim.api.nvim_create_augroup("Linting", { clear = true }),
         callback = function(ev)
           -- print(string.format('event fired: %s', vim.inspect(ev)))
+          -- print(vim.bo.filetype)
           if string.find(ev.file, ".github/workflows/") and vim.bo.filetype == "yaml" then
             lint.try_lint("actionlint")
           elseif vim.bo.filetype == "yaml" then
