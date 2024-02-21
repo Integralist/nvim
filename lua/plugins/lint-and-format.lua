@@ -74,6 +74,8 @@ return {
 
     conform.setup({
       formatters_by_ft = {
+        -- https://www.gnu.org/software/gawk/manual/gawk.html
+        awk = { "awk" },
         -- https://github.com/mvdan/gofumpt
         -- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
         -- https://github.com/incu6us/goimports-reviser
@@ -96,6 +98,8 @@ return {
         toml = { "taplo" },
         -- http://xmlsoft.org/xmllint.html
         xml = { "xmllint" },
+        -- https://github.com/mikefarah/yq
+        yq = { "yq" },
         -- https://github.com/koalaman/shellcheck
         zsh = { "shellcheck" }
       },
