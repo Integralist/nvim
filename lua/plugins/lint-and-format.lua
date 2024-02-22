@@ -23,6 +23,9 @@ return {
         -- https://github.com/codespell-project/codespell
         -- https://golangci-lint.run/
         go = { "codespell", "golangcilint" },
+        -- https://htmlhint.com/
+        -- https://www.html-tidy.org/
+        html = { "htmlhint", "tidy" },
         -- https://github.com/mantoni/eslint_d.js
         javascript = { "eslint_d" },
         -- https://github.com/zaach/jsonlint
@@ -80,6 +83,8 @@ return {
         -- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
         -- https://github.com/incu6us/goimports-reviser
         go = { "gofumpt", "goimports", "goimports-reviser" },
+        -- https://github.com/threedaymonk/htmlbeautifier
+        html = { "htmlbeautifier" },
         -- https://github.com/mantoni/eslint_d.js/
         javascript = { "eslint_d" },
         -- https://github.com/stedolan/jq
