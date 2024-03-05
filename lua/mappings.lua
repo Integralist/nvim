@@ -5,8 +5,14 @@ vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>",
   { desc = "turn off search highlight" })
 
 vim.keymap.set("n", "<leader><leader>lx", function()
-  vim.diagnostic.reset(nil, 0)
-end, { desc = "Reset diagnostic (temp disable)" })
+  vim.diagnostic.disable()
+  -- vim.diagnostic.reset(nil, 0)
+end, { desc = "Disable diagnostics" })
+
+vim.keymap.set("n", "<leader><leader>ls", function()
+  vim.diagnostic.enable()
+  -- vim.diagnostic.reset(nil, 0)
+end, { desc = "Enable diagnostics (aka start)" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz",
   { desc = "scroll down and then center the cursorline" })
