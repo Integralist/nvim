@@ -12,6 +12,7 @@ return {
       ["<leader>l"] = { name = "lsp" },
       ["<leader><leader>b"] = { name = "dap/debug" },
       ["<leader><leader>d"] = { name = "todo" },
+      ["<leader><leader>f"] = { name = "format" },
       ["<leader><leader>g"] = { name = "git" },
       ["<leader><leader>l"] = { name = "lsp" },
       -- ["<leader><leader>n"] = {name = "noice"},
