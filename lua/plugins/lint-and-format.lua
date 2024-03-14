@@ -98,6 +98,7 @@ return {
         -- https://github.com/koalaman/shellcheck
         sh = { "shellcheck" },
         -- https://www.terraform.io/docs/cli/commands/fmt.html
+        -- https://opentofu.org/docs/cli/commands/fmt/  NOTE: This is an alternative `tofu_fmt`
         terraform = { "terraform_fmt" },
         -- https://github.com/tamasfe/taplo
         toml = { "taplo" },
