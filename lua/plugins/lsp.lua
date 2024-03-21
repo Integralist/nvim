@@ -297,7 +297,6 @@ return {
   config = function()
     local mason_lspconfig = require("mason-lspconfig")
 
-    -- NOTE: autotools-language-server -> Make
     -- NOTE: taplo -> TOML
     --
     -- Can't auto-install these as there is no mappings in mason-lspconfig.
