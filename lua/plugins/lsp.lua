@@ -306,7 +306,7 @@ return {
     -- ◍ golangci-lint
     mason_lspconfig.setup({
       ensure_installed = {
-        "bashls", "gopls", "jsonls",
+        "autotools_ls", "bashls", "gopls", "jsonls",
         "lua_ls", "marksman", "pylsp",
         "rust_analyzer", "taplo", "terraformls", "tflint", "tsserver",
         "yamlls", "zls"
