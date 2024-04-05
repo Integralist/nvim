@@ -17,38 +17,38 @@ return {
         outline_window = { position = "left", width = 25 },
         symbols = {
           icons = {
-            File = { icon = '󰈔', hl = 'Identifier' },
-            Module = { icon = '󰆧', hl = 'Include' },
-            Namespace = { icon = '󰌗', hl = 'Include' }, -- 󰅪
-            Package = { icon = '', hl = 'Include' }, -- 󰏗
+            Array = { icon = '󰅪', hl = 'Constant' },
+            Boolean = { icon = '◩', hl = 'Boolean' }, -- ⊨ 
             Class = { icon = '𝓒', hl = 'Type' },
-            Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
-            Property = { icon = '', hl = 'Identifier' },
-            Field = { icon = '', hl = 'Identifier' }, -- 󰆨 
+            Component = { icon = '󰅴', hl = 'Function' },
+            Constant = { icon = '󰏿', hl = 'Constant' }, -- 
             Constructor = { icon = '', hl = 'Special' }, -- 
             Enum = { icon = 'ℰ', hl = 'Type' },
-            Interface = { icon = '', hl = 'Type' }, -- 󰜰
-            Function = { icon = 'ƒ', hl = 'Function' }, -- 
-            Variable = { icon = '', hl = 'Constant' }, -- 
-            Constant = { icon = '', hl = 'Constant' },
-            String = { icon = '𝓢', hl = 'String' }, -- 𝓐
-            Number = { icon = '#', hl = 'Number' },
-            Boolean = { icon = '◩', hl = 'Boolean' }, -- ⊨ 
-            Array = { icon = '󰅪', hl = 'Constant' },
-            Object = { icon = '', hl = 'Type' }, -- ⦿
-            Key = { icon = '󰌋', hl = 'Type' }, -- 🔐
-            Null = { icon = 'NULL', hl = 'Type' },
             EnumMember = { icon = '', hl = 'Identifier' },
-            Struct = { icon = '', hl = 'Structure' }, -- 𝓢
-            Event = { icon = '🗲', hl = 'Type' },
-            Operator = { icon = '󰆕', hl = 'Identifier' }, -- + 
-            TypeParameter = { icon = '󰊄', hl = 'Identifier' }, -- 𝙏
-            Component = { icon = '󰅴', hl = 'Function' },
+            Event = { icon = '', hl = 'Type' }, -- 🗲
+            Field = { icon = '', hl = 'Identifier' }, -- 󰆨 
+            File = { icon = '', hl = 'Identifier' }, -- 󰈔
             Fragment = { icon = '󰅴', hl = 'Constant' },
-            TypeAlias = { icon = ' ', hl = 'Type' }, -- 
-            Parameter = { icon = ' ', hl = 'Identifier' },
-            StaticMethod = { icon = ' ', hl = 'Function' },
+            Function = { icon = 'ƒ', hl = 'Function' }, -- 
+            Interface = { icon = '', hl = 'Type' }, -- 󰜰
+            Key = { icon = '󰌋', hl = 'Type' }, -- 🔐
             Macro = { icon = ' ', hl = 'Function' },
+            Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
+            Module = { icon = '', hl = 'Include' }, -- 󰆧 (changed because yaml considers an object a module)
+            Namespace = { icon = '󰌗', hl = 'Include' }, -- 󰅪
+            Null = { icon = '', hl = 'Type' }, -- NULL
+            Number = { icon = '#', hl = 'Number' },
+            Object = { icon = '', hl = 'Type' }, -- ⦿
+            Operator = { icon = '󰆕', hl = 'Identifier' }, -- + 
+            Package = { icon = '', hl = 'Include' }, -- 󰏗
+            Parameter = { icon = ' ', hl = 'Identifier' },
+            Property = { icon = '', hl = 'Identifier' },
+            StaticMethod = { icon = ' ', hl = 'Function' }, -- 
+            String = { icon = '𝓢', hl = 'String' }, -- 𝓐
+            Struct = { icon = '', hl = 'Structure' }, -- 𝓢
+            TypeAlias = { icon = ' ', hl = 'Type' }, -- 
+            TypeParameter = { icon = '󰊄', hl = 'Identifier' }, -- 𝙏
+            Variable = { icon = '', hl = 'Constant' }, -- 
           },
         }
       })
@@ -73,32 +73,32 @@ return {
         -- this is so shared LSP attach handler can handle attaching only when LSP running
         attach_navic = false,
         kinds = {
-          File = "",
-          Module = "󰆧", -- 
-          Namespace = "󰌗", --  󰅪
-          Package = "",
+          Array = "",
+          Boolean = "◩", -- 
           Class = "𝓒", -- 
-          Method = "", -- 
-          Property = "", -- 
-          Field = "", --  
+          Constant = "󰏿", --  
           Constructor = "", --  
           Enum = "ℰ", -- 
-          Interface = "",
-          Function = "ƒ", -- 
-          Variable = "", --  
-          Constant = "", -- 
-          String = "𝓢", -- 
-          Number = "#", -- 
-          Boolean = "◩", -- 
-          Array = "",
-          Object = "",
-          Key = "󰌋", -- 
-          Null = "",
           EnumMember = "", -- 
-          Struct = "", -- 
           Event = "",
+          Field = "", --  
+          File = "",
+          Function = "ƒ", -- 
+          Interface = "",
+          Key = "󰌋", -- 
+          Method = "", -- 
+          Module = "󰆧", -- 
+          Namespace = "󰌗", --  󰅪
+          Null = "",
+          Number = "#", -- 
+          Object = "",
           Operator = "󰆕", -- 
+          Package = "",
+          Property = "", -- 
+          String = "𝓢", -- 
+          Struct = "", -- 
           TypeParameter = "󰊄", --  𝙏
+          Variable = "", --  
         },
       })
     end
@@ -124,32 +124,32 @@ return {
       local actions = require("nvim-navbuddy.actions")
       navbuddy.setup({
         icons = {
-          File          = "󰈙 ",
-          Module        = "󰆧 ", -- 
-          Namespace     = "󰌗 ",
-          Package       = " ", -- 
+          Array         = "󰅪 ",
+          Boolean       = "◩ ",
           Class         = "𝓒 ", -- 󰌗
-          Method        = " ", -- 󰆧
-          Property      = " ", -- 
-          Field         = " ", --  
+          Constant      = "󰏿 ",
           Constructor   = " ",
           Enum          = "ℰ", -- 󰕘
-          Interface     = "", -- 󰕘
-          Function      = "󰊕 ",
-          Variable      = "", -- 󰆧 
-          Constant      = "󰏿 ",
-          String        = "𝓢 ", -- 
-          Number        = "# ", -- 󰎠
-          Boolean       = "◩ ",
-          Array         = "󰅪 ",
-          Object        = " ", -- 󰅩
-          Key           = "󰌋 ",
-          Null          = " ", -- 󰟢
           EnumMember    = " ",
-          Struct        = " ", -- 󰌗
           Event         = " ", -- 
+          Field         = " ", --  
+          File          = " ", -- 󰈙
+          Function      = "󰊕 ",
+          Interface     = "", -- 󰕘
+          Key           = "󰌋 ",
+          Method        = " ", -- 󰆧
+          Module        = " ", --  󰆧 (changed because yaml considers an object a module)
+          Namespace     = "󰌗 ",
+          Null          = " ", -- 󰟢
+          Number        = "# ", -- 󰎠
+          Object        = " ", -- 󰅩
           Operator      = "󰆕 ",
+          Package       = " ", -- 
+          Property      = " ", -- 
+          String        = "𝓢 ", -- 
+          Struct        = " ", -- 󰌗
           TypeParameter = "󰊄 ",
+          Variable      = "", -- 󰆧 
         },
         mappings = {
           ["<Down>"] = actions.next_sibling(),   -- down
