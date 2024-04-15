@@ -41,8 +41,9 @@ return {
         markdown = { "alex", "markdownlint", "woke" },
         -- https://www.shellcheck.net/
         sh = { "shellcheck" },
+        -- https://github.com/terraform-linters/tflint
         -- https://github.com/aquasecurity/trivy (originally https://github.com/aquasecurity/tfsec)
-        terraform = { "trivy" },
+        terraform = { "tflint", "trivy" },
         -- DISABLED: needed custom logic (see callback function below)
         -- https://github.com/rhysd/actionlint
         -- https://github.com/adrienverge/yamllint https://yamllint.readthedocs.io/en/stable/rules.html
