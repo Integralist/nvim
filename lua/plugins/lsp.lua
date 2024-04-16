@@ -126,6 +126,20 @@ return {
         require("lsp-inlayhints").on_attach(client, bufnr)
         require("illuminate").on_attach(client)
 
+        -- workaround for gopls not supporting semanticTokensProvider
+        -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+        if not client.server_capabilities.semanticTokensProvider then
+          local semantic = client.config.capabilities.textDocument.semanticTokens
+          client.server_capabilities.semanticTokensProvider = {
+            full = true,
+            legend = {
+              tokenTypes = semantic.tokenTypes,
+              tokenModifiers = semantic.tokenModifiers,
+            },
+            range = true,
+          }
+        end
+
         -- DISABLED: FixGoImports
         --
         -- Instead I use https://github.com/incu6us/goimports-reviser
@@ -170,15 +184,37 @@ return {
       end,
       settings = {
         -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
+        -- https://www.lazyvim.org/extras/lang/go (borrowed some ideas from here)
         gopls = {
           analyses = {
+            fieldalignment = false, -- find structs that would use less memory if their fields were sorted
             nilness = true,
             unusedparams = true,
             unusedwrite = true,
             useany = true
           },
+          codelenses = {
+            gc_details = false,
+            generate = true,
+            regenerate_cgo = true,
+            run_govulncheck = true,
+            test = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
           experimentalPostfixCompletions = true,
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true
+          },
           gofumpt = true,
+          semanticTokens = true,
           -- DISABLED: staticcheck
           --
           -- gopls doesn't invoke the staticcheck binary.
@@ -196,15 +232,6 @@ return {
           --
           -- staticcheck = true,
           usePlaceholders = true,
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true
-          }
         }
       }
       -- DISABLED: as it overlaps with `lvimuser/lsp-inlayhints.nvim`
