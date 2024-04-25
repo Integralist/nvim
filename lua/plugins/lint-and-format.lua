@@ -77,6 +77,7 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
       formatters_by_ft = {
         -- https://www.gnu.org/software/gawk/manual/gawk.html
         awk = { "awk" },
@@ -138,6 +139,7 @@ return {
       desc = "Re-enable autoformat-on-save",
     })
 
+    vim.keymap.set("", "<leader><leader>fi", "<Cmd>ConformInfo<CR>", { desc = "Show Conform log" })
     vim.keymap.set("", "<leader><leader>fd", "<Cmd>FormatDisable<CR>", { desc = "Disable autoformat-on-save" })
     vim.keymap.set("", "<leader><leader>fe", "<Cmd>FormatEnable<CR>", { desc = "Re-enable autoformat-on-save" })
 
