@@ -1,5 +1,24 @@
 return {
   {
+    -- GIT BLAME
+    "FabijanZulj/blame.nvim",
+    config = function()
+      require("blame").setup({
+        date_format = "%Y.%m.%d",
+      })
+    end,
+    keys = {
+      {
+        "<leader><leader>gb",
+        function() vim.cmd("BlameToggle") end,
+        desc = "Toggle git blame",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+    }
+  },
+  {
     -- GIT CHANGE INDICATOR
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -34,9 +53,9 @@ return {
           --     gs.blame_line { full = true }
           --   end, { desc = "git blame" })
 
-          map('n', '<leader><leader>gb',
-            function() gs.blame_line {} end,
-            { desc = "git blame short" })
+          -- map('n', '<leader><leader>gb',
+          --   function() gs.blame_line {} end,
+          --   { desc = "git blame short" })
 
           map('n', '<leader><leader>gd', gs.diffthis,
             { desc = "git diff (:q to close)" })
