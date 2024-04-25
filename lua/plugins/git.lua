@@ -29,12 +29,12 @@ return {
             return '<Ignore>'
           end, { desc = "prev change hunk", expr = true })
 
-          map('n', '<leader><leader>gb',
-            function()
-              gs.blame_line { full = true }
-            end, { desc = "git blame" })
+          -- map('n', '<leader><leader>gb',
+          --   function()
+          --     gs.blame_line { full = true }
+          --   end, { desc = "git blame" })
 
-          map('n', '<leader><leader>gs',
+          map('n', '<leader><leader>gb',
             function() gs.blame_line {} end,
             { desc = "git blame short" })
 
