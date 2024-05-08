@@ -111,6 +111,13 @@ return {
         -- https://github.com/koalaman/shellcheck
         zsh = { "shellcheck" }
       },
+      formatters = {
+        gofumpt = {
+          command = "gofumpt",
+          args = { "$FILENAME" },
+          stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
+        }
+      },
       format_on_save = function(bufnr)
         -- disable with a global or buffer-local variable
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
