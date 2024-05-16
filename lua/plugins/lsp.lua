@@ -378,7 +378,12 @@ return {
   "folke/trouble.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
-    require("trouble").setup({ auto_preview = false, height = 15 })
+    require("trouble").setup({
+      auto_preview = true,
+      width = 80,
+      height = 15,
+      position = "right"
+    })
 
     local bufopts = { noremap = true, silent = true }
     vim.keymap.set("n", "<leader><leader>lc", "<Cmd>TroubleClose<CR>",
