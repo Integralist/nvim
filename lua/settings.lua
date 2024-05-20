@@ -75,3 +75,11 @@ vim.diagnostic.config({
   underline = true,
   float = { border = "rounded", style = "minimal" }
 })
+
+-- COMMENTS
+-- nvim 0.10.0 has builtin support for commenting
+-- :h commenting
+-- But doesn't work when remapping with `vim.keymap.set` so we call directly...
+-- gc<motion> I'll still use manually
+vim.cmd("nmap <leader><leader><leader> gcc")
+vim.cmd("vmap <leader><leader><leader> gc")
