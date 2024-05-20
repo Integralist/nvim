@@ -116,14 +116,15 @@ return {
           command = "gofumpt",
           args = { "$FILENAME" },
           stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
+          -- FIXME: have added GoFumpt manually in ../autocommands.lua
         }
       },
-      format_on_save = function(bufnr)
+      format_after_save = function(bufnr)
         -- disable with a global or buffer-local variable
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
-        return { async = true, timeout_ms = 5000, lsp_fallback = true }
+        return { timeout_ms = 5000, lsp_fallback = true }
       end
     })
 
