@@ -41,18 +41,6 @@ return {
   }
   }
 }, {
-  -- CODE COMMENTS
-  "numToStr/Comment.nvim",
-  config = function()
-    require("Comment").setup()
-
-    vim.keymap.set("n", "<leader><leader><leader>", "<Cmd>norm gcc<CR>",
-      { desc = "comment a single line" })
-    vim.keymap.set("v", "<leader><leader><leader>",
-      "<Plug>(comment_toggle_linewise_visual)",
-      { desc = "comment multiple lines" })
-  end
-}, {
   -- DISPLAY HEX COLOURS
   "norcalli/nvim-colorizer.lua",
   config = function() require("colorizer").setup() end
