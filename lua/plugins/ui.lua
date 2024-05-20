@@ -171,7 +171,7 @@ return {
   {
     -- TAB UI IMPROVEMENTS
     "akinsho/bufferline.nvim",
-    version = "v3.*",
+    version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require("bufferline").setup({
