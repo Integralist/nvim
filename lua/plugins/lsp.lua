@@ -8,17 +8,6 @@
 -- Now switched to linrongbin16/lsp-progress.nvim
 -- See ./ui.lua and the lualine configuration
 
-local function OpenAllFiles()
-  local files = vim.fn.globpath(vim.fn.getcwd(), '**', true, true)
-  for _, file in ipairs(files) do
-    if vim.fn.isdirectory(file) == 0 then
-      vim.cmd('edit ' .. vim.fn.fnameescape(file))
-    end
-  end
-  vim.cmd([[bufdo bd]])
-  require("trouble").toggle("workspace_diagnostics")
-end
-
 local function merge(t1, t2)
   for i = 1, #t2 do t1[#t1 + 1] = t2[i] end
   return t1
@@ -378,36 +367,26 @@ return {
   "folke/trouble.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
-    require("trouble").setup({
-      auto_preview = true,
-      width = 80,
-      height = 15,
-      position = "right"
-    })
+    require("trouble").setup({})
 
     local bufopts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<leader><leader>lc", "<Cmd>TroubleClose<CR>",
+    vim.keymap.set("n", "<leader><leader>lc", "<Cmd>Trouble close<CR>",
       bufopts)
     vim.keymap.set("n", "<leader><leader>ld",
-      "<Cmd>TroubleToggle document_diagnostics<CR>",
+      "<Cmd>Trouble diagnostics focus=true<CR>",
       bufopts)
-    vim.keymap.set("n", "<leader><leader>lw",
-      "<Cmd>TroubleToggle workspace_diagnostics<CR>",
-      bufopts)
-    vim.keymap.set('n', '<leader><leader>lo', OpenAllFiles,
-      vim.tbl_extend('keep', bufopts, { desc = "Open all files (can be slow) before opening workspace_diagnostics" })) -- used as a workaround for workspace_diagnostics
     vim.keymap.set("n", "<leader><leader>lr",
-      "<Cmd>TroubleToggle lsp_references<CR>", bufopts)
+      "<Cmd>Trouble lsp_references focus=true<CR>", bufopts)
     vim.keymap.set("n", "<leader><leader>lq",
-      "<Cmd>TroubleToggle quickfix<CR>", bufopts)
+      "<Cmd>Trouble quickfix focus=true<CR>", bufopts)
     vim.keymap.set("n", "<leader><leader>ll",
-      "<Cmd>TroubleToggle loclist<CR>", bufopts)
+      "<Cmd>Trouble loclist focus=true<CR>", bufopts)
 
     vim.keymap.set("n", "]t", function()
       require("trouble").next({ skip_groups = false, jump = true });
     end, { desc = "Next item" })
     vim.keymap.set("n", "[t", function()
-      require("trouble").previous({ skip_groups = false, jump = true });
+      require("trouble").prev({ skip_groups = false, jump = true });
     end, { desc = "Prev item" })
   end
 }, {
