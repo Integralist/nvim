@@ -367,20 +367,46 @@ return {
   "folke/trouble.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
-    require("trouble").setup({})
+    require("trouble").setup({
+      -- modes = {
+      --   diagerrs = {
+      --     mode = "diagnostics", -- inherit from diagnostics mode
+      --     filter = {
+      --       any = {
+      --         buf = 0,                                    -- current buffer
+      --         {
+      --           severity = vim.diagnostic.severity.ERROR, -- errors only
+      --           -- limit to files in the current project
+      --           function(item)
+      --             return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+      --           end,
+      --         }
+      --       }
+      --     }
+      --   }
+      -- }
+    })
 
     local bufopts = { noremap = true, silent = true }
     vim.keymap.set("n", "<leader><leader>lc", "<Cmd>Trouble close<CR>",
-      bufopts)
-    vim.keymap.set("n", "<leader><leader>ld",
+      vim.tbl_extend('force', bufopts, { desc = "Close latest Trouble window" }))
+    vim.keymap.set("n", "<leader><leader>lda",
       "<Cmd>Trouble diagnostics focus=true<CR>",
-      bufopts)
+      vim.tbl_extend('force', bufopts, { desc = "Open all diagnostics in Trouble" }))
+    vim.keymap.set("n", "<leader><leader>ldc",
+      "<Cmd>Trouble diagnostics focus=true filter.buf=0<CR>",
+      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for this buffer in Trouble" }))
     vim.keymap.set("n", "<leader><leader>lr",
-      "<Cmd>Trouble lsp_references focus=true<CR>", bufopts)
+      "<Cmd>Trouble lsp_references focus=true<CR>",
+      vim.tbl_extend('force', bufopts, { desc = "Open any references to this symbol in Trouble" }))
     vim.keymap.set("n", "<leader><leader>lq",
-      "<Cmd>Trouble quickfix focus=true<CR>", bufopts)
+      "<Cmd>Trouble quickfix focus=true<CR>",
+      vim.tbl_extend('force', bufopts, { desc = "Open any quickfix results in Trouble" }))
     vim.keymap.set("n", "<leader><leader>ll",
-      "<Cmd>Trouble loclist focus=true<CR>", bufopts)
+      "<Cmd>Trouble loclist focus=true<CR>",
+      vim.tbl_extend('force', bufopts, { desc = "Open any location list results in Trouble" }))
+
+    -- Trouble todo toggle filter.buf=0
 
     vim.keymap.set("n", "]t", function()
       require("trouble").next({ skip_groups = false, jump = true });

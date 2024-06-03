@@ -71,8 +71,16 @@ return {
         { desc = "search buffers" })
       vim.keymap.set("n", "<leader>c", "<Cmd>Telescope colorscheme<CR>",
         { desc = "search colorschemes" })
-      vim.keymap.set("n", "<leader>d", "<Cmd>TodoTelescope<CR>",
+      vim.keymap.set("n", "<leader>da", "<Cmd>TodoTelescope<CR>",
+        { desc = "search all TODO types across all files" })
+      vim.keymap.set("n", "<leader>dt", "<Cmd>TodoTelescope keywords=TODO<CR>",
         { desc = "search TODOs across all files" })
+      vim.keymap.set("n", "<leader>dn", "<Cmd>TodoTelescope keywords=NOTE,INFO<CR>",
+        { desc = "search NOTEs across all files" })
+      vim.keymap.set("n", "<leader>df", "<Cmd>TodoTelescope keywords=FIXME,FIX<CR>",
+        { desc = "search FIXMEs across all files" })
+      vim.keymap.set("n", "<leader>dw", "<Cmd>TodoTelescope keywords=WARNING,IMPORTANT<CR>",
+        { desc = "search FIXMEs across all files" })
       vim.keymap.set("n", "<leader>e", "<Cmd>Telescope commands<CR>",
         { desc = "search Ex commands" })
       vim.keymap.set("n", "<leader>f",
