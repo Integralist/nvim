@@ -4,12 +4,12 @@ vim.keymap.set("", "<leader><leader>ps", "<Cmd>Lazy sync<CR>",
 vim.keymap.set("", "±", "<Cmd>nohlsearch<CR>",
   { desc = "turn off search highlight" })
 
-vim.keymap.set("n", "<leader><leader>lx", function()
+vim.keymap.set("n", "<leader><leader>dx", function()
   vim.diagnostic.disable()
   -- vim.diagnostic.reset(nil, 0)
 end, { desc = "Disable diagnostics" })
 
-vim.keymap.set("n", "<leader><leader>ls", function()
+vim.keymap.set("n", "<leader><leader>ds", function()
   vim.diagnostic.enable()
   -- vim.diagnostic.reset(nil, 0)
 end, { desc = "Enable diagnostics (aka start)" })

@@ -388,23 +388,17 @@ return {
     })
 
     local bufopts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<leader><leader>lc", "<Cmd>Trouble close<CR>",
+    vim.keymap.set("n", "<leader><leader>dc", "<Cmd>Trouble close<CR>",
       vim.tbl_extend('force', bufopts, { desc = "Close latest Trouble window" }))
-    vim.keymap.set("n", "<leader><leader>lda",
+    vim.keymap.set("n", "<leader><leader>da",
       "<Cmd>Trouble diagnostics focus=true<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open all diagnostics in Trouble" }))
-    vim.keymap.set("n", "<leader><leader>ldc",
+      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for all buffers in Trouble" }))
+    vim.keymap.set("n", "<leader><leader>db",
       "<Cmd>Trouble diagnostics focus=true filter.buf=0<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for this buffer in Trouble" }))
+      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for current buffer in Trouble" }))
     vim.keymap.set("n", "<leader><leader>lr",
       "<Cmd>Trouble lsp_references focus=true<CR>",
       vim.tbl_extend('force', bufopts, { desc = "Open any references to this symbol in Trouble" }))
-    vim.keymap.set("n", "<leader><leader>lq",
-      "<Cmd>Trouble quickfix focus=true<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open any quickfix results in Trouble" }))
-    vim.keymap.set("n", "<leader><leader>ll",
-      "<Cmd>Trouble loclist focus=true<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open any location list results in Trouble" }))
 
     -- Trouble todo toggle filter.buf=0
 

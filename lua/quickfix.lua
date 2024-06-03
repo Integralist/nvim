@@ -1,9 +1,18 @@
-vim.keymap.set("n", "<leader><leader>da", "<Cmd>TodoQuickFix<CR>",
+vim.keymap.set("n", "<leader><leader>qd", "<Cmd>TodoQuickFix<CR>",
   { desc = "open all TODOs in QuickFix window" })
 
-vim.keymap.set("n", "<leader><leader>dc",
+vim.keymap.set("n", "<leader><leader>qc",
   "<Cmd>exe ':TodoQuickFix cwd=' .. fnameescape(expand('%:p'))<CR>",
   { desc = "open TODOs for current file in QuickFix window" })
+
+local bufopts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader><leader>qt",
+  "<Cmd>Trouble quickfix focus=true<CR>",
+  vim.tbl_extend('force', bufopts, { desc = "Open any quickfix results in Trouble" }))
+vim.keymap.set("n", "<leader><leader>ql",
+  "<Cmd>Trouble loclist focus=true<CR>",
+  vim.tbl_extend('force', bufopts, { desc = "Open any location list results in Trouble" }))
 
 function _G.jumpToQuickfix()
   local jumplist, _ = unpack(vim.fn.getjumplist())
@@ -26,7 +35,7 @@ end
 vim.keymap.set("", "<leader><leader>qj", "<Cmd>lua _G.jumpToQuickfix()<CR>",
   { desc = "populate quickfix with jumplist" })
 
-vim.keymap.set("n", "<leader><leader>qd", function()
+vim.keymap.set("n", "<leader><leader>qp", function()
   vim.diagnostic.setqflist({
     open = true,
     title = "Diagnostics",
