@@ -80,7 +80,7 @@ return {
       vim.keymap.set("n", "<leader>df", "<Cmd>TodoTelescope keywords=FIXME,FIX<CR>",
         { desc = "search FIXMEs across all files" })
       vim.keymap.set("n", "<leader>dw", "<Cmd>TodoTelescope keywords=WARNING,IMPORTANT<CR>",
-        { desc = "search FIXMEs across all files" })
+        { desc = "search WARNING/IMPORTANTs across all files" })
       vim.keymap.set("n", "<leader>e", "<Cmd>Telescope commands<CR>",
         { desc = "search Ex commands" })
       vim.keymap.set("n", "<leader>f",
