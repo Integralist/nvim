@@ -1,3 +1,5 @@
+Download these files into `~/.config/nvim/`
+
 <img width="2032" alt="Example Neovim Experience" src="https://user-images.githubusercontent.com/180050/207120938-e78f6ca4-75dd-4097-a7f8-f702e60cd630.png">
 
 - LSP configured for different languages (e.g. Go, Rust).
