@@ -219,17 +219,26 @@ return {
       [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
       {})
   end
-}, {
-  -- SEARCH AND REPLACE
-  "nvim-pack/nvim-spectre",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("spectre").setup({
-      replace_engine = { ["sed"] = { cmd = "gsed" } }
-    })
-    vim.keymap.set("n", "<leader>S",
-      "<Cmd>lua require('spectre').open()<CR>",
-      { desc = "search and replace" })
-  end
-}
+},
+  --   {
+  --   -- SEARCH AND REPLACE
+  --   "nvim-pack/nvim-spectre",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("spectre").setup({
+  --       replace_engine = { ["sed"] = { cmd = "gsed" } }
+  --     })
+  --     vim.keymap.set("n", "<leader>S",
+  --       "<Cmd>lua require('spectre').open()<CR>",
+  --       { desc = "search and replace" })
+  --   end
+  -- },
+  {
+    -- SEARCH AND REPLACE
+    'MagicDuck/grug-far.nvim',
+    config = function()
+      require('grug-far').setup({});
+      vim.keymap.set("n", "<leader>S", "<Cmd>GrugFar<CR>", { desc = "search and replace" })
+    end
+  }
 }
