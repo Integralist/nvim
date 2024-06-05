@@ -82,7 +82,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "70a93ce66083699571adc361166504b03cc39c2b" },
   "toggleterm.nvim": { "branch": "main", "commit": "066cccf48a43553a80a210eb3be89a15d789d6e6" },
   "treesitter-terraform-doc.nvim": { "branch": "main", "commit": "b51acfe94080c6412e4c379b876606173399657e" },
-  "trouble.nvim": { "branch": "main", "commit": "915179759c9459b69faae90a38da6fc1ca6b90d7" },
+  "trouble.nvim": { "branch": "main", "commit": "4308b2a81e5d1c87952134f6b043e853a1376499" },
   "vale.nvim": { "branch": "master", "commit": "4ca34a6355f8b422fc717d5a5cc41f0438a2b05e" },
   "vim-asterisk": { "branch": "master", "commit": "77e97061d6691637a034258cc415d98670698459" },
   "vim-dispatch": { "branch": "master", "commit": "4c695bc052cad2ae6b980aebbe48d046466e27ae" },
