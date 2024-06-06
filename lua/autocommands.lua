@@ -95,9 +95,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   command = "set filetype=groovy"
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = vim.api.nvim_create_augroup("GoFumpt",
-    { clear = true }),
-  pattern = "*.go",
-  command = "silent !gofumpt -w %"
-})
+-- DISABLED: As it messed with nvim-lint and conform.nvim.
+-- See ./plugins/lint-and-format.lua
+--
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   group = vim.api.nvim_create_augroup("GoFumpt",
+--     { clear = true }),
+--   pattern = "*.go",
+--   command = "silent !gofumpt -w %"
+-- })

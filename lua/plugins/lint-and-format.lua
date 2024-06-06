@@ -73,6 +73,16 @@ return {
   }, {
   -- FORMATTING
   "stevearc/conform.nvim",
+  keys = {
+    {
+      "<leader><leader>fg",
+      function() vim.cmd("silent !gofumpt -w %") end,
+      desc = "Format file with gofumpt",
+      mode = "n",
+      noremap = true,
+      silent = true
+    }
+  },
   config = function()
     local conform = require("conform")
 
@@ -116,7 +126,7 @@ return {
           command = "gofumpt",
           args = { "$FILENAME" },
           stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
-          -- FIXME: have added GoFumpt manually in ../autocommands.lua
+          -- NOTE: have disabled a GoFumpt autocommand in ../autocommands.lua
         }
       },
       format_after_save = function(bufnr)
