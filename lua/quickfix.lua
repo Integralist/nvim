@@ -123,3 +123,38 @@ end
 -- :h quickfixtextfunc
 -- NOTE: This helps align the columns in the quickfix window.
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+-- Function to remove the current item from the quickfix list when using 'dd'
+--
+-- IMPORTANT: It's probably better to use `Cfilter! <pattern>`.
+-- This is because `Cfilter` creates a new list in the quickfix history.
+-- Which means you can use `:cold` to go back to the full unfiltered list.
+-- Where as this function doesn't preserve the history.
+-- So if you delete an item, it's gone and you have to re-search/grep.
+_G.remove_qf_item = function()
+  local qf_list = vim.fn.getqflist()
+  local cur_qf_idx = vim.fn.line('.') - 1
+
+  if #qf_list > 0 then
+    table.remove(qf_list, cur_qf_idx + 1)
+    vim.fn.setqflist(qf_list, 'r')
+  end
+
+  if #qf_list > 0 then
+    vim.cmd((cur_qf_idx + 1) .. 'cfirst')
+    vim.cmd('copen')
+  else
+    vim.cmd('cclose')
+  end
+end
+
+-- Command to call the remove_qf_item function
+vim.api.nvim_create_user_command('QuickfixRemoveItem', _G.remove_qf_item, {})
+
+-- Map 'dd' in the quickfix window to remove the item
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', 'dd', ':lua remove_qf_item()<CR>', { noremap = true, silent = true })
+  end,
+})
