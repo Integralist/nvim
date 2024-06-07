@@ -126,7 +126,6 @@ return {
           command = "gofumpt",
           args = { "$FILENAME" },
           stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
-          -- NOTE: have disabled a GoFumpt autocommand in ../autocommands.lua
         }
       },
       format_after_save = function(bufnr)
