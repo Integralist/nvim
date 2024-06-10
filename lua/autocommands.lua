@@ -101,3 +101,10 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = "*.go",
   command = "silent !gofumpt -w %"
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = vim.api.nvim_create_augroup("GoImports",
+    { clear = true }),
+  pattern = "*.go",
+  command = "silent !goimports -w %"
+})
