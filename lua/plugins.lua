@@ -16,7 +16,7 @@ return {
       ["<leader><leader>g"] = { name = "git" },
       ["<leader><leader>l"] = { name = "lsp" },
       -- ["<leader><leader>n"] = {name = "noice"},
-      ["<leader><leader>o"] = { name = "outline" },
+      ["<leader><leader>o"] = { name = "oil" },
       ["<leader><leader>p"] = { name = "plugins" },
       ["<leader><leader>q"] = { name = "quickfix" },
       ["<leader><leader>r"] = { name = "rust lsp" },

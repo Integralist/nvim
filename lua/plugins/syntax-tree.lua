@@ -6,11 +6,6 @@ return {
     cmd = { "Outline", "OutlineOpen" },
     keys = {
       { "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" },
-      {
-        "<leader><leader>of",
-        "<cmd>OutlineFollow<CR>",
-        desc = "Focus cursor inside symbols outline window on current node"
-      }
     },
     config = function()
       require("outline").setup({
