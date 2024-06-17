@@ -77,7 +77,7 @@ return {
     local conform = require("conform")
 
     conform.setup({
-      log_level = vim.log.levels.DEBUG,   -- :ConformInfo to show log info
+      log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
       formatters_by_ft = {
         -- https://www.gnu.org/software/gawk/manual/gawk.html
         awk = { "awk" },
@@ -115,7 +115,7 @@ return {
         gofumpt = {
           command = "gofumpt",
           args = { "$FILENAME" },
-          stdin = false,   -- https://github.com/stevearc/conform.nvim/issues/387
+          stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
         }
       },
       format_after_save = function(bufnr)
@@ -123,7 +123,7 @@ return {
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
-        return { timeout_ms = 5000, lsp_fallback = true }
+        return { timeout_ms = 5000, lsp_format = "fallback" }
       end
     })
 
