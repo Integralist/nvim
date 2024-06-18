@@ -22,7 +22,7 @@
   "dressing.nvim": { "branch": "master", "commit": "e3714c8049b2243e792492c4149e4cc395c68eb9" },
   "eyeliner.nvim": { "branch": "main", "commit": "c540d58bf52aa979d4cca639c60387ae0c0ccf88" },
   "fzf": { "branch": "master", "commit": "e2401aca68acb86f6dead826acf7499b11d96a10" },
-  "gitsigns.nvim": { "branch": "main", "commit": "ceaa21f6254b7a7c51dbaca26ebd5bf9f57d2f38" },
+  "gitsigns.nvim": { "branch": "main", "commit": "def49e48c6329527e344d0c99a0d2cd9fdf6bb84" },
   "grug-far.nvim": { "branch": "main", "commit": "23a645089bd3fa75412babe9b9b3dc2b795f2e89" },
   "hlargs.nvim": { "branch": "main", "commit": "30fe1b3de2b7614f061be4fc9c71984a2b87e50a" },
   "iswap.nvim": { "branch": "master", "commit": "e02cc91f2a8feb5c5a595767d208c54b6e3258ec" },

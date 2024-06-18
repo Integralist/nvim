@@ -17,4 +17,10 @@ return {
     -- HIGHLIGHT YANKED REGION
     "machakann/vim-highlightedyank"
   },
+  -- {
+  --   "tris203/precognition.nvim",
+  --   opts = {
+  --     startVisible = true
+  --   }
+  -- }
 }
