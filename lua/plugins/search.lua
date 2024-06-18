@@ -62,6 +62,7 @@ return {
       ts.load_extension("emoji")
       ts.load_extension("fzf")
       ts.load_extension("heading")
+      ts.load_extension("jsonfly")
       ts.load_extension("ui-select")
       ts.load_extension("windows")
 
@@ -95,8 +96,8 @@ return {
         { desc = "search help" })
       vim.keymap.set("n", "<leader>i", "<Cmd>Telescope builtin<CR>",
         { desc = "search builtins" })
-      vim.keymap.set("n", "<leader>j", "<Cmd>Telescope emoji<CR>",
-        { desc = "search emojis" })
+      vim.keymap.set("n", "<leader>j", "<Cmd>Telescope jsonfly<CR>",
+        { desc = "search current JSON structure" })
       vim.keymap.set("n", "<leader>k", "<Cmd>Telescope keymaps<CR>",
         { desc = "search key mappings" })
       vim.keymap.set("n", "<leader>ld", "<Cmd>Telescope diagnostics<CR>",
@@ -115,6 +116,8 @@ return {
         { desc = "search lsp document tree" })
       vim.keymap.set("n", "<leader>m", "<Cmd>Telescope heading<CR>",
         { desc = "search markdown headings" })
+      vim.keymap.set("n", "<leader>o", "<Cmd>Telescope emoji<CR>",
+        { desc = "search emojis" })
       vim.keymap.set("n", "<leader>p", "<Cmd>Telescope grep_string<CR>",
         { desc = "search for keyword under cursor" })
       vim.keymap.set("n", "<leader>q", "<Cmd>Telescope quickfix<CR>",
@@ -142,84 +145,98 @@ return {
         end
       })
     end
-  }, {
-  -- FZF SORTER FOR TELESCOPE WRITTEN IN C
-  "nvim-telescope/telescope-fzf-native.nvim",
-  build = "make"
-}, {
-  -- USE TELESCOPE FOR UI ELEMENTS
-  "nvim-telescope/telescope-ui-select.nvim",
-  config = function() require("telescope").setup({}) end
-}, {
-  -- SEARCH WINDOWS IN TELESCOPE
-  "kyoh86/telescope-windows.nvim"
-}, {
-  -- SEARCH MARKDOWN HEADINGS IN TELESCOPE
-  "crispgm/telescope-heading.nvim"
-}, {
-  -- SEARCH EMOJIS IN TELESCOPE
-  "xiyaowong/telescope-emoji.nvim"
-}, {
-  -- SEARCH CHANGED GIT FILES IN TELESCOPE
-  "axkirillov/telescope-changed-files"
-}, {
-  -- SEARCH TABS IN TELESCOPE
-  "LukasPietzschmann/telescope-tabs",
-  config = function()
-    vim.keymap.set("n", "<leader>t",
-      "<Cmd>lua require('telescope-tabs').list_tabs()<CR>",
-      { desc = "search tabs" })
-  end
-}, {
-  -- SEARCH NOTES/TODOS IN TELESCOPE
-  "folke/todo-comments.nvim",
-  dependencies = "nvim-lua/plenary.nvim",
-  config = function()
-    require("todo-comments").setup({
-      keywords = {
-        WARN = {
-          icon = " ",
-          color = "warning",
-          alt = { "WARNING", "XXX", "IMPORTANT" }
+  },
+  {
+    -- FZF SORTER FOR TELESCOPE WRITTEN IN C
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make"
+  },
+  {
+    -- USE TELESCOPE FOR UI ELEMENTS
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function() require("telescope").setup({}) end
+  },
+  {
+    -- SEARCH WINDOWS IN TELESCOPE
+    "kyoh86/telescope-windows.nvim"
+  },
+  {
+    -- SEARCH MARKDOWN HEADINGS IN TELESCOPE
+    "crispgm/telescope-heading.nvim"
+  },
+  {
+    -- SEARCH EMOJIS IN TELESCOPE
+    "xiyaowong/telescope-emoji.nvim"
+  },
+  {
+    -- SEARCH CHANGED GIT FILES IN TELESCOPE
+    "axkirillov/telescope-changed-files"
+  },
+  {
+    -- SEARCH JSON STRUCTURES
+    "Myzel394/jsonfly.nvim"
+  },
+  {
+    -- SEARCH TABS IN TELESCOPE
+    "LukasPietzschmann/telescope-tabs",
+    config = function()
+      vim.keymap.set("n", "<leader>t",
+        "<Cmd>lua require('telescope-tabs').list_tabs()<CR>",
+        { desc = "search tabs" })
+    end
+  },
+  {
+    -- SEARCH NOTES/TODOS IN TELESCOPE
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup({
+        keywords = {
+          WARN = {
+            icon = " ",
+            color = "warning",
+            alt = { "WARNING", "XXX", "IMPORTANT" }
+          }
         }
-      }
-    })
-  end
-}, {
-  -- SEARCH INDEXER
-  "kevinhwang91/nvim-hlslens",
-  config = true
-}, {
-  -- IMPROVES ASTERISK BEHAVIOR
-  "haya14busa/vim-asterisk",
-  config = function()
-    vim.keymap.set('n', '*',
-      [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('n', '#',
-      [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('n', 'g*',
-      [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('n', 'g#',
-      [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
+      })
+    end
+  },
+  {
+    -- SEARCH INDEXER
+    "kevinhwang91/nvim-hlslens",
+    config = true
+  },
+  {
+    -- IMPROVES ASTERISK BEHAVIOR
+    "haya14busa/vim-asterisk",
+    config = function()
+      vim.keymap.set('n', '*',
+        [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('n', '#',
+        [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('n', 'g*',
+        [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('n', 'g#',
+        [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
 
-    vim.keymap.set('x', '*',
-      [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('x', '#',
-      [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('x', 'g*',
-      [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-    vim.keymap.set('x', 'g#',
-      [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
-      {})
-  end
-},
+      vim.keymap.set('x', '*',
+        [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('x', '#',
+        [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('x', 'g*',
+        [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+      vim.keymap.set('x', 'g#',
+        [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
+        {})
+    end
+  },
   --   {
   --   -- SEARCH AND REPLACE
   --   "nvim-pack/nvim-spectre",
