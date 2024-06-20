@@ -11,7 +11,8 @@ return {
   },
   {
     -- CURSOR MOVEMENT HIGHLIGHTER
-    "DanilaMihailov/beacon.nvim"
+    "DanilaMihailov/beacon.nvim",
+    config = true
   },
   {
     -- HIGHLIGHT YANKED REGION
