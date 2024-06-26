@@ -62,32 +62,45 @@ return {
         end
       })
     end
-  }, {
-  -- GIT HISTORY
-  "sindrets/diffview.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("diffview").setup()
-    vim.keymap.set("n", "<leader><leader>gh",
-      "<Cmd>DiffviewFileHistory<CR>",
-      { desc = "show project commit history" })
-    vim.keymap.set("n", "<leader><leader>go", "<Cmd>DiffviewOpen<CR>",
-      { desc = "show uncommitted file changes" })
-    vim.keymap.set("n", "<leader><leader>gc", "<Cmd>DiffviewClose<CR>",
-      { desc = "close diffview window" })
-  end
-}, {
-  -- OPEN LINES IN GITHUB
-  "ruanyl/vim-gh-line",
-  keys = {
-    {
-      "<leader><leader>gl",
-      function() vim.cmd("GH") end,
-      desc = "Open single line in GitHub's web UI",
-      noremap = true,
-      silent = true
-    }
   },
-  config = true
-}
+  {
+    -- GIT HISTORY
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("diffview").setup()
+      vim.keymap.set("n", "<leader><leader>gh",
+        "<Cmd>DiffviewFileHistory<CR>",
+        { desc = "show project commit history" })
+      vim.keymap.set("n", "<leader><leader>go", "<Cmd>DiffviewOpen<CR>",
+        { desc = "show uncommitted file changes" })
+      vim.keymap.set("n", "<leader><leader>gc", "<Cmd>DiffviewClose<CR>",
+        { desc = "close diffview window" })
+    end
+  },
+  {
+    -- OPEN LINES IN GITHUB
+    "ruanyl/vim-gh-line",
+    keys = {
+      {
+        "<leader><leader>gl",
+        function() vim.cmd("GH") end,
+        desc = "Open single line in GitHub's web UI",
+        noremap = true,
+        silent = true
+      }
+    },
+    config = true
+  },
+  {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require "octo".setup()
+    end
+  }
 }
