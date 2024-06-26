@@ -92,6 +92,7 @@ return {
     },
     config = true
   },
+  -- GITHUB PR REVIEW MANAGEMENT TOOL
   {
     'pwntester/octo.nvim',
     requires = {
@@ -100,7 +101,13 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require "octo".setup()
+      require("octo").setup()
     end
-  }
+  },
+  {
+    "lukas-reineke/pr.nvim",
+    config = function()
+      require("pr").setup() -- :lua require("pr").load("fastly/cli", 1179) + :PRCommentPreview on the comment line
+    end
+  },
 }
