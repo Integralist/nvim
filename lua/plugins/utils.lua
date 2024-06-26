@@ -53,7 +53,11 @@ return {
   },
   {
     -- GENERATE HEX COLOURS
-    "uga-rosa/ccc.nvim"
+    -- :CccPick
+    "uga-rosa/ccc.nvim",
+    config = function()
+      require("ccc").setup()
+    end
   },
   {
     -- ASYNC DISPATCH
