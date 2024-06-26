@@ -47,7 +47,8 @@ return {
         -- DISABLED: needed custom logic (see callback function below)
         -- https://github.com/rhysd/actionlint
         -- https://github.com/adrienverge/yamllint https://yamllint.readthedocs.io/en/stable/rules.html
-        -- yaml = { "actionlint", "yamllint" },
+        -- https://github.com/stoplightio/spectral
+        -- yaml = { "actionlint", "yamllint", "spectral" },
         -- https://www.shellcheck.net/
         -- https://www.zsh.org/
         zsh = { "shellcheck", "zsh" }
@@ -63,7 +64,7 @@ return {
           if (string.find(ev.file, ".github/workflows/") or string.find(ev.file, ".github/actions/")) and vim.bo.filetype == "yaml" then
             lint.try_lint("actionlint")
           elseif vim.bo.filetype == "yaml" then
-            lint.try_lint("yamllint")
+            lint.try_lint("spectral") -- used to be yamllint
           else
             lint.try_lint()
           end
