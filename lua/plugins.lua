@@ -8,7 +8,7 @@ return {
   config = function()
     local wk = require("which-key")
     wk.register({
-      -- ["<leader>d"] = { name = "todo" },
+      ["<leader>d"] = { name = "todo" },
       ["<leader>l"] = { name = "lsp" },
       ["<leader><leader>b"] = { name = "dap/debug" },
       ["<leader><leader>d"] = { name = "diagnostics/todos" },
