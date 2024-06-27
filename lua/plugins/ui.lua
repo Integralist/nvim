@@ -181,6 +181,11 @@ return {
     end
   },
   {
+    -- CLEAN OUT OLD/STALE BUFFERS AUTOMATICALLY
+    'ChuufMaster/buffer-vacuum',
+    opts = {}
+  },
+  {
     -- FZF USED BY BETTER-QUICKFIX PLUGIN
     "junegunn/fzf",
     build = function() vim.fn["fzf#install"]() end

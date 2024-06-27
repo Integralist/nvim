@@ -105,9 +105,9 @@ return {
     end
   },
   {
-    "lukas-reineke/pr.nvim",
+    dir = '~/Code/nvim/pr-comments',
     config = function()
-      require("pr").setup() -- :lua require("pr").load("fastly/cli", 1179) + :PRCommentPreview on the comment line
+      require("pr-comments").setup() -- :lua require("pr").load("fastly/cli", 1179) + :PRCommentPreview on the comment line
     end
-  },
+  }
 }

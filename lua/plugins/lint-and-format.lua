@@ -1,7 +1,7 @@
 -- NOTE: Use the following to disable warnings/errors.
 --
--- golangci-lint (don't try to add a <REASON> it doesn't work)
--- //nolint:<TOOL>,<TOOL>
+-- golangci-lint
+-- //nolint:<TOOL>,<TOOL> // <REASON: has to be another code comment delimiter inbetween>
 --
 -- staticcheck (on same line as issue)
 -- //lint:ignore <CODE> <REASON>
@@ -12,6 +12,9 @@
 -- yamllint (on same line as issue or line above issue, or across whole file)
 -- # yamllint disable-line rule:<RULE>
 -- # yamllint disable rule:<RULE>
+--
+-- codespell
+-- //codespell:ignore
 return {
   {
     -- LINTING
