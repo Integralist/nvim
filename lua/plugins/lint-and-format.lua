@@ -33,9 +33,6 @@ return {
         javascript = { "eslint_d" },
         -- https://github.com/zaach/jsonlint
         json = { "jsonlint" },
-        -- DISABLED: https://github.com/mpeterv/luacheck
-        -- Was a problem with folke/neodev plugin
-        -- lua = { "luacheck" },
         -- https://github.com/mrtazz/checkmake
         make = { "checkmake" },
         -- https://alexjs.com/
@@ -47,22 +44,26 @@ return {
         -- https://github.com/terraform-linters/tflint
         -- https://github.com/aquasecurity/trivy (originally https://github.com/aquasecurity/tfsec)
         terraform = { "tflint", "trivy" },
-        -- DISABLED: needed custom logic (see callback function below)
-        -- https://github.com/rhysd/actionlint
-        -- https://github.com/adrienverge/yamllint https://yamllint.readthedocs.io/en/stable/rules.html
-        -- https://github.com/stoplightio/spectral
-        -- yaml = { "actionlint", "yamllint", "spectral" },
         -- https://www.shellcheck.net/
         -- https://www.zsh.org/
         zsh = { "shellcheck", "zsh" }
       }
 
+      -- WARNING: Removed luacheck linter due to problem with folke/neodev
+      -- https://github.com/mpeterv/luacheck
+      -- lua = { "luacheck" },
+
+      -- NOTE: We need custom logic for handling YAML linting.
+      --
+      -- https://github.com/rhysd/actionlint
+      -- https://github.com/adrienverge/yamllint (https://yamllint.readthedocs.io/en/stable/rules.html)
+      -- https://github.com/stoplightio/spectral (`npm install -g @stoplight/spectral-cli`)
+      --
       -- Spectral requires a ruleset in the current directory
       -- Otherwise you have to specify a global one
       lint.linters.spectral.args = {
         "lint", "-f", "json", "--ruleset", "~/.spectral.yaml",
       }
-
       vim.api.nvim_create_autocmd({
         "BufReadPost", "BufWritePost", "InsertLeave"
       }, {
@@ -75,10 +76,8 @@ return {
           elseif vim.bo.filetype == "yaml" then
             local first_line = vim.fn.getline(1)
             if string.find(first_line, "openapi:") then
-              print("trying spectral")
-              lint.try_lint("spectral") -- INSTALL with `npm install -g @stoplight/spectral-cli`
+              lint.try_lint("spectral")
             else
-              print("trying yamllint")
               lint.try_lint("yamllint")
             end
           else
