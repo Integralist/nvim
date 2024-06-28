@@ -57,6 +57,12 @@ return {
         zsh = { "shellcheck", "zsh" }
       }
 
+      -- Spectral requires a ruleset in the current directory
+      -- Otherwise you have to specify a global one
+      lint.linters.spectral.args = {
+        "lint", "-f", "json", "--ruleset", "~/.spectral.yaml",
+      }
+
       vim.api.nvim_create_autocmd({
         "BufReadPost", "BufWritePost", "InsertLeave"
       }, {
@@ -67,7 +73,14 @@ return {
           if (string.find(ev.file, ".github/workflows/") or string.find(ev.file, ".github/actions/")) and vim.bo.filetype == "yaml" then
             lint.try_lint("actionlint")
           elseif vim.bo.filetype == "yaml" then
-            lint.try_lint("spectral") -- used to be yamllint
+            local first_line = vim.fn.getline(1)
+            if string.find(first_line, "openapi:") then
+              print("trying spectral")
+              lint.try_lint("spectral") -- INSTALL with `npm install -g @stoplight/spectral-cli`
+            else
+              print("trying yamllint")
+              lint.try_lint("yamllint")
+            end
           else
             lint.try_lint()
           end
