@@ -101,7 +101,11 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require("octo").setup()
+      require("octo").setup({
+        suppress_missing_scope = {
+          projects_v2 = true, -- Suppresses the error: Cannot request projects v2, missing scope 'read:project'
+        }
+      })
     end
   },
   {
