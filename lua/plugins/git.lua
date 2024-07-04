@@ -111,7 +111,13 @@ return {
   {
     dir = '~/Code/nvim/pr-comments',
     config = function()
-      require("pr-comments").setup() -- :lua require("pr").load("fastly/cli", 1179) + :PRCommentPreview on the comment line
+      require("pr-comments").setup()
+
+      -- CALL API AND ADD 'C' INTO THE LEFT COLUMN
+      -- :lua require("pr-comments").load("integralist/actions-testing", 21)
+
+      -- SHOW THE COMMENT ON THE CURRENT LINE
+      -- :PRCommentPreview on the comment line
     end
   }
 }
