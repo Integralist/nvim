@@ -195,8 +195,14 @@ return {
           WARN = {
             icon = " ",
             color = "warning",
-            alt = { "WARNING", "XXX", "IMPORTANT" }
+            alt = { "WARNING", "IMPORTANT" }
           }
+        },
+        highlight = {
+          pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]], -- supports both `TODO:` and `TODO(name):`
+        },
+        search = {
+          pattern = [[\b(KEYWORDS)(\(\w*\))*:]], -- ripgrep regex, supporting the pattern TODO(name):
         }
       })
     end
