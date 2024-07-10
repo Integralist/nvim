@@ -53,17 +53,24 @@ return {
       -- https://github.com/mpeterv/luacheck
       -- lua = { "luacheck" },
 
-      -- NOTE: We need custom logic for handling YAML linting.
-      --
-      -- https://github.com/rhysd/actionlint
-      -- https://github.com/adrienverge/yamllint (https://yamllint.readthedocs.io/en/stable/rules.html)
-      -- https://github.com/stoplightio/spectral (`npm install -g @stoplight/spectral-cli`)
-      --
+      -- Checkmake requires a ini file in the current directory
+      -- Otherwise you have to specify a global one
+      lint.linters.checkmake.args = {
+        "--format='{{.LineNumber}}:{{.Rule}}:{{.Violation}}\n'",
+        "--config", os.getenv("HOME") .. "/.config/checkmake.ini",
+      }
+
       -- Spectral requires a ruleset in the current directory
       -- Otherwise you have to specify a global one
       lint.linters.spectral.args = {
         "lint", "-f", "json", "--ruleset", "~/.spectral.yaml",
       }
+
+      -- NOTE: We need custom logic for handling YAML linting.
+      --
+      -- https://github.com/rhysd/actionlint
+      -- https://github.com/adrienverge/yamllint (https://yamllint.readthedocs.io/en/stable/rules.html)
+      -- https://github.com/stoplightio/spectral (`npm install -g @stoplight/spectral-cli`)
       vim.api.nvim_create_autocmd({
         "BufReadPost", "BufWritePost", "InsertLeave"
       }, {
