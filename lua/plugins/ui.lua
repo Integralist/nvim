@@ -6,10 +6,11 @@ return {
       {
         "nvim-tree/nvim-web-devicons",
         opt = true,
-      }, {
-      "linrongbin16/lsp-progress.nvim",
-      config = true,
-    } },
+      },
+      {
+        "linrongbin16/lsp-progress.nvim",
+        config = true,
+      } },
     event = "UIEnter",
     config = function()
       require("lualine").setup({
@@ -61,6 +62,7 @@ return {
         pattern = "LspProgressStatusUpdated",
         callback = require("lualine").refresh,
       })
+      -- TODO: Consider https://github.com/folke/lazy.nvim/discussions/1652
     end
   },
   {
@@ -173,12 +175,10 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require("bufferline").setup({
-        options = { mode = "tabs" },
-        highlights = { tab = { fg = "#CCCCCC" } }
-      })
-    end
+    opts = {
+      options = { mode = "tabs" },
+      highlights = { tab = { fg = "#CCCCCC" } }
+    }
   },
   {
     -- FZF USED BY BETTER-QUICKFIX PLUGIN

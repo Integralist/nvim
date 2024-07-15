@@ -12,7 +12,10 @@ return {
   {
     -- CURSOR MOVEMENT HIGHLIGHTER
     "DanilaMihailov/beacon.nvim",
-    config = true
+    opts = {
+      min_jump = 5,
+      speed = 10,
+    },
   },
   {
     -- HIGHLIGHT YANKED REGION

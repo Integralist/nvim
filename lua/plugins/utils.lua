@@ -49,15 +49,13 @@ return {
   {
     -- DISPLAY HEX COLOURS
     "norcalli/nvim-colorizer.lua",
-    config = function() require("colorizer").setup() end
+    config = function() require("colorizer").setup() end -- WARNING: Don't replace with `opts = {}` or `config = true` as it doesn't work
   },
   {
     -- GENERATE HEX COLOURS
     -- :CccPick
     "uga-rosa/ccc.nvim",
-    config = function()
-      require("ccc").setup()
-    end
+    config = true
   },
   {
     -- ASYNC DISPATCH

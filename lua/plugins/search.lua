@@ -154,7 +154,7 @@ return {
   {
     -- USE TELESCOPE FOR UI ELEMENTS
     "nvim-telescope/telescope-ui-select.nvim",
-    config = function() require("telescope").setup({}) end
+    config = function() require("telescope").setup({}) end -- TODO: Consider switching to `opts = {}`
   },
   {
     -- SEARCH WINDOWS IN TELESCOPE
@@ -179,7 +179,7 @@ return {
   {
     -- SEARCH TABS IN TELESCOPE
     "LukasPietzschmann/telescope-tabs",
-    config = function()
+    config = function() -- TODO: Consider switching to `keys = {...}` https://lazy.folke.io/spec/lazy_loading#%EF%B8%8F-lazy-key-mappings
       vim.keymap.set("n", "<leader>t",
         "<Cmd>lua require('telescope-tabs').list_tabs()<CR>",
         { desc = "search tabs" })
@@ -189,23 +189,21 @@ return {
     -- SEARCH NOTES/TODOS IN TELESCOPE
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({
-        keywords = {
-          WARN = {
-            icon = " ",
-            color = "warning",
-            alt = { "WARNING", "IMPORTANT" }
-          }
-        },
-        highlight = {
-          pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]], -- supports both `TODO:` and `TODO(name):`
-        },
-        search = {
-          pattern = [[\b(KEYWORDS)(\(\w*\))*:]], -- ripgrep regex, supporting the pattern TODO(name):
+    opts = {
+      keywords = {
+        WARN = {
+          icon = " ",
+          color = "warning",
+          alt = { "WARNING", "IMPORTANT" }
         }
-      })
-    end
+      },
+      highlight = {
+        pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]], -- supports both `TODO:` and `TODO(name):`
+      },
+      search = {
+        pattern = [[\b(KEYWORDS)(\(\w*\))*:]], -- ripgrep regex, supporting the pattern TODO(name):
+      }
+    }
   },
   {
     -- SEARCH INDEXER
@@ -215,7 +213,7 @@ return {
   {
     -- IMPROVES ASTERISK BEHAVIOR
     "haya14busa/vim-asterisk",
-    config = function()
+    config = function() -- TODO: Consider switching to `keys = {...}` https://lazy.folke.io/spec/lazy_loading#%EF%B8%8F-lazy-key-mappings
       vim.keymap.set('n', '*',
         [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
         {})
@@ -259,7 +257,7 @@ return {
   {
     -- SEARCH AND REPLACE
     'MagicDuck/grug-far.nvim',
-    config = function()
+    config = function() -- TODO: Consider switching to `opts = {}` and `keys = {...}` https://lazy.folke.io/spec/lazy_loading#%EF%B8%8F-lazy-key-mappings
       require('grug-far').setup({});
       vim.keymap.set("n", "<leader>S", "<Cmd>GrugFar<CR>", { desc = "search and replace" })
     end

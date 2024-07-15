@@ -98,341 +98,385 @@ return {
     -- TERRAFORM DOCS
     "Afourcat/treesitter-terraform-doc.nvim",
     dependencies = { "nvim-treesitter" }
-  }, {
-  -- LSP
-  "neovim/nvim-lspconfig",
-  config = function()
-    -- GOLANG LSP
-    require("lspconfig").gopls.setup({
-      on_attach = function(client, bufnr)
-        mappings(client, bufnr)
-        require("lsp-inlayhints").setup({
-          inlay_hints = {
-            parameter_hints = { prefix = "in: " }, -- "<- "
-            type_hints = { prefix = "out: " }      -- "=> "
-          }
-        })
-        require("lsp-inlayhints").on_attach(client, bufnr)
-        require("illuminate").on_attach(client)
-
-        -- workaround for gopls not supporting semanticTokensProvider
-        -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-        if not client.server_capabilities.semanticTokensProvider then
-          local semantic = client.config.capabilities.textDocument.semanticTokens
-          client.server_capabilities.semanticTokensProvider = {
-            full = true,
-            legend = {
-              tokenTypes = semantic.tokenTypes,
-              tokenModifiers = semantic.tokenModifiers,
-            },
-            range = true,
-          }
-        end
-
-        -- DISABLED: FixGoImports
-        --
-        -- Instead I use https://github.com/incu6us/goimports-reviser
-        -- Via https://github.com/stevearc/conform.nvim
-        --
-        -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        --   group = vim.api.nvim_create_augroup("FixGoImports",
-        --     { clear = true }),
-        --   pattern = "*.go",
-        --   callback = function()
-        --     -- ensure imports are sorted and grouped correctly
-        --     local params = vim.lsp.util.make_range_params()
-        --     params.context = { only = { "source.organizeImports" } }
-        --     local result =
-        --         vim.lsp.buf_request_sync(0,
-        --           "textDocument/codeAction",
-        --           params)
-        --     for _, res in pairs(result or {}) do
-        --       for _, r in pairs(res.result or {}) do
-        --         if r.edit then
-        --           vim.lsp.util.apply_workspace_edit(
-        --             r.edit, "UTF-8")
-        --         else
-        --           vim.lsp.buf.execute_command(r.command)
-        --         end
-        --       end
-        --     end
-        --   end
-        -- })
-
-        -- DISABLED:
-        -- I don't use revive separately anymore. It's only used via golangci-lint.
-        --
-        -- vim.keymap.set("n", "<leader><leader>lv",
-        --                "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
-        --                {
-        --     noremap = true,
-        --     silent = true,
-        --     buffer = bufnr,
-        --     desc = "lint project code (revive)"
-        -- })
-      end,
-      settings = {
-        -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
-        -- https://www.lazyvim.org/extras/lang/go (borrowed some ideas from here)
-        gopls = {
-          analyses = {
-            fieldalignment = false, -- find structs that would use less memory if their fields were sorted
-            nilness = true,
-            unusedparams = true,
-            unusedwrite = true,
-            useany = true
-          },
-          codelenses = {
-            gc_details = false,
-            generate = true,
-            regenerate_cgo = true,
-            run_govulncheck = true,
-            test = true,
-            tidy = true,
-            upgrade_dependency = true,
-            vendor = true,
-          },
-          experimentalPostfixCompletions = true,
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true
-          },
-          gofumpt = true,
-          semanticTokens = true,
-          -- DISABLED: staticcheck
-          --
-          -- gopls doesn't invoke the staticcheck binary.
-          -- Instead it imports the analyzers directly.
-          -- This means it can report on issues the binary can't.
-          -- But it's not a good thing (like it initially sounds).
-          -- You can't then use line directives to ignore issues.
-          --
-          -- Instead of using staticcheck via gopls.
-          -- We have golangci-lint execute it instead.
-          --
-          -- For more details:
-          -- https://github.com/golang/go/issues/36373#issuecomment-570643870
-          -- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
-          --
-          -- staticcheck = true,
-          usePlaceholders = true,
-        }
-      }
-      -- DISABLED: as it overlaps with `lvimuser/lsp-inlayhints.nvim`
-      -- init_options = {
-      --   usePlaceholders = true,
-      -- }
-    })
-  end
-}, {
-  -- RUST LSP
-  "mrcjkb/rustaceanvim",
-  version = "^4",
-  ft = { "rust" },
-  config = function()
-    vim.g.rustaceanvim = {
-      -- Plugin configuration
-      tools = {
-        autoSetHints = true,
-        inlay_hints = {
-          show_parameter_hints = true,
-          parameter_hints_prefix = "in: ", -- "<- "
-          other_hints_prefix = "out: "     -- "=> "
-        }
-      },
-      -- LSP configuration
-      --
-      -- REFERENCE:
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-      -- https://rust-analyzer.github.io/manual.html#configuration
-      -- https://rust-analyzer.github.io/manual.html#features
-      --
-      -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
-      --       <section> should be an object.
-      --       <property> should be a primitive.
-      server = {
+  },
+  {
+    -- LSP
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- GOLANG LSP
+      require("lspconfig").gopls.setup({
         on_attach = function(client, bufnr)
           mappings(client, bufnr)
           require("lsp-inlayhints").setup({
-            inlay_hints = { type_hints = { prefix = "=> " } }
+            inlay_hints = {
+              parameter_hints = { prefix = "in: " }, -- "<- "
+              type_hints = { prefix = "out: " }      -- "=> "
+            }
           })
           require("lsp-inlayhints").on_attach(client, bufnr)
           require("illuminate").on_attach(client)
 
-          local bufopts = {
-            noremap = true,
-            silent = true,
-            buffer = bufnr
-          }
-          vim.keymap.set('n', '<leader><leader>rr',
-            "<Cmd>RustLsp runnables<CR>", bufopts)
-          vim.keymap.set('n', 'K',
-            "<Cmd>RustLsp hover actions<CR>", bufopts)
+          -- workaround for gopls not supporting semanticTokensProvider
+          -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+          if not client.server_capabilities.semanticTokensProvider then
+            local semantic = client.config.capabilities.textDocument.semanticTokens
+            client.server_capabilities.semanticTokensProvider = {
+              full = true,
+              legend = {
+                tokenTypes = semantic.tokenTypes,
+                tokenModifiers = semantic.tokenModifiers,
+              },
+              range = true,
+            }
+          end
+
+          -- DISABLED: FixGoImports
+          --
+          -- Instead I use https://github.com/incu6us/goimports-reviser
+          -- Via https://github.com/stevearc/conform.nvim
+          --
+          -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+          --   group = vim.api.nvim_create_augroup("FixGoImports",
+          --     { clear = true }),
+          --   pattern = "*.go",
+          --   callback = function()
+          --     -- ensure imports are sorted and grouped correctly
+          --     local params = vim.lsp.util.make_range_params()
+          --     params.context = { only = { "source.organizeImports" } }
+          --     local result =
+          --         vim.lsp.buf_request_sync(0,
+          --           "textDocument/codeAction",
+          --           params)
+          --     for _, res in pairs(result or {}) do
+          --       for _, r in pairs(res.result or {}) do
+          --         if r.edit then
+          --           vim.lsp.util.apply_workspace_edit(
+          --             r.edit, "UTF-8")
+          --         else
+          --           vim.lsp.buf.execute_command(r.command)
+          --         end
+          --       end
+          --     end
+          --   end
+          -- })
+
+          -- DISABLED:
+          -- I don't use revive separately anymore. It's only used via golangci-lint.
+          --
+          -- vim.keymap.set("n", "<leader><leader>lv",
+          --                "<Cmd>cex system('revive -exclude vendor/... ./...') | cwindow<CR>",
+          --                {
+          --     noremap = true,
+          --     silent = true,
+          --     buffer = bufnr,
+          --     desc = "lint project code (revive)"
+          -- })
         end,
         settings = {
-          -- rust-analyzer language server configuration
-          ['rust-analyzer'] = {
-            assist = {
-              importEnforceGranularity = true,
-              importPrefix = "create"
+          -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
+          -- https://www.lazyvim.org/extras/lang/go (borrowed some ideas from here)
+          gopls = {
+            analyses = {
+              fieldalignment = false, -- find structs that would use less memory if their fields were sorted
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true
             },
-            cargo = { allFeatures = true },
-            checkOnSave = {
-              -- default: `cargo check`
-              command = "clippy",
-              allFeatures = true
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
             },
-            inlayHints = {
-              lifetimeElisionHints = {
-                enable = true,
-                useParameterNames = true
+            experimentalPostfixCompletions = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true
+            },
+            gofumpt = true,
+            semanticTokens = true,
+            -- DISABLED: staticcheck
+            --
+            -- gopls doesn't invoke the staticcheck binary.
+            -- Instead it imports the analyzers directly.
+            -- This means it can report on issues the binary can't.
+            -- But it's not a good thing (like it initially sounds).
+            -- You can't then use line directives to ignore issues.
+            --
+            -- Instead of using staticcheck via gopls.
+            -- We have golangci-lint execute it instead.
+            --
+            -- For more details:
+            -- https://github.com/golang/go/issues/36373#issuecomment-570643870
+            -- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
+            --
+            -- staticcheck = true,
+            usePlaceholders = true,
+          }
+        }
+        -- DISABLED: as it overlaps with `lvimuser/lsp-inlayhints.nvim`
+        -- init_options = {
+        --   usePlaceholders = true,
+        -- }
+      })
+    end
+  },
+  {
+    -- RUST LSP
+    "mrcjkb/rustaceanvim",
+    version = "^4",
+    ft = { "rust" },
+    config = function()
+      vim.g.rustaceanvim = {
+        -- Plugin configuration
+        tools = {
+          autoSetHints = true,
+          inlay_hints = {
+            show_parameter_hints = true,
+            parameter_hints_prefix = "in: ", -- "<- "
+            other_hints_prefix = "out: "     -- "=> "
+          }
+        },
+        -- LSP configuration
+        --
+        -- REFERENCE:
+        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+        -- https://rust-analyzer.github.io/manual.html#configuration
+        -- https://rust-analyzer.github.io/manual.html#features
+        --
+        -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
+        --       <section> should be an object.
+        --       <property> should be a primitive.
+        server = {
+          on_attach = function(client, bufnr)
+            mappings(client, bufnr)
+            require("lsp-inlayhints").setup({
+              inlay_hints = { type_hints = { prefix = "=> " } }
+            })
+            require("lsp-inlayhints").on_attach(client, bufnr)
+            require("illuminate").on_attach(client)
+
+            local bufopts = {
+              noremap = true,
+              silent = true,
+              buffer = bufnr
+            }
+            vim.keymap.set('n', '<leader><leader>rr',
+              "<Cmd>RustLsp runnables<CR>", bufopts)
+            vim.keymap.set('n', 'K',
+              "<Cmd>RustLsp hover actions<CR>", bufopts)
+          end,
+          settings = {
+            -- rust-analyzer language server configuration
+            ['rust-analyzer'] = {
+              assist = {
+                importEnforceGranularity = true,
+                importPrefix = "create"
+              },
+              cargo = { allFeatures = true },
+              checkOnSave = {
+                -- default: `cargo check`
+                command = "clippy",
+                allFeatures = true
+              },
+              inlayHints = {
+                lifetimeElisionHints = {
+                  enable = true,
+                  useParameterNames = true
+                }
               }
             }
           }
         }
       }
-    }
-  end
-}, {
-  -- LSP INLAY HINTS
-  "lvimuser/lsp-inlayhints.nvim",
-  dependencies = "neovim/nvim-lspconfig"
-}, {
-  -- LSP SERVER MANAGEMENT
-  "williamboman/mason.nvim",
-  dependencies = "nvim-lspconfig",
-  config = true
-}, {
-  "williamboman/mason-lspconfig.nvim",
-  dependencies = { "mason.nvim", "treesitter-terraform-doc.nvim" },
-  config = function()
-    local mason_lspconfig = require("mason-lspconfig")
+    end
+  },
+  {
+    -- LSP INLAY HINTS
+    "lvimuser/lsp-inlayhints.nvim",
+    dependencies = "neovim/nvim-lspconfig"
+  },
+  {
+    -- LSP SERVER MANAGEMENT
+    "williamboman/mason.nvim",
+    dependencies = "nvim-lspconfig",
+    config = true
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "mason.nvim", "treesitter-terraform-doc.nvim" },
+    config = function()
+      local mason_lspconfig = require("mason-lspconfig")
 
-    -- NOTE: taplo -> TOML
-    --
-    -- Can't auto-install these as there is no mappings in mason-lspconfig.
-    -- ◍ goimports
-    -- ◍ goimports-reviser
-    -- ◍ golangci-lint
-    mason_lspconfig.setup({
-      ensure_installed = {
-        "bashls", "gopls", "jsonls",
-        "lua_ls", "marksman", "pylsp",
-        "rust_analyzer", "taplo", "terraformls", "tflint", "tsserver",
-        "yamlls", "zls"
-      }
-    })
+      -- NOTE: taplo -> TOML
+      --
+      -- Can't auto-install these as there is no mappings in mason-lspconfig.
+      -- ◍ goimports
+      -- ◍ goimports-reviser
+      -- ◍ golangci-lint
+      mason_lspconfig.setup({
+        ensure_installed = {
+          "bashls", "gopls", "jsonls",
+          "lua_ls", "marksman", "pylsp",
+          "rust_analyzer", "taplo", "terraformls", "tflint", "tsserver",
+          "yamlls", "zls"
+        }
+      })
 
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        -- Skip gopls and rust_analyzer as we manually configure them.
-        -- Otherwise the following `setup()` would override our config.
-        if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
-          -- Unfortunately had to if/else so I could configure 'settings' for yamlls.
-          if server_name == "yamlls" then
-            require("lspconfig")[server_name].setup({
-              on_attach = function(client, bufnr)
-                mappings(client, bufnr)
-                require("illuminate").on_attach(client)
-              end,
-              settings = {
-                yaml = {
-                  keyOrdering = false -- Disable alphabetical ordering of keys
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          -- Skip gopls and rust_analyzer as we manually configure them.
+          -- Otherwise the following `setup()` would override our config.
+          if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
+            -- Unfortunately had to if/else so I could configure 'settings' for yamlls.
+            if server_name == "yamlls" then
+              require("lspconfig")[server_name].setup({
+                on_attach = function(client, bufnr)
+                  mappings(client, bufnr)
+                  require("illuminate").on_attach(client)
+                end,
+                settings = {
+                  yaml = {
+                    keyOrdering = false -- Disable alphabetical ordering of keys
+                  }
                 }
-              }
-            })
-          else
-            require("lspconfig")[server_name].setup({
-              on_attach = function(client, bufnr)
-                mappings(client, bufnr)
-                require("illuminate").on_attach(client)
+              })
+            else
+              require("lspconfig")[server_name].setup({
+                on_attach = function(client, bufnr)
+                  mappings(client, bufnr)
+                  require("illuminate").on_attach(client)
 
-                if server_name == "terraformls" then
-                  require("treesitter-terraform-doc").setup()
+                  if server_name == "terraformls" then
+                    require("treesitter-terraform-doc").setup()
+                  end
                 end
-              end
-            })
+              })
+            end
           end
         end
-      end
-    })
-  end
-}, {
-  -- LSP DIAGNOSTICS
-  "folke/trouble.nvim",
-  dependencies = "nvim-tree/nvim-web-devicons",
-  config = function()
-    require("trouble").setup({
-      -- modes = {
-      --   diagerrs = {
-      --     mode = "diagnostics", -- inherit from diagnostics mode
-      --     filter = {
-      --       any = {
-      --         buf = 0,                                    -- current buffer
-      --         {
-      --           severity = vim.diagnostic.severity.ERROR, -- errors only
-      --           -- limit to files in the current project
-      --           function(item)
-      --             return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
-      --           end,
-      --         }
-      --       }
-      --     }
-      --   }
-      -- }
-    })
+      })
+    end
+  },
+  {
+    -- LSP DIAGNOSTICS
+    "folke/trouble.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    keys = {
+      {
+        "<leader><leader>dc",
+        "<Cmd>Trouble close<CR>",
+        desc = "Close latest Trouble window",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader><leader>da",
+        "<Cmd>Trouble diagnostics focus=true<CR>",
+        desc = "Open diagnostics for all buffers in Trouble",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader><leader>db",
+        "<Cmd>Trouble diagnostics focus=true filter.buf=0<CR>",
+        desc = "Open diagnostics for current buffer in Trouble",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+      {
+        "<leader><leader>lr",
+        "<Cmd>Trouble lsp_references focus=true<CR>",
+        desc = "Open any references to this symbol in Trouble",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+      {
+        "]t",
+        function() require("trouble").next({ skip_groups = false, jump = true }) end,
+        desc = "Next item",
+        mode = "n",
+        noremap = true,
+        silent = true
+      },
+      {
+        "[t",
+        function() require("trouble").prev({ skip_groups = false, jump = true }) end,
+        desc = "Prev item",
+        mode = "n",
+        noremap = true,
+        silent = true
+      }
+    },
+    config = function()
+      require("trouble").setup({
+        -- modes = {
+        --   diagerrs = {
+        --     mode = "diagnostics", -- inherit from diagnostics mode
+        --     filter = {
+        --       any = {
+        --         buf = 0,                                    -- current buffer
+        --         {
+        --           severity = vim.diagnostic.severity.ERROR, -- errors only
+        --           -- limit to files in the current project
+        --           function(item)
+        --             return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+        --           end,
+        --         }
+        --       }
+        --     }
+        --   }
+        -- }
+      })
 
-    local bufopts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<leader><leader>dc", "<Cmd>Trouble close<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Close latest Trouble window" }))
-    vim.keymap.set("n", "<leader><leader>da",
-      "<Cmd>Trouble diagnostics focus=true<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for all buffers in Trouble" }))
-    vim.keymap.set("n", "<leader><leader>db",
-      "<Cmd>Trouble diagnostics focus=true filter.buf=0<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open diagnostics for current buffer in Trouble" }))
-    vim.keymap.set("n", "<leader><leader>lr",
-      "<Cmd>Trouble lsp_references focus=true<CR>",
-      vim.tbl_extend('force', bufopts, { desc = "Open any references to this symbol in Trouble" }))
+      -- Trouble todo toggle filter.buf=0
+    end
+  },
+  {
+    -- LSP VIRTUAL TEXT
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
 
-    -- Trouble todo toggle filter.buf=0
+      -- disable virtual_text since it's redundant due to lsp_lines.
+      vim.diagnostic.config({ virtual_text = false })
 
-    vim.keymap.set("n", "]t", function()
-      require("trouble").next({ skip_groups = false, jump = true });
-    end, { desc = "Next item" })
-    vim.keymap.set("n", "[t", function()
-      require("trouble").prev({ skip_groups = false, jump = true });
-    end, { desc = "Prev item" })
-  end
-}, {
-  -- LSP VIRTUAL TEXT
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup()
+      -- TODO: Consider https://github.com/folke/lazy.nvim/discussions/1652
+    end
+  },
+  {
+    -- -- CODE ACTION INDICATOR
+    "luckasRanarison/clear-action.nvim",
+    opts = {}
+  },
+  {
+    -- CODE ACTIONS POPUP
+    "weilbith/nvim-code-action-menu",
+    config = function()
+      vim.keymap.set("n", "<leader><leader>la", "<Cmd>CodeActionMenu<CR>",
+        { noremap = true, desc = "code action menu" })
+      vim.g.code_action_menu_window_border = "single"
 
-    -- disable virtual_text since it's redundant due to lsp_lines.
-    vim.diagnostic.config({ virtual_text = false })
-  end
-}, {
-  -- -- CODE ACTION INDICATOR
-  "luckasRanarison/clear-action.nvim",
-  opts = {}
-}, {
-  -- CODE ACTIONS POPUP
-  "weilbith/nvim-code-action-menu",
-  config = function()
-    vim.keymap.set("n", "<leader><leader>la", "<Cmd>CodeActionMenu<CR>",
-      { noremap = true, desc = "code action menu" })
-    vim.g.code_action_menu_window_border = "single"
-  end
-}, {
-  -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
-  "folke/lsp-colors.nvim",
-  config = true
-}
+      -- TODO: Consider https://github.com/folke/lazy.nvim/discussions/1652
+    end
+  },
+  {
+    -- ADD MISSING DIAGNOSTICS HIGHLIGHT GROUPS
+    "folke/lsp-colors.nvim",
+    config = true
+  }
 }
