@@ -23,8 +23,6 @@ require("lazy").setup({
     notify = true
   },
   spec = {
-    -- First imports ./lua/plugins.lua
-    -- Then imports ./lua/plugins/
     { import = "plugins" }
   },
 })
