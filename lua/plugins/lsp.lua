@@ -307,14 +307,9 @@ return {
     dependencies = "neovim/nvim-lspconfig"
   },
   {
-    -- LSP SERVER MANAGEMENT
-    "williamboman/mason.nvim",
-    dependencies = "nvim-lspconfig",
-    config = true
-  },
-  {
+    -- LSP SERVER CONFIGURATION
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "mason.nvim", "treesitter-terraform-doc.nvim" },
+    dependencies = { "williamboman/mason.nvim", "treesitter-terraform-doc.nvim" },
     config = function()
       local mason_lspconfig = require("mason-lspconfig")
 

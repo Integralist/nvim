@@ -8,6 +8,10 @@ return {
   --   end,
   -- },
   {
+    -- NEOVIM DEVELOPMENT SETUP
+    "folke/neodev.nvim"
+  },
+  {
     -- MAKE DOT OPERATOR WORK IN A SENSIBLE WAY
     "tpope/vim-repeat"
   },
