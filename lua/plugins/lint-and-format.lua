@@ -134,6 +134,12 @@ return {
         -- https://github.com/koalaman/shellcheck
         zsh = { "shellcheck" }
       },
+      -- NOTE: The gofumpt formatter isn't working properly.
+      -- So although I have the below configured, I rely on an autocmd instead.
+      -- See ../autocommands.lua
+      -- It's also worth noting that I have gofumpt configured by gopls.
+      -- So I'm not sure if that affects conform.nvim at all.
+      -- See ./lsp.lua
       formatters = {
         gofumpt = {
           command = "gofumpt",
