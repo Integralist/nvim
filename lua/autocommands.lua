@@ -99,6 +99,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = vim.api.nvim_create_augroup("GoFumpt",
     { clear = true }),
   pattern = "*.go",
+  -- callback = function(event)
+  --   local file_name = vim.fn.bufname(event.buf)
+  --   print("about to gofumpt file: " .. file_name)
+  --   vim.cmd('silent !gofumpt -w ' .. file_name)
+  -- end,
   command = "silent !gofumpt -w %"
 })
 
