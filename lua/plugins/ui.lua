@@ -33,12 +33,13 @@ return {
     dependencies = {
       {
         "nvim-tree/nvim-web-devicons",
-        opt = true,
+        opts = {},
       },
       {
         "linrongbin16/lsp-progress.nvim",
         config = true,
-      } },
+      }
+    },
     event = "UIEnter",
     config = function()
       require("lualine").setup({

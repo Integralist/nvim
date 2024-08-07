@@ -16,7 +16,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Setup Lazy package manager:
 -- https://lazy.folke.io/configuration
+--
+-- Configuring plugins:
+-- https://lazy.folke.io/spec
+--
 require("lazy").setup({
   checker = {
     enabled = true,
@@ -26,6 +31,7 @@ require("lazy").setup({
     { import = "plugins" }
   },
 })
+
 require("autocommands")
 require("mappings")
 require("settings")

@@ -11,16 +11,16 @@ return {
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
       vim.fn.sign_define("DiagnosticSignError",
-        {text = " ", texthl = "DiagnosticSignError"})
+        { text = " ", texthl = "DiagnosticSignError" })
       vim.fn.sign_define("DiagnosticSignWarn",
-        {text = " ", texthl = "DiagnosticSignWarn"})
+        { text = " ", texthl = "DiagnosticSignWarn" })
       vim.fn.sign_define("DiagnosticSignInfo",
-        {text = " ", texthl = "DiagnosticSignInfo"})
+        { text = " ", texthl = "DiagnosticSignInfo" })
       vim.fn.sign_define("DiagnosticSignHint",
-        {text = "󰌵", texthl = "DiagnosticSignHint"})
+        { text = "󰌵", texthl = "DiagnosticSignHint" })
 
       vim.keymap.set("n", "<leader><Tab>", "<Cmd>Neotree toggle<CR>",
-        {desc = "open file tree"})
+        { desc = "open file tree" })
       vim.keymap.set("n", "<leader><leader>r",
         "<Cmd>Neotree reveal_force_cwd<CR>", {
           desc = "Reveal current file in tree navigation bar"
@@ -56,7 +56,7 @@ return {
           filtered_items = {
             hide_dotfiles = false,
             hide_gitignored = true,
-            hide_by_name = {"node_modules"}
+            hide_by_name = { "node_modules" }
           },
           hijack_netrw_behavior = "open_current"
         },
@@ -74,12 +74,11 @@ return {
   },
   {
     "stevearc/oil.nvim",
-    opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("oil").setup({
         default_file_explorer = false, -- I still use neo-tree
-        delete_to_trash = true, -- (:help oil-trash)
+        delete_to_trash = true,        -- (:help oil-trash)
         skip_confirm_for_simple_edits = true,
         view_options = {
           show_hidden = true,
@@ -96,7 +95,7 @@ return {
           max_height = 30
         }
       })
-      vim.keymap.set("n", "<leader><leader>o", "<Cmd>Oil --float<CR>", {desc = "open oil"})
+      vim.keymap.set("n", "<leader><leader>o", "<Cmd>Oil --float<CR>", { desc = "open oil" })
     end,
   },
   {
@@ -112,7 +111,7 @@ return {
         "nvim-material-icon")
       if not material_icon_ok then return end
 
-      web_devicons.setup({override = material_icon.get_icons()})
+      web_devicons.setup({ override = material_icon.get_icons() })
 
       require("nvim-material-icon").setup()
     end
