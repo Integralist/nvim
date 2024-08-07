@@ -74,29 +74,36 @@ return {
   },
   {
     "stevearc/oil.nvim",
+    opts = {
+      default_file_explorer = false, -- I still use neo-tree
+      delete_to_trash = true,        -- (:help oil-trash)
+      skip_confirm_for_simple_edits = true,
+      view_options = {
+        show_hidden = true,
+        natural_order = true,
+        is_always_hidden = function(name, _)
+          return name == '..' or name == '.git'
+        end,
+      },
+      win_options = {
+        wrap = true,
+      },
+      float = {
+        max_width = 100,
+        max_height = 30
+      }
+    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("oil").setup({
-        default_file_explorer = false, -- I still use neo-tree
-        delete_to_trash = true,        -- (:help oil-trash)
-        skip_confirm_for_simple_edits = true,
-        view_options = {
-          show_hidden = true,
-          natural_order = true,
-          is_always_hidden = function(name, _)
-            return name == '..' or name == '.git'
-          end,
-        },
-        win_options = {
-          wrap = true,
-        },
-        float = {
-          max_width = 100,
-          max_height = 30
-        }
-      })
-      vim.keymap.set("n", "<leader><leader>o", "<Cmd>Oil --float<CR>", { desc = "open oil" })
-    end,
+    keys = {
+      {
+        "<leader><leader>o",
+        "<Cmd>Oil --float<CR>",
+        desc = "open oil",
+        mode = "n",
+        noremap = true,
+        silent = true
+      }
+    }
   },
   {
     -- REPLACEMENT FOR NVIM-WEB-DEVICONS
