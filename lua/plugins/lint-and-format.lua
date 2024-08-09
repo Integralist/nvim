@@ -39,6 +39,8 @@ return {
         -- https://github.com/DavidAnson/markdownlint
         -- https://docs.getwoke.tech/
         markdown = { "alex", "markdownlint", "woke" },
+        -- https://github.com/rust-lang/rust-clippy
+        rust = { "clippy" },
         -- https://www.shellcheck.net/
         sh = { "shellcheck" },
         -- https://github.com/terraform-linters/tflint
