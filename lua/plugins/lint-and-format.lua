@@ -28,7 +28,7 @@ return {
         go = { "codespell", "golangcilint" },
         -- https://htmlhint.com/
         -- https://www.html-tidy.org/
-        html = { "htmlhint", "tidy" },
+        html = { "tidy" },
         -- https://github.com/mantoni/eslint_d.js
         javascript = { "eslint_d" },
         -- https://github.com/zaach/jsonlint

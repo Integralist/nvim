@@ -323,7 +323,7 @@ return {
         ensure_installed = {
           "bashls", "gopls", "jsonls",
           "lua_ls", "marksman", "pylsp",
-          "rust_analyzer", "taplo", "terraformls", "tflint", "tsserver",
+          "rust_analyzer", "taplo", "terraformls", "tflint", "ts_ls", -- https://github.com/williamboman/mason-lspconfig.nvim/issues/458
           "yamlls", "zls"
         }
       })
