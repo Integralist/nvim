@@ -247,6 +247,17 @@ return {
     opts = {},
   },
   {
+    "Tyler-Barham/floating-help.nvim",
+    opts = {
+      position = 'C', -- NW,N,NW,W,C,E,SW,S,SE (C==center)
+      width = 160,    -- whole numbers are columns/rows
+      height = 0.7    -- decimals are a percentage of the editor
+    },
+    keys = {
+      { "<leader><leader>h", "<cmd>FloatingHelpToggle<cr>", desc = "Toggle floating help", mode = "n" },
+    },
+  },
+  {
     -- KEY PRESSES (enable with :KeyToggle)
     -- "tamton-aquib/keys.nvim"
   }
