@@ -41,8 +41,9 @@ return {
         markdown = { "alex", "markdownlint", "woke" },
         -- https://github.com/rust-lang/rust-clippy
         rust = { "clippy" },
+        -- https://www.gnu.org/software/bash/
         -- https://www.shellcheck.net/
-        sh = { "shellcheck" },
+        sh = { "bash", "shellcheck" },
         -- https://github.com/terraform-linters/tflint
         -- https://github.com/aquasecurity/trivy (originally https://github.com/aquasecurity/tfsec)
         terraform = { "tflint", "trivy" },
