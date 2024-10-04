@@ -1,7 +1,7 @@
 -- NOTE: Use the following to disable warnings/errors.
 --
 -- golangci-lint
--- //nolint:<TOOL>,<TOOL> // <REASON: has to be another code comment delimiter inbetween>
+-- // nolint:<TOOL>,<TOOL> // <REASON: has to be another code comment delimiter inbetween>
 --
 -- staticcheck (on same line as issue)
 -- //lint:ignore <CODE> <REASON>
