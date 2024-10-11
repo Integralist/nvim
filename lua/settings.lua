@@ -9,7 +9,7 @@ vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.cursorline = true
 vim.o.dictionary = "/usr/share/dict/words"
-vim.o.expandtab = true
+vim.o.expandtab = true -- Neovim will insert spaces when you press the Tab key.
 vim.o.foldcolumn = "1"
 -- DISABLED FOLDING AS IT JUST WASNT USEFUL
 -- vim.o.foldmethod = "indent"                                                                                           -- za to toggle all levels of current fold, zo/zc to open/close current fold, zR to open all folds, zM to close all folds
@@ -20,7 +20,7 @@ vim.o.inccommand = "split"
 vim.o.lazyredraw = true -- (re-enabled when Noice is uninstalled)
 vim.o.number = true
 vim.o.scrolloff = 5
-vim.o.shiftwidth = 2
+vim.o.shiftwidth = 2           -- Since expandtab is set to true, << or >> will match tabstop and use spaces for indentation, and so each tab press will insert 2 spaces.
 -- vim.o.shortmess = vim.o.shortmess .. "c" -- .. is equivalent to += in vimscript
 vim.o.shortmess = "filnxToOFc" -- copied default and removed `t` (long paths were being truncated) while adding `c`
 vim.o.showmatch = true
@@ -31,7 +31,7 @@ vim.o.spell = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.swapfile = false
-vim.o.tabstop = 2
+vim.o.tabstop = 2       -- When expandtab is false (e.g. .editorconfig override), pressing the Tab key will insert a tab character that visually takes up this number of spaces
 vim.o.updatetime = 1000 -- affects CursorHold and subsequently things like highlighting Code Actions, and the Noice UI popups.
 vim.o.wrap = false
 
