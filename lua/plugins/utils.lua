@@ -35,6 +35,7 @@ return {
 		-- :NvimWebDeviconsHiTest
 		"folke/which-key.nvim",
 		opts = {
+			preset = "modern",
 			spec = {
 				{ "<leader>d", group = "todo", icon = "" },
 				{ "<leader>l", group = "lsp", icon = "" },
