@@ -1,187 +1,192 @@
 return {
-  {
-    -- DOCUMENT/CODE SYNTAX TREE
-    -- h: close, l: open, W: close all, E: open all
-    "hedyhli/outline.nvim",
-    cmd = { "Outline", "OutlineOpen" },
-    keys = {
-      { "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" },
-    },
-    opts = {
-      outline_window = { position = "left", width = 25 },
-      symbols = {
-        icons = {
-          Array = { icon = '󰅪', hl = 'Constant' },
-          Boolean = { icon = '◩', hl = 'Boolean' }, -- ⊨ 
-          Class = { icon = '𝓒', hl = 'Type' },
-          Component = { icon = '󰅴', hl = 'Function' },
-          Constant = { icon = '󰏿', hl = 'Constant' }, -- 
-          Constructor = { icon = '', hl = 'Special' }, -- 
-          Enum = { icon = 'ℰ', hl = 'Type' },
-          EnumMember = { icon = '', hl = 'Identifier' },
-          Event = { icon = '', hl = 'Type' }, -- 🗲
-          Field = { icon = '', hl = 'Identifier' }, -- 󰆨 
-          File = { icon = '', hl = 'Identifier' }, -- 󰈔
-          Fragment = { icon = '󰅴', hl = 'Constant' },
-          Function = { icon = 'ƒ', hl = 'Function' }, -- 
-          Interface = { icon = '', hl = 'Type' }, -- 󰜰
-          Key = { icon = '󰌋', hl = 'Type' }, -- 🔐
-          Macro = { icon = ' ', hl = 'Function' },
-          Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
-          Module = { icon = '', hl = 'Include' }, -- 󰆧 (changed because yaml considers an object a module)
-          Namespace = { icon = '󰌗', hl = 'Include' }, -- 󰅪
-          Null = { icon = '', hl = 'Type' }, -- NULL
-          Number = { icon = '#', hl = 'Number' },
-          Object = { icon = '', hl = 'Type' }, -- ⦿
-          Operator = { icon = '󰆕', hl = 'Identifier' }, -- + 
-          Package = { icon = '', hl = 'Include' }, -- 󰏗
-          Parameter = { icon = ' ', hl = 'Identifier' },
-          Property = { icon = '', hl = 'Identifier' },
-          StaticMethod = { icon = ' ', hl = 'Function' }, -- 
-          String = { icon = '𝓢', hl = 'String' }, -- 𝓐
-          Struct = { icon = '', hl = 'Structure' }, -- 𝓢
-          TypeAlias = { icon = ' ', hl = 'Type' }, -- 
-          TypeParameter = { icon = '󰊄', hl = 'Identifier' }, -- 𝙏
-          Variable = { icon = '', hl = 'Constant' }, -- 
-        },
-      }
-    },
-    config = function(_, opts)
-      require("outline").setup(opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "Outline",
-        command = "setlocal nofoldenable"
-      })
-    end
-  },
-  {
-    -- WINDOW BAR BREADCRUMBS
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons"
-    },
-    opts = {
-      -- prevent barbecue from automatically attaching nvim-navic
-      -- this is so shared LSP attach handler can handle attaching only when LSP running
-      attach_navic = false,
-      kinds = {
-        Array = "",
-        Boolean = "◩", -- 
-        Class = "𝓒", -- 
-        Constant = "󰏿", --  
-        Constructor = "", --  
-        Enum = "ℰ", -- 
-        EnumMember = "", -- 
-        Event = "",
-        Field = "", --  
-        File = "",
-        Function = "ƒ", -- 
-        Interface = "",
-        Key = "󰌋", -- 
-        Method = "", -- 
-        Module = "󰆧", -- 
-        Namespace = "󰌗", --  󰅪
-        Null = "",
-        Number = "#", -- 
-        Object = "",
-        Operator = "󰆕", -- 
-        Package = "",
-        Property = "", -- 
-        String = "𝓢", -- 
-        Struct = "", -- 
-        TypeParameter = "󰊄", --  𝙏
-        Variable = "", --  
-      },
-    }
-  },
-  {
-    "SmiteshP/nvim-navbuddy",
-    dependencies = {
-      "neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
-      "MunifTanjim/nui.nvim"
-    },
-    keys = {
-      {
-        "<leader>lt",
-        function() require("nvim-navbuddy").open() end,
-        desc = "Navigate symbols via Navbuddy tree",
-        mode = "n",
-        noremap = true,
-        silent = true
-      }
-    },
-    config = function()
-      local navbuddy = require("nvim-navbuddy")
-      local actions = require("nvim-navbuddy.actions")
-      navbuddy.setup({
-        icons = {
-          Array         = "󰅪 ",
-          Boolean       = "◩ ",
-          Class         = "𝓒 ", -- 󰌗
-          Constant      = "󰏿 ",
-          Constructor   = " ",
-          Enum          = "ℰ", -- 󰕘
-          EnumMember    = " ",
-          Event         = " ", -- 
-          Field         = " ", --  
-          File          = " ", -- 󰈙
-          Function      = "󰊕 ",
-          Interface     = "", -- 󰕘
-          Key           = "󰌋 ",
-          Method        = " ", -- 󰆧
-          Module        = " ", --  󰆧 (changed because yaml considers an object a module)
-          Namespace     = "󰌗 ",
-          Null          = " ", -- 󰟢
-          Number        = "# ", -- 󰎠
-          Object        = " ", -- 󰅩
-          Operator      = "󰆕 ",
-          Package       = " ", -- 
-          Property      = " ", -- 
-          String        = "𝓢 ", -- 
-          Struct        = " ", -- 󰌗
-          TypeParameter = "󰊄 ",
-          Variable      = "", -- 󰆧 
-        },
-        mappings = {
-          ["<Down>"] = actions.next_sibling(),   -- down
-          ["<Up>"] = actions.previous_sibling(), -- up
-          ["<Left>"] = actions.parent(),         -- Move to left panel
-          ["<Right>"] = actions.children()       -- Move to right panel
-        },
-        window = {
-          border = "rounded",
-          size = "90%",
-          sections = { left = { size = "30%" }, mid = { size = "40%" } }
-        }
-      })
-    end
-  },
-  {
-    -- MINIMAP
-    "gorbit99/codewindow.nvim",
-    opts = {
-      auto_enable = false,
-      use_treesitter = true, -- disable to lose colours
-      exclude_filetypes = {
-        "Outline", "neo-tree", "qf", "packer", "help", "noice",
-        "Trouble"
-      }
-    },
-    keys = {
-      {
-        "<leader><leader>m",
-        function() require("codewindow").toggle_minimap() end,
-        desc = "Toggle minimap",
-        mode = "n",
-        noremap = true,
-        silent = true
-      }
-    }
-  }
+	{
+		-- DOCUMENT/CODE SYNTAX TREE
+		-- h: close, l: open, W: close all, E: open all
+		"hedyhli/outline.nvim",
+		cmd = { "Outline", "OutlineOpen" },
+		keys = {
+			{ "gs", "<cmd>Outline<CR>", desc = "List document symbols in a tree" },
+		},
+		opts = {
+			outline_window = { position = "left", width = 25 },
+			symbols = {
+				-- :NvimWebDeviconsHiTest
+				icons = {
+					Array = { icon = '󰅪', hl = 'Constant' },
+					Boolean = { icon = '◩', hl = 'Boolean' }, -- ⊨ 
+					Class = { icon = '𝓒', hl = 'Type' },
+					Component = { icon = '󰅴', hl = 'Function' },
+					Constant = { icon = '󰏿', hl = 'Constant' }, -- 
+					Constructor = { icon = '', hl = 'Special' }, -- 
+					Enum = { icon = 'ℰ', hl = 'Type' },
+					EnumMember = { icon = '', hl = 'Identifier' },
+					Event = { icon = '', hl = 'Type' }, -- 🗲
+					Field = { icon = '', hl = 'Identifier' }, -- 󰆨 
+					File = { icon = '', hl = 'Identifier' }, -- 󰈔
+					Fragment = { icon = '󰅴', hl = 'Constant' },
+					Function = { icon = 'ƒ', hl = 'Function' }, -- 
+					Interface = { icon = '', hl = 'Type' }, -- 󰜰
+					Key = { icon = '󰌋', hl = 'Type' }, -- 🔐
+					Macro = { icon = ' ', hl = 'Function' },
+					Method = { icon = '', hl = 'Function' }, -- ƒ ➡️
+					Module = { icon = '', hl = 'Include' }, -- 󰆧 (changed because yaml considers an object a module)
+					Namespace = { icon = '󰌗', hl = 'Include' }, -- 󰅪
+					Null = { icon = '', hl = 'Type' }, -- NULL
+					Number = { icon = '#', hl = 'Number' },
+					Object = { icon = '', hl = 'Type' }, -- ⦿
+					Operator = { icon = '󰆕', hl = 'Identifier' }, -- + 
+					Package = { icon = '', hl = 'Include' }, -- 󰏗
+					Parameter = { icon = ' ', hl = 'Identifier' },
+					Property = { icon = '', hl = 'Identifier' },
+					StaticMethod = { icon = ' ', hl = 'Function' }, -- 
+					String = { icon = '𝓢', hl = 'String' }, -- 𝓐
+					Struct = { icon = '', hl = 'Structure' }, -- 𝓢
+					TypeAlias = { icon = ' ', hl = 'Type' }, -- 
+					TypeParameter = { icon = '󰊄', hl = 'Identifier' }, -- 𝙏
+					Variable = { icon = '', hl = 'Constant' }, -- 
+				},
+			}
+		},
+		config = function(_, opts)
+			require("outline").setup(opts)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "Outline",
+				command = "setlocal nofoldenable"
+			})
+		end
+	},
+	{
+		-- WINDOW BAR BREADCRUMBS
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons"
+		},
+		opts = {
+			-- prevent barbecue from automatically attaching nvim-navic
+			-- this is so shared LSP attach handler can handle attaching only when LSP running
+			attach_navic = false,
+			-- :NvimWebDeviconsHiTest
+			kinds = {
+				Array = "",
+				Boolean = "◩", -- 
+				Class = "𝓒", -- 
+				Constant = "󰏿", --  
+				Constructor = "", --  
+				Enum = "ℰ", -- 
+				EnumMember = "", -- 
+				Event = "",
+				Field = "", --  
+				File = "",
+				Function = "ƒ", -- 
+				Interface = "",
+				Key = "󰌋", -- 
+				Method = "", -- 
+				Module = "󰆧", -- 
+				Namespace = "󰌗", --  󰅪
+				Null = "",
+				Number = "#", -- 
+				Object = "",
+				Operator = "󰆕", -- 
+				Package = "",
+				Property = "", -- 
+				String = "𝓢", -- 
+				Struct = "", -- 
+				TypeParameter = "󰊄", --  𝙏
+				Variable = "", --  
+			},
+		}
+	},
+	{
+		"SmiteshP/nvim-navbuddy",
+		dependencies = {
+			"neovim/nvim-lspconfig", "SmiteshP/nvim-navic",
+			"MunifTanjim/nui.nvim"
+		},
+		keys = {
+			{
+				"<leader>lt",
+				function() require("nvim-navbuddy").open() end,
+				desc = "Navigate symbols via Navbuddy tree",
+				mode = "n",
+				noremap = true,
+				silent = true
+			}
+		},
+		config = function()
+			local navbuddy = require("nvim-navbuddy")
+			local actions = require("nvim-navbuddy.actions")
+			navbuddy.setup({
+				-- :NvimWebDeviconsHiTest
+				icons = {
+					Array         = "󰅪 ",
+					Boolean       = "◩ ",
+					Class         = "𝓒 ", -- 󰌗
+					Constant      = "󰏿 ",
+					Constructor   = " ",
+					Enum          = "ℰ", -- 󰕘
+					EnumMember    = " ",
+					Event         = " ", -- 
+					Field         = " ", --  
+					File          = " ", -- 󰈙
+					Function      = "󰊕 ",
+					Interface     = "", -- 󰕘
+					Key           = "󰌋 ",
+					Method        = " ", -- 󰆧
+					Module        = " ", --  󰆧 (changed because yaml considers an object a module)
+					Namespace     = "󰌗 ",
+					Null          = " ", -- 󰟢
+					Number        = "# ", -- 󰎠
+					Object        = " ", -- 󰅩
+					Operator      = "󰆕 ",
+					Package       = " ", -- 
+					Property      = " ", -- 
+					String        = "𝓢 ", -- 
+					Struct        = " ", -- 󰌗
+					TypeParameter = "󰊄 ",
+					Variable      = "", -- 󰆧 
+				},
+				mappings = {
+					["<Down>"] = actions.next_sibling(), -- down
+					["<Up>"] = actions.previous_sibling(), -- up
+					["<Left>"] = actions.parent(),    -- Move to left panel
+					["<Right>"] = actions.children()  -- Move to right panel
+				},
+				window = {
+					border = "rounded",
+					size = "90%",
+					sections = { left = { size = "30%" }, mid = { size = "40%" } }
+				}
+			})
+		end
+	},
+	{
+		-- MINIMAP
+		"gorbit99/codewindow.nvim",
+		opts = {
+			auto_enable = false,
+			use_treesitter = true, -- disable to lose colours
+			exclude_filetypes = {
+				"Outline", "neo-tree", "qf", "packer", "help", "noice",
+				"Trouble"
+			}
+		},
+		keys = {
+			{
+				"<leader><leader>m",
+				function() require("codewindow").toggle_minimap() end,
+				desc = "Toggle minimap",
+				mode = "n",
+				noremap = true,
+				silent = true
+			}
+		}
+	}
 }
+-- :NvimWebDeviconsHiTest
+--
 -- diagnostics = {
 --       Error = ' ',
 --       Hint = '󰌵 ',
