@@ -1,27 +1,41 @@
+## Installation
+
 Download these files into `~/.config/nvim/`
 
-<img width="2032" alt="Example Neovim Experience" src="https://user-images.githubusercontent.com/180050/207120938-e78f6ca4-75dd-4097-a7f8-f702e60cd630.png">
+## Screenshots
 
-- LSP configured for different languages (e.g. Go, Rust).
-- LSP provides contextual information (e.g. see popup context window).
-- The winbar displays the current LSP symbol structure (e.g. where my cursor is).
-- Top of the buffer uses TreeSitter to show the current function †.
+Opening neovim you'll see the traditional screen + you can see the which-key
+plugin is available:
 
-> † **NOTE**: Not visible in screenshot as this only shows when the function is so long the signature isn't visible to the buffer viewport.
+> \[!TIP\]
+> The `<leader>` key is `\`.\
+> A single `<leader>` is for "searching".\
+> A double `<leader>` is for other types of actions.\
+> See the which-key output for each to understand what's available.
 
-- Right side of the main window is a 'mini map' of the file content (uses TreeSitter to add colour).
-  - This isn't visible by default but I define a mapping for easy toggling.
-- The statusline bar displays:
-  - Neovim current 'mode'
-  - The current git branch
-  - LSP diagnostics
-  - Relative file path
-  - File encoding
-  - The filetype
-  - The scroll percentage
-  - The line:column
-- Bottom window contains LSP diagnostics.
-- Left window is a symbols abstract tree view of the code file open.
-- Far Left window is a file tree view of my project.
-- Top of the Neovim editor shows tabs with a corresponding filetype icon.
-  - e.g. gopher icon for the `.go` file open in the screenshot.
+![](./screenshots/1.png)
+
+LSP support for Go and Rust + custom lualine implementation + breadcrumb trail
+in the winbar:
+
+![](./screenshots/2.png)
+
+A mini-map can be activated via key mapping:
+
+![](./screenshots/3.png)
+
+A traditional file structure navigation is available + LSP diagnostics shown:
+
+![](./screenshots/4.png)
+
+An AST navigation view for the symbols in the file is available:
+
+![](./screenshots/5.png)
+
+Telescope is used heavily for searching for all sorts of data:
+
+![](./screenshots/6.png)
+
+The quickfix workflow is also improved via a plugin:
+
+![](./screenshots/7.png)
