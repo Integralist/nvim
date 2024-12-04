@@ -26,6 +26,8 @@ return {
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
+				-- https://www.gnu.org/software/gawk/
+				awk = { "gawk" },
 				-- https://github.com/codespell-project/codespell
 				-- https://golangci-lint.run/
 				go = { "codespell", "golangcilint" },
