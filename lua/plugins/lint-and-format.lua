@@ -109,7 +109,7 @@ return {
 			log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
 			formatters_by_ft = {
 				-- https://www.gnu.org/software/gawk/manual/gawk.html
-				awk = { "awk" },
+				awk = { "gawk" },
 				-- https://github.com/mvdan/gofumpt
 				-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
 				-- https://github.com/incu6us/goimports-reviser
