@@ -135,6 +135,12 @@ return {
 			-- DISABLED: in favour of MultiGrep
 			-- vim.keymap.set("n", "<leader>x", "<Cmd>Telescope live_grep<CR>",
 			-- 	{ desc = "search text" })
+			--
+			-- https://www.youtube.com/watch?v=xdXE1tOT-qg&ab_channel=TJDeVries
+			-- EXAMPLE: type search pattern followed by two spaces and then a filetype glob
+			-- config  *.json
+			vim.keymap.set("n", "<leader>x", require("custom.telescope.live_multigrep").setup,
+				{ desc = "grep with filetype filter" })
 
 			-- Remove the Vim builtin colorschemes so they don't show in Telescope.
 			vim.cmd("silent !rm $VIMRUNTIME/colors/*.vim &> /dev/null")
@@ -146,12 +152,6 @@ return {
 					vim.api.nvim_set_hl(0, "TelescopePromptCounter", { link = "TelescopePromptPrefix" })
 				end
 			})
-
-			-- https://www.youtube.com/watch?v=xdXE1tOT-qg&ab_channel=TJDeVries
-			-- EXAMPLE: type search pattern followed by two spaces and then a filetype glob
-			-- config  *.json
-			vim.keymap.set("n", "<leader>x", require("custom.telescope.live_multigrep").setup,
-				{ desc = "grep with filetype filter" })
 		end
 	},
 	{
