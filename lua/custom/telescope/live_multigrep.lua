@@ -18,12 +18,12 @@ local live_multigrep = function(opts)
 			local pieces = vim.split(prompt, "  ")
 			local args = { "rg" }
 			if pieces[1] then
-				table.insert(args, "-e")
+				table.insert(args, "--regexp")
 				table.insert(args, pieces[1])
 			end
 
 			if pieces[2] then
-				table.insert(args, "-g")
+				table.insert(args, "--glob")
 				table.insert(args, pieces[2])
 			end
 
