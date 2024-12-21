@@ -31,6 +31,14 @@ return {
 			vim.keymap.set("n", "<leader><leader>tf",
 				"<Cmd>ToggleTerm direction=float<CR>",
 				{ desc = "toggle floating terminal" })
+
+			vim.keymap.set("n", "<leader><leader>ts",
+				"<Cmd>ToggleTerm direction=horizontal size=30<CR>",
+				{ desc = "toggle split terminal" })
+
+			vim.keymap.set("n", "<leader><leader>tv",
+				"<Cmd>ToggleTerm direction=vertical size=120<CR>",
+				{ desc = "toggle vertical terminal" })
 		end
 	}
 }
