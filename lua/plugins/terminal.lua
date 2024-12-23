@@ -40,21 +40,45 @@ return {
 			-- 	"<Cmd>ToggleTerm direction=vertical size=120<CR>",
 			-- 	{ desc = "open vertical terminal" })
 
-			-- :Ts some_name
 			vim.api.nvim_create_user_command('Ts', function(opts)
+				-- Split arguments
+				local args = vim.split(opts.args, ' ', { trimempty = true })
+				local buffer_name = table.remove(args, 1) -- First argument as buffer name
+				local command = table.concat(args, ' ') -- Remaining arguments as command
+
+				-- Open horizontal split with terminal
 				vim.cmd('sp term://zsh')
 				vim.cmd('set nonumber')
 				vim.cmd('set nospell')
-				vim.cmd('file ' .. opts.args)
-			end, { nargs = 1 })
 
-			-- :Tv some_name
+				-- Rename the buffer
+				vim.cmd('file ' .. buffer_name)
+
+				-- Send command if provided
+				if command ~= '' then
+					vim.api.nvim_chan_send(vim.b.terminal_job_id, command .. '\n')
+				end
+			end, { nargs = '*' })
+
 			vim.api.nvim_create_user_command('Tv', function(opts)
+				-- Split arguments
+				local args = vim.split(opts.args, ' ', { trimempty = true })
+				local buffer_name = table.remove(args, 1) -- First argument as buffer name
+				local command = table.concat(args, ' ') -- Remaining arguments as command
+
+				-- Open vertical split with terminal
 				vim.cmd('vs term://zsh')
 				vim.cmd('set nonumber')
 				vim.cmd('set nospell')
-				vim.cmd('file ' .. opts.args)
-			end, { nargs = 1 })
+
+				-- Rename the buffer
+				vim.cmd('file ' .. buffer_name)
+
+				-- Send command if provided
+				if command ~= '' then
+					vim.api.nvim_chan_send(vim.b.terminal_job_id, command .. '\n')
+				end
+			end, { nargs = '*' })
 		end
 	}
 }
