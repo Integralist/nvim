@@ -202,7 +202,7 @@ return {
 				WARN = {
 					icon = " ",
 					color = "warning",
-					alt = { "WARNING", "IMPORTANT" }
+					alt = { "WARNING", "IMPORTANT", "DISABLED" }
 				}
 			},
 			highlight = {
