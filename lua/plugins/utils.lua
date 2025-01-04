@@ -37,18 +37,21 @@ return {
 		opts = {
 			preset = "modern",
 			spec = {
-				{ "<leader>d", group = "todo", icon = "" },
+				{ "<leader>", group = "actions", icon = "" },
+				{ "<leader>t", group = "todo", icon = "" },
 				{ "<leader>l", group = "lsp", icon = "" },
-				{ "<leader><leader>b", group = "dap/debug" },
-				{ "<leader><leader>d", group = "diagnostics/todos" },
+				{ "<leader><leader>d", group = "diagnostics" },
+				{ "<leader><leader>D", group = "dap/debug" },
 				{ "<leader><leader>f", group = "format" },
 				{ "<leader><leader>g", group = "git" },
 				{ "<leader><leader>l", group = "lsp", icon = "" },
 				{ "<leader><leader>o", group = "oil", icon = "" },
 				{ "<leader><leader>p", group = "plugins", icon = "" },
 				{ "<leader><leader>q", group = "quickfix" },
-				{ "<leader><leader>r", group = "rust", icon = "" },
+				{ "<leader><leader>r", group = "reveal file in neo-tree", icon = "" },
 				{ "<leader><leader>t", group = "terminal" },
+				{ "<leader><leader><leader>", group = "comment out line" },          -- defined in ../settings.lua
+				{ "<leader><leader><leader>", group = "comment out lines", mode = "v" }, -- defined in ../settings.lua
 			}
 		}
 	},

@@ -10,14 +10,14 @@ vim.keymap.set("", "<leader><leader>'", "<Cmd>cn<CR>",
 vim.keymap.set("", "<leader><leader>;", "<Cmd>cp<CR>",
 	{ desc = "move to the prev item in the quickfix list" })
 
-vim.keymap.set("n", "<leader><leader>dx", function()
+vim.keymap.set("n", "<leader><leader>dd", function()
 	vim.diagnostic.disable()
 	-- vim.diagnostic.reset(nil, 0)
 end, { desc = "Disable diagnostics" })
 
-vim.keymap.set("n", "<leader><leader>ds", function()
+vim.keymap.set("n", "<leader><leader>de", function()
 	vim.diagnostic.enable()
-end, { desc = "Enable diagnostics (aka start)" })
+end, { desc = "Enable diagnostics" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz",
 	{ desc = "scroll down and then center the cursorline" })
