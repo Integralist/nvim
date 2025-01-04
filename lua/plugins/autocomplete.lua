@@ -31,6 +31,9 @@ return {
 				-- https://cmp.saghen.dev/configuration/completion.html#menu
 				menu = {
 					border = "rounded",
+					draw = {
+						treesitter = { 'lsp' }
+					},
 				},
 				-- https://cmp.saghen.dev/configuration/reference#completion-ghost-text
 				ghost_text = { enabled = true },
