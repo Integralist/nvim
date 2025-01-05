@@ -369,7 +369,7 @@ return {
 									mappings(client, bufnr)
 									require("illuminate").on_attach(client)
 									if server_name == "terraformls" then
-										require("treesitter-terraform-doc").setup()
+										require("treesitter-terraform-doc").setup({})
 									end
 								end
 							})
