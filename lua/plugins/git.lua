@@ -93,15 +93,10 @@ return {
 	},
 	{
 		-- OPEN LINES IN GITHUB
-		"ruanyl/vim-gh-line",
-		keys = {
-			{
-				"<leader><leader>gl",
-				function() vim.cmd("GH") end,
-				desc = "Open single line in GitHub's web UI",
-				noremap = true,
-				silent = true
-			}
+		"ciehanski/nvim-git-line",
+		opts = {
+			action_key = "<leader><leader>gp",
+			action_key_line = "<leader><leader>gl",
 		},
 		config = true
 	},
