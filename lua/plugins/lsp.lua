@@ -370,6 +370,8 @@ return {
 									require("illuminate").on_attach(client)
 									if server_name == "terraformls" then
 										require("treesitter-terraform-doc").setup({})
+										vim.keymap.set("n", "<leader><leader>D", "<Cmd>OpenDoc<CR>",
+											{ noremap = true, silent = true, desc = "open terraform docs" })
 									end
 								end
 							})
