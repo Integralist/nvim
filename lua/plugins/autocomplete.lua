@@ -24,9 +24,12 @@ return {
 				},
 				-- https://cmp.saghen.dev/configuration/completion.html#list
 				list = {
-					selection = function(ctx)
-						return ctx.mode == "cmdline" and "auto_insert" or "preselect"
-					end,
+					selection = {
+						auto_insert = true,
+						preselect = function(ctx)
+							return ctx.mode ~= 'cmdline' and not require('blink.cmp').snippet_active({ direction = 1 })
+						end,
+					}
 				},
 				-- https://cmp.saghen.dev/configuration/completion.html#menu
 				menu = {
@@ -40,7 +43,7 @@ return {
 			},
 			-- https://cmp.saghen.dev/configuration/sources.html
 			sources = {
-				default = { 'lsp', 'path', 'luasnip', 'buffer' },
+				default = { 'lsp', 'path', 'snippets', 'buffer' },
 			},
 			-- https://cmp.saghen.dev/configuration/signature.html
 			signature = {
@@ -50,21 +53,13 @@ return {
 				},
 			},
 			-- https://cmp.saghen.dev/configuration/snippets.html#luasnip
-			snippets = {
-				expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-				active = function(filter)
-					if filter and filter.direction then
-						return require('luasnip').jumpable(filter.direction)
-					end
-					return require('luasnip').in_snippet()
-				end,
-				jump = function(direction) require('luasnip').jump(direction) end,
-			},
+			snippets = { preset = 'luasnip' }
 		},
 		opts_extend = { "sources.default" }
 	},
 	{
 		"L3MON4D3/LuaSnip",
+		version = 'v2.*',
 		lazy = false,
 		keys = {
 			{
