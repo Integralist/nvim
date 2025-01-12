@@ -75,7 +75,7 @@ local function mappings(client, bufnr)
 
 	-- DISABLED: LSP formatting
 	--
-	-- Looks to be handled by ./lint-and-format.lua stevearc/conform.nvim
+	-- Looks to be handled by ./lint-and-format.lua (stevearc/conform.nvim)
 	--
 	-- if client.supports_method("textDocument/formatting") then
 	--   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -361,6 +361,15 @@ return {
 								}
 							})
 						else
+							if server_name ~= "zls" then
+								-- don't show parse errors in a separate window
+								vim.g.zig_fmt_parse_errors = 0
+								-- disable format-on-save from `ziglang/zig.vim`
+								-- it'll be handled by stevearc/conform.nvim instead
+								vim.g.zig_fmt_autosave = 0
+							end
+
+							-- generic setup for all other lsp
 							server.setup({
 								capabilities = vim.tbl_deep_extend(
 									"force", {}, capabilities, server.capabilities or {}

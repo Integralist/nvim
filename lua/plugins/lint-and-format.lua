@@ -140,6 +140,9 @@ return {
 					xml = { "xmllint" },
 					-- https://github.com/mikefarah/yq
 					yq = { "yq" },
+					-- https://github.com/ziglang/zig
+					zig = { "zigfmt" },
+					zon = { "zigfmt" },
 					-- https://github.com/koalaman/shellcheck
 					zsh = { "shellcheck" }
 				},
