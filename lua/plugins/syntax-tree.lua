@@ -57,6 +57,41 @@ return {
 	},
 	{
 		-- WINDOW BAR BREADCRUMBS
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+		opts = {
+			-- :NvimWebDeviconsHiTest
+			kinds = {
+				Array = "",
+				Boolean = "◩", -- 
+				Class = "𝓒", -- 
+				Constant = "󰏿", --  
+				Constructor = "", --  
+				Enum = "ℰ", -- 
+				EnumMember = "", -- 
+				Event = "",
+				Field = "", --  
+				File = "",
+				Function = "ƒ", -- 
+				Interface = "",
+				Key = "󰌋", -- 
+				Method = "", -- 
+				Module = "󰆧", -- 
+				Namespace = "󰌗", --  󰅪
+				Null = "",
+				Number = "#", -- 
+				Object = "",
+				Operator = "󰆕", -- 
+				Package = "",
+				Property = "", -- 
+				String = "𝓢", -- 
+				Struct = "", -- 
+				TypeParameter = "󰊄", --  𝙏
+				Variable = "", --  
+			},
+		}
+	},
+	{
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
 		version = "*",
