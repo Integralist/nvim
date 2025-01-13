@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 -- https://lazy.folke.io/spec
 --
 require("lazy").setup({
+	-- concurrency = 1, -- https://github.com/folke/lazy.nvim/discussions/747
 	checker = {
 		enabled = true,
 		notify = true
