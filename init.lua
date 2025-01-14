@@ -22,6 +22,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Configuring plugins:
 -- https://lazy.folke.io/spec
 --
+-- NOTE: to pass `opt` into `config` function for calling `.setup(opts)`:
+-- https://github.com/folke/lazy.nvim/discussions/1652#discussioncomment-10049093
+--
 require("lazy").setup({
 	-- concurrency = 1, -- https://github.com/folke/lazy.nvim/discussions/747
 	checker = {
