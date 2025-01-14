@@ -317,7 +317,7 @@ return {
 		config = true
 	},
 	{
-		-- SCRATCH BUFFER MANAGMENT
+		-- SCRATCH BUFFER MANAGEMENT
 		"https://git.sr.ht/~swaits/scratch.nvim",
 		lazy = true,
 		keys = {
