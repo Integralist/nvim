@@ -27,12 +27,13 @@ return {
 				list = {
 					selection = {
 						auto_insert = true,
-						preselect = true,
+						preselect = function(ctx) return ctx.mode ~= 'cmdline' end,
 					}
 				},
 				-- https://cmp.saghen.dev/configuration/completion.html#menu
 				menu = {
-					auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
+					-- DISABLED: Don't use autocomplete in Ex-mode.
+					-- auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
 					border = "rounded",
 					draw = {
 						treesitter = { 'lsp' }
