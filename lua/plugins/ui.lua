@@ -58,6 +58,9 @@ return {
 		end
 	},
 	{
+		"folke/tokyonight.nvim"
+	},
+	{
 		-- STATUS LINE
 		"nvim-lualine/lualine.nvim",
 		dependencies = {

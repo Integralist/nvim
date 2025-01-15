@@ -32,6 +32,7 @@ return {
 				},
 				-- https://cmp.saghen.dev/configuration/completion.html#menu
 				menu = {
+					auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
 					border = "rounded",
 					draw = {
 						treesitter = { 'lsp' }
