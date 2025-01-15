@@ -33,6 +33,7 @@ vim.o.splitright = true
 vim.o.swapfile = false
 vim.o.tabstop = 2       -- When expandtab is false (e.g. .editorconfig override), pressing the Tab key will insert a tab character that visually takes up this number of spaces
 vim.o.updatetime = 1000 -- affects CursorHold and subsequently things like highlighting Code Actions, and the Noice UI popups.
+vim.o.wildmenu = true   -- I disabled blink.cmp in Ex-mode as it wasn't working well enough for me
 vim.o.wrap = false
 
 if vim.fn.has("termguicolors") == 1 then vim.o.termguicolors = true end
