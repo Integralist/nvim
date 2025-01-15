@@ -27,7 +27,7 @@ vim.o.showmatch = true
 vim.o.signcolumn = "auto"
 vim.o.smartcase = true
 vim.o.smartindent = true
-vim.o.spell = true
+vim.o.spell = true -- use z= to see suggestions for the correct spelling
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.swapfile = false
