@@ -71,7 +71,7 @@ return {
 			-- Spectral requires a ruleset in the current directory
 			-- Otherwise you have to specify a global one
 			lint.linters.spectral.args = {
-				"lint", "-f", "json", "--ruleset", "~/.spectral.yaml",
+				"lint", "-f", "json", "--ruleset", os.getenv("HOME") .. "/.spectral.yaml",
 			}
 
 			-- NOTE: We need custom logic for handling YAML linting.

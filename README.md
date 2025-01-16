@@ -110,6 +110,7 @@ without modifying Neovim’s default spell files.
 > \[!TIP\]
 > Hover over a misspelled word and press `zg` to add it to the custom
 > dictionary. The word gets saved to `~/.config/nvim/spell/en.utf-8.add`.
+> Alternatively, type `z=` to see suggestions.
 
 <!---->
 
