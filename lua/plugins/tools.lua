@@ -17,6 +17,11 @@ return {
 					"ghostty-org/ghostty",
 					name = "Ghostty",
 					tags = { "terminal" }
+				},
+				{
+					"https://ziglang.org/news/index.xml",
+					name = "Zig",
+					tags = { "PL" }
 				}
 			}
 		}
