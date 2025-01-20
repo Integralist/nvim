@@ -58,7 +58,7 @@ return {
 		end
 	},
 	{
-		"folke/tokyonight.nvim"
+		"hardselius/warlock"
 	},
 	{
 		-- STATUS LINE
