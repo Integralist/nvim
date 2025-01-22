@@ -120,7 +120,8 @@ return {
 					-- https://github.com/threedaymonk/htmlbeautifier
 					html = { "htmlbeautifier" },
 					-- https://github.com/mantoni/eslint_d.js/
-					javascript = { "eslint_d" },
+					-- https://github.com/beautifier/js-beautify
+					javascript = { "eslint_d", "js_beautify" },
 					-- https://github.com/stedolan/jq
 					jq = { "jq" },
 					-- https://github.com/rhysd/fixjson
