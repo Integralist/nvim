@@ -1,6 +1,5 @@
 {
   "CamelCaseMotion": { "branch": "master", "commit": "de439d7c06cffd0839a29045a103fe4b44b15cdc" },
-  "ChatGPT.nvim": { "branch": "main", "commit": "5b6d296eefc75331e2ff9f0adcffbd7d27862dd6" },
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
   "NeoZoom.lua": { "branch": "main", "commit": "c97a0197548c1e9b559e4fa41ab3f7782c93e613" },
   "barbecue": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
@@ -12,8 +11,8 @@
   "clear-action.nvim": { "branch": "master", "commit": "2854c3fda5720c7e53b5a9537774fae212224484" },
   "codewindow.nvim": { "branch": "master", "commit": "dd7017617962943eb1d152fc58940f11c6775a4a" },
   "conform.nvim": { "branch": "master", "commit": "f8d743ce333bedc47821de2cd4d23c43856ecbe5" },
+  "contextindent.nvim": { "branch": "main", "commit": "ced79628e016542e212100816f7d3b88f511f885" },
   "coop.nvim": { "branch": "main", "commit": "01108731b52828f6bca4b4e962f29ee773dfbbbd" },
-  "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
   "crates.nvim": { "branch": "main", "commit": "bd35b13e94a292ee6e32c351e05ca2202dc9f070" },
   "csvview.nvim": { "branch": "main", "commit": "b5e57ee599d91c7eb6915df6b515915501b0b7df" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },

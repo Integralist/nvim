@@ -1,5 +1,6 @@
 return {
 	{
+		-- MARKDOWN VIEWER/RENDERER
 		"OXY2DEV/markview.nvim",
 		lazy = false,
 		dependencies = {
@@ -27,5 +28,11 @@ return {
 			bin = "/usr/local/bin/vale",
 			vale_config_path = "$HOME/.vale.ini"
 		}
+	},
+	{
+		-- NESTED CODEBLOCK INDENTATION FORMATTER
+		"wurli/contextindent.nvim",
+		opts = { pattern = "*.md" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	}
 }
