@@ -6,3 +6,6 @@ VCL
 vcl
 resulting
 JSON
+ElastiCache
+Redis
+AWS
