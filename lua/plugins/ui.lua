@@ -333,17 +333,6 @@ return {
 		},
 		opts = {},
 	},
-	{
-		-- INACTIVE WINDOW DIMMER
-		--
-		-- WARNING: Can't skip filetypes { "neo-tree", "trouble", "Outline", "qf" }
-		"sunjon/Shade.nvim",
-		config = function()
-			require("shade").setup({
-				overlay_opacity = 30,
-			})
-		end
-	},
 	-- {
 	-- 	"Tyler-Barham/floating-help.nvim",
 	-- 	opts = {
