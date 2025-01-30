@@ -58,9 +58,6 @@ return {
 		end
 	},
 	{
-		"hardselius/warlock"
-	},
-	{
 		-- STATUS LINE
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
