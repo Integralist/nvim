@@ -78,7 +78,8 @@ return {
 			vim.keymap.set("n", "<leader>f", "<Cmd>Telescope find_files hidden=true<CR>", { desc = "search files" })
 			vim.keymap.set("n", "<leader>F", "<Cmd>Telescope find_files hidden=true cwd=%:h<CR>",
 				{ desc = "search files in current directory" })
-			vim.keymap.set("n", "<leader>h", "<Cmd>Telescope help_tags<CR>", { desc = "search help" })
+			vim.keymap.set("n", "<leader>h", "<Cmd>Telescope command_history<CR>", { desc = "search command history" })
+			vim.keymap.set("n", "<leader>H", "<Cmd>Telescope help_tags<CR>", { desc = "search help" })
 			vim.keymap.set("n", "<leader>j", "<Cmd>Telescope jsonfly<CR>", { desc = "search current JSON structure" })
 			vim.keymap.set("n", "<leader>k", "<Cmd>Telescope keymaps<CR>", { desc = "search key mappings" })
 			vim.keymap.set("n", "<leader>K", "<Cmd>Telescope grep_string<CR>", { desc = "search for keyword under cursor" })
