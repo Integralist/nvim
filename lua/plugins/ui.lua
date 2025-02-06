@@ -330,6 +330,11 @@ return {
 		},
 		opts = {},
 	},
+	{
+		-- HELP PAGES RENDERING
+		"OXY2DEV/helpview.nvim",
+		lazy = false
+	},
 	-- {
 	-- 	"Tyler-Barham/floating-help.nvim",
 	-- 	opts = {
