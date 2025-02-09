@@ -5,14 +5,21 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	pattern = { "[^l]*" },
 	command = "cwindow"
 })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "sh", "go", "rust" },
-	command = "setlocal textwidth=80"
-})
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.md" },
-	command = "setlocal textwidth=80"
+-- NOTE: The following forces my settings over a local editorconfig.
+-- Some projects I work on have a local editorconfig with much larger width.
+-- It really bothers me so I force this override.
+--
+-- BufWinEnter fires later than FileType, ensuring it runs after EditorConfig.
+-- vim.schedule defers execution slightly, making sure it's the final override.
+-- vim.opt_local.textwidth = 80 is the Lua equivalent of setlocal textwidth=80.
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = { "*.sh", "*.go", "*.rs", "*.md" },
+	callback = function()
+		vim.schedule(function()
+			vim.opt_local.textwidth = 80
+		end)
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
