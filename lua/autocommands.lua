@@ -21,6 +21,19 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end)
 	end,
 })
+-- COMMIT_EDITMSG is the filename that Git uses for commit messages when you run
+-- commands like `git commit` without `-m`. The commit message is temporarily
+-- stored in a file named .git/COMMIT_EDITMSG. Once you save and close the file,
+-- Git reads its contents as the commit message. This approach avoids issue with
+-- using `FileType` which is an event that editorconfig overrides.
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+	pattern = "COMMIT_EDITMSG",
+	callback = function()
+		vim.schedule(function()
+			vim.opt_local.textwidth = 80
+		end)
+	end,
+})
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.mdx" },
