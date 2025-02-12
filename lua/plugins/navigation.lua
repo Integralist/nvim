@@ -76,7 +76,7 @@ return {
 		"stevearc/oil.nvim",
 		opts = {
 			default_file_explorer = false, -- I still use neo-tree
-			delete_to_trash = true,        -- (:help oil-trash)
+			delete_to_trash = true,     -- (:help oil-trash)
 			skip_confirm_for_simple_edits = true,
 			view_options = {
 				show_hidden = true,
