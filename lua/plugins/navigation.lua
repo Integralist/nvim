@@ -122,5 +122,22 @@ return {
 
 			require("nvim-material-icon").setup()
 		end
-	}
+	},
+	-- {
+	-- 	-- 'skardyy/neo-img',
+	-- 	-- build = "cd ttyimg && go build", -- build https://github.com/Skardyy/ttyimg
+	-- 	-- config = function()
+	-- 	-- 	require('neo-img').setup({
+	-- 	-- 		backend = "kitty",
+	-- 	-- 	})
+	-- 	-- end
+	-- 	'skardyy/neo-img',
+	-- 	branch = "fixes",
+	-- 	build = function()
+	-- 		require("neo-img").install()
+	-- 	end,
+	-- 	config = function()
+	-- 		require('neo-img').setup()
+	-- 	end
+	-- }
 }
