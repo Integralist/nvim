@@ -100,8 +100,8 @@ return {
 	},
 	{
 		-- DISPLAY HEX COLOURS
-		"norcalli/nvim-colorizer.lua",
-		config = function() require("colorizer").setup() end -- WARNING: Don't replace with `opts = {}` or `config = true` as it doesn't work
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
 	},
 	{
 		-- GENERATE HEX COLOURS
