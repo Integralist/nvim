@@ -16,17 +16,22 @@ return {
 				{
 					"ghostty-org/ghostty",
 					name = "Ghostty",
-					tags = { "terminal", "repo" }
+					tags = { "terminal", "repo", "ghostty" }
+				},
+				{
+					"golang/go",
+					name = "Golang",
+					tags = { "PL", "go", "repo" }
 				},
 				{
 					"https://ziglang.org/news/index.xml",
 					name = "Zig",
-					tags = { "PL" }
+					tags = { "PL", "zig" }
 				},
 				{
 					"https://open-web-advocacy.org/feed.xml",
 					name = "Open Web Advocacy",
-					tags = { "Web" }
+					tags = { "web" }
 				}
 			}
 		}
