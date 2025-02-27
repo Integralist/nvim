@@ -250,5 +250,26 @@ return {
 			require('grug-far').setup({});
 			vim.keymap.set("n", "<leader><leader>s", "<Cmd>GrugFar<CR>", { desc = "search and replace" })
 		end
+	},
+	{
+		-- SEARCH GO DOCUMENTATION
+		"fredrikaverpil/godoc.nvim",
+		version = "*",
+		dependencies = {
+			{ "nvim-telescope/telescope.nvim" },
+			{
+				"nvim-treesitter/nvim-treesitter",
+				opts = {
+					ensure_installed = { "go" },
+				},
+			},
+		},
+		build = "go install github.com/lotusirous/gostdsym/stdsym@latest",
+		cmd = { "GoDoc" },
+		opts = {
+			picker = {
+				type = "telescope" -- default is "native"
+			},
+		},
 	}
 }
