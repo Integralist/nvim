@@ -12,6 +12,12 @@ return {
 				nerd_font_variant = 'mono',
 				kind_icons = require("icons"),
 			},
+			-- https://cmp.saghen.dev/configuration/reference.html#cmdline
+			cmdline = {
+				completion = {
+					menu = { auto_show = true },
+				},
+			},
 			-- https://cmp.saghen.dev/configuration/completion.html
 			completion = {
 				-- https://cmp.saghen.dev/configuration/completion.html#accept
@@ -27,13 +33,10 @@ return {
 				list = {
 					selection = {
 						auto_insert = true,
-						preselect = function(ctx) return ctx.mode ~= 'cmdline' end,
 					}
 				},
 				-- https://cmp.saghen.dev/configuration/completion.html#menu
 				menu = {
-					-- DISABLED: Don't use autocomplete in Ex-mode.
-					-- auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
 					border = "rounded",
 					draw = {
 						treesitter = { 'lsp' }
