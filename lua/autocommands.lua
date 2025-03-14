@@ -139,38 +139,38 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	command = "silent !goimports -w %"
 })
 
--- Dim inactive windows
-
-vim.cmd("highlight default DimInactiveWindows guifg=#666666")
-
-local exclude_filetypes = { "neo-tree", "trouble", "Outline", "qf" }
-
--- Check if the current window should be excluded
-local function should_exclude()
-	local filetype = vim.bo.filetype
-	for _, ft in ipairs(exclude_filetypes) do
-		if ft == filetype then
-			return true
-		end
-	end
-	return false
-end
-
--- When leaving a window, set all highlight groups to a "dimmed" hl_group
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
-	callback = function()
-		if should_exclude() then return end
-		local highlights = {}
-		for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
-			table.insert(highlights, hl .. ":DimInactiveWindows")
-		end
-		vim.wo.winhighlight = table.concat(highlights, ",")
-	end,
-})
-
--- When entering a window, restore all highlight groups to original
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
-	callback = function()
-		vim.wo.winhighlight = ""
-	end,
-})
+-- -- Dim inactive windows
+--
+-- vim.cmd("highlight default DimInactiveWindows guifg=#666666")
+--
+-- local exclude_filetypes = { "neo-tree", "trouble", "Outline", "qf" }
+--
+-- -- Check if the current window should be excluded
+-- local function should_exclude()
+-- 	local filetype = vim.bo.filetype
+-- 	for _, ft in ipairs(exclude_filetypes) do
+-- 		if ft == filetype then
+-- 			return true
+-- 		end
+-- 	end
+-- 	return false
+-- end
+--
+-- -- When leaving a window, set all highlight groups to a "dimmed" hl_group
+-- vim.api.nvim_create_autocmd({ "WinLeave" }, {
+-- 	callback = function()
+-- 		if should_exclude() then return end
+-- 		local highlights = {}
+-- 		for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
+-- 			table.insert(highlights, hl .. ":DimInactiveWindows")
+-- 		end
+-- 		vim.wo.winhighlight = table.concat(highlights, ",")
+-- 	end,
+-- })
+--
+-- -- When entering a window, restore all highlight groups to original
+-- vim.api.nvim_create_autocmd({ "WinEnter" }, {
+-- 	callback = function()
+-- 		vim.wo.winhighlight = ""
+-- 	end,
+-- })
