@@ -15,13 +15,6 @@ function M.setup(mappings)
 		),
 		on_attach = function(client, bufnr)
 			mappings(client, bufnr)
-			require("lsp-inlayhints").setup({
-				inlay_hints = {
-					parameter_hints = { prefix = "in: " }, -- "<- "
-					type_hints = { prefix = "out: " } -- "=> "
-				}
-			})
-			require("lsp-inlayhints").on_attach(client, bufnr)
 			require("illuminate").on_attach(client)
 
 			-- workaround for gopls not supporting semanticTokensProvider
@@ -131,11 +124,10 @@ function M.setup(mappings)
 				-- staticcheck = true,
 				usePlaceholders = true,
 			}
+		},
+		init_options = {
+			usePlaceholders = true,
 		}
-		-- DISABLED: as it overlaps with `lvimuser/lsp-inlayhints.nvim`
-		-- init_options = {
-		--   usePlaceholders = true,
-		-- }
 	})
 end
 

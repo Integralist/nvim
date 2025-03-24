@@ -148,10 +148,6 @@ return {
 				server = {
 					on_attach = function(client, bufnr)
 						mappings(client, bufnr)
-						require("lsp-inlayhints").setup({
-							inlay_hints = { type_hints = { prefix = "=> " } }
-						})
-						require("lsp-inlayhints").on_attach(client, bufnr)
 						require("illuminate").on_attach(client)
 
 						local bufopts = {
@@ -191,8 +187,15 @@ return {
 	},
 	{
 		-- LSP INLAY HINTS
-		"lvimuser/lsp-inlayhints.nvim",
-		dependencies = "neovim/nvim-lspconfig"
+		--
+		-- NOTE: See ../autocommands.lua for LspAttach autocommand.
+		'felpafel/inlay-hint.nvim',
+		event = 'LspAttach',
+		config = function()
+			require('inlay-hint').setup({
+				virt_text_pos = 'eol', -- eol, inline, right_align
+			})
+		end,
 	},
 	{
 		-- LSP SERVER CONFIGURATION
