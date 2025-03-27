@@ -193,7 +193,7 @@ return {
 		event = 'LspAttach',
 		config = function()
 			require('inlay-hint').setup({
-				virt_text_pos = 'eol', -- eol, inline, right_align
+				virt_text_pos = 'inline', -- eol, inline, right_align
 			})
 		end,
 	},
