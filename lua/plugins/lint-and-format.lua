@@ -114,9 +114,8 @@ return {
 					-- https://www.gnu.org/software/gawk/manual/gawk.html
 					awk = { "gawk" },
 					-- https://github.com/mvdan/gofumpt
-					-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
 					-- https://github.com/incu6us/goimports-reviser
-					go = { "gofumpt", "goimports", "goimports-reviser" },
+					go = { "gofumpt", "goimports-reviser" },
 					-- https://github.com/threedaymonk/htmlbeautifier
 					html = { "htmlbeautifier" },
 					-- https://github.com/mantoni/eslint_d.js/
@@ -146,19 +145,6 @@ return {
 					zon = { "zigfmt" },
 					-- https://github.com/koalaman/shellcheck
 					zsh = { "shellcheck" }
-				},
-				-- NOTE: The gofumpt formatter isn't working properly.
-				-- So although I have the below configured, I rely on an autocmd instead.
-				-- See ../autocommands.lua
-				-- It's also worth noting that I have gofumpt configured by gopls.
-				-- So I'm not sure if that affects conform.nvim at all.
-				-- See ./lsp.lua
-				formatters = {
-					gofumpt = {
-						command = "gofumpt",
-						args = { "$FILENAME" },
-						stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
-					}
 				},
 				format_after_save = function(bufnr)
 					-- disable with a global or buffer-local variable

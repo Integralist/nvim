@@ -120,24 +120,26 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	command = "set filetype=groovy"
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	group = vim.api.nvim_create_augroup("GoFumpt",
-		{ clear = true }),
-	pattern = "*.go",
-	-- callback = function(event)
-	--   local file_name = vim.fn.bufname(event.buf)
-	--   print("about to gofumpt file: " .. file_name)
-	--   vim.cmd('silent !gofumpt -w ' .. file_name)
-	-- end,
-	command = "silent !gofumpt -w %"
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	group = vim.api.nvim_create_augroup("GoImports",
-		{ clear = true }),
-	pattern = "*.go",
-	command = "silent !goimports -w %"
-})
+-- DISABLED: Go autocommands as I'm relying on golangci-lint formatters.
+--
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	group = vim.api.nvim_create_augroup("GoFumpt",
+-- 		{ clear = true }),
+-- 	pattern = "*.go",
+-- 	-- callback = function(event)
+-- 	--   local file_name = vim.fn.bufname(event.buf)
+-- 	--   print("about to gofumpt file: " .. file_name)
+-- 	--   vim.cmd('silent !gofumpt -w ' .. file_name)
+-- 	-- end,
+-- 	command = "silent !gofumpt -w %"
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	group = vim.api.nvim_create_augroup("GoImports",
+-- 		{ clear = true }),
+-- 	pattern = "*.go",
+-- 	command = "silent !goimports -w %"
+-- })
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
