@@ -150,7 +150,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 					not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
 					{ bufnr = bufnr }
 				)
-			end, { buffer = bufnr })
+			end, { buffer = bufnr, desc = "toggle inlay hints" })
 		end
 	end,
 })
