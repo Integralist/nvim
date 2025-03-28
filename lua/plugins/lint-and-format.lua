@@ -114,8 +114,9 @@ return {
 					-- https://www.gnu.org/software/gawk/manual/gawk.html
 					awk = { "gawk" },
 					-- https://github.com/mvdan/gofumpt
+					-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
 					-- https://github.com/incu6us/goimports-reviser
-					go = { "gofumpt", "goimports-reviser" },
+					go = { "gofumpt", "goimports", "goimports-reviser" },
 					-- https://github.com/threedaymonk/htmlbeautifier
 					html = { "htmlbeautifier" },
 					-- https://github.com/mantoni/eslint_d.js/
