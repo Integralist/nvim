@@ -72,6 +72,11 @@ function M.setup(mappings)
 			--     buffer = bufnr,
 			--     desc = "lint project code (revive)"
 			-- })
+
+			-- NOTE: Neovim 0.11 revealed the LSP changes formatprg=gofmt
+			-- This breaks the traditional `gp` action.
+			-- So for golang LSP we'll unset that property
+			vim.opt.formatprg = ""
 		end,
 		settings = {
 			-- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for

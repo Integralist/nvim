@@ -68,7 +68,6 @@ vim.cmd("packadd cfilter")
 -- LSP UI boxes improvements
 --
 -- NOTE: Noice plugin can/will override these settings.
-vim.o.winborder = 'rounded' -- updates LSP Hover window style
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 	vim.lsp.handlers.signature_help, { border = "rounded" }
 )
@@ -76,6 +75,12 @@ vim.diagnostic.config({
 	underline = true,
 	float = { border = "rounded", style = "minimal" }
 })
+
+-- DISABLED: I noticed Telescope had extra border lines.
+-- Instead of setting winborder for everything, I need to only set for hover.
+-- See K mapping in ./plugins/lsp.lua (local mappings function).
+--
+-- vim.o.winborder = 'rounded' -- updates LSP Hover window style
 
 -- COMMENTS
 -- nvim 0.10.0 has builtin support for commenting
