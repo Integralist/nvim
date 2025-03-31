@@ -76,6 +76,9 @@ function M.setup(mappings)
 			-- NOTE: Neovim 0.11 revealed the LSP changes formatprg=gofmt
 			-- This breaks the traditional `gp` action.
 			-- So for golang LSP we'll unset that property
+			--
+			-- https://neovim.io/doc/user/options.html#'formatprg'
+			-- https://neovim.io/doc/user/change.html#gq
 			vim.opt.formatprg = ""
 		end,
 		settings = {
