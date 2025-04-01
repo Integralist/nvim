@@ -389,12 +389,7 @@ return {
 		end
 	},
 	{
-		-- -- CODE ACTION INDICATOR
-		"luckasRanarison/clear-action.nvim",
-		opts = {}
-	},
-	{
-		-- CODE ACTIONS POPUP
+		-- CODE ACTIONS POP-UP
 		"rachartier/tiny-code-action.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
