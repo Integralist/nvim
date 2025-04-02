@@ -91,7 +91,7 @@ return {
 									max_size = 80,
 									format = function(messages)
 										local bufnr = vim.api.nvim_get_current_buf()
-										local active_clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+										local active_clients = vim.lsp.get_clients({ bufnr = bufnr })
 										if #messages > 0 then
 											return table.concat(messages, " ")
 										end
@@ -134,7 +134,7 @@ return {
 					-- 					max_size = 80,
 					-- 					format = function(messages)
 					-- 						local bufnr = vim.api.nvim_get_current_buf()
-					-- 						local active_clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+					-- 						local active_clients = vim.lsp.get_clients({ bufnr = bufnr })
 					-- 						if #messages > 0 then
 					-- 							return table.concat(messages, " ")
 					-- 						end
