@@ -34,3 +34,4 @@ localhost
 config
 REQ
 init
+deserialize
