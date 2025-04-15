@@ -214,11 +214,10 @@ return {
 			-- ◍ golangci-lint
 			mason_lspconfig.setup({
 				ensure_installed = {
-					"bashls", "dockerls", "gopls", "html", "jsonls",
-					"lua_ls", "marksman", "pylsp", "ruby_lsp",
-					"rust_analyzer", "spectral",
-					"taplo", "terraformls", "tflint", "ts_ls", -- https://github.com/williamboman/mason-lspconfig.nvim/issues/458
-					"vimls", "yamlls", "zls"
+					"bashls", "dagger", "dockerls", "gh_actions_ls", "gopls", "html",
+					"jsonls", "lua_ls", "marksman", "pylsp", "ruby_lsp", "rust_analyzer",
+					"spectral", "taplo", "terraformls", "tflint", "ts_ls", "vimls",
+					"yamlls", "zls"
 				}
 			})
 
