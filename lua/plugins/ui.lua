@@ -335,6 +335,21 @@ return {
 		"OXY2DEV/helpview.nvim",
 		lazy = false
 	},
+	{
+		"jake-stewart/auto-cmdheight.nvim",
+		lazy = false,
+		opts = {
+			-- max cmdheight before displaying hit enter prompt.
+			max_lines = 10,
+			-- number of seconds until the cmdheight can restore.
+			duration = 2,
+			-- whether key press is required to restore cmdheight.
+			remove_on_key = true,
+			-- always clear the cmdline after duration and key press.
+			-- by default it will only happen when cmdheight changed.
+			clear_always = false,
+		}
+	}
 	-- {
 	-- 	"Tyler-Barham/floating-help.nvim",
 	-- 	opts = {
@@ -346,8 +361,8 @@ return {
 	-- 		{ "<leader><leader>h", "<cmd>FloatingHelpToggle<cr>", desc = "Toggle floating help", mode = "n" },
 	-- 	},
 	-- },
-	{
-		-- KEY PRESSES (enable with :KeyToggle)
-		-- "tamton-aquib/keys.nvim"
-	}
+	-- {
+	-- 	-- KEY PRESSES (enable with :KeyToggle)
+	-- 	"tamton-aquib/keys.nvim"
+	-- }
 }
