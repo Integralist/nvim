@@ -82,15 +82,12 @@ function M.setup(mappings)
 			vim.opt.formatprg = ""
 		end,
 		settings = {
-			-- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
-			-- https://www.lazyvim.org/extras/lang/go (borrowed some ideas from here)
+			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+			-- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
 			gopls = {
+				-- I only include features that aren't already enabled by default
 				analyses = {
-					fieldalignment = false, -- find structs that would use less memory if their fields were sorted
-					nilness = true,
-					unusedparams = true,
-					unusedwrite = true,
-					useany = true
+					shadow = true,
 				},
 				codelenses = {
 					gc_details = false,
@@ -114,7 +111,7 @@ function M.setup(mappings)
 				},
 				gofumpt = true,
 				semanticTokens = true,
-				-- DISABLED: staticcheck
+				-- IMPORTANT: I've re-enabled staticcheck here while golangci-lint isn't working
 				--
 				-- gopls doesn't invoke the staticcheck binary.
 				-- Instead it imports the analyzers directly.
@@ -122,14 +119,17 @@ function M.setup(mappings)
 				-- But it's not a good thing (like it initially sounds).
 				-- You can't then use line directives to ignore issues.
 				--
-				-- Instead of using staticcheck via gopls.
-				-- We have golangci-lint execute it instead.
-				--
 				-- For more details:
 				-- https://github.com/golang/go/issues/36373#issuecomment-570643870
 				-- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
 				--
-				-- staticcheck = true,
+				-- Instead of using staticcheck via gopls.
+				-- We have golangci-lint execute it instead.
+				--
+				-- But recently I've had issues with golangci-lint in neovim
+				-- https://github.com/mfussenegger/nvim-lint/issues/744
+				--
+				staticcheck = true,
 				usePlaceholders = true,
 			}
 		},
