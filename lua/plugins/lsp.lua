@@ -201,8 +201,8 @@ return {
 	},
 	{
 		-- LSP SERVER CONFIGURATION
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "williamboman/mason.nvim", "treesitter-terraform-doc.nvim" },
+		"mason-org/mason-lspconfig.nvim",
+		dependencies = { "mason-org/mason.nvim", "treesitter-terraform-doc.nvim" },
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 
@@ -218,6 +218,11 @@ return {
 					"jsonls", "lua_ls", "marksman", "pylsp", "ruby_lsp", "rust_analyzer",
 					"spectral", "taplo", "terraformls", "tflint", "ts_ls", "vimls",
 					"yamlls", "zls"
+				},
+				automatic_enable = {
+					exclude = {
+						"gopls", -- if we auto enable (vim.lsp.enable()) then my `gq` operator fails as it's set to `gofmt` and we need to unset it (see: ./lsp/golang.lua)
+					}
 				}
 			})
 

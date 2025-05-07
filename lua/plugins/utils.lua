@@ -26,7 +26,7 @@ return {
 		-- In ./plugins/lsp.lua we install a companion plugin called:
 		-- williamboman/mason-lspconfig.nvim which helps to configure
 		-- neovim/nvim-lspconfig with LSP servers installed by mason.
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		dependencies = "nvim-lspconfig",
 		config = true
 	},

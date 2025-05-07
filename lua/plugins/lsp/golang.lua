@@ -77,6 +77,12 @@ function M.setup(mappings)
 			-- This breaks the traditional `gp` action.
 			-- So for golang LSP we'll unset that property
 			--
+			-- To read the value:
+			-- lua print(vim.o.formatprg)
+			--
+			-- To unset the value:
+			-- lua vim.opt.formatprg = ""
+			--
 			-- https://neovim.io/doc/user/options.html#'formatprg'
 			-- https://neovim.io/doc/user/change.html#gq
 			vim.opt.formatprg = ""
