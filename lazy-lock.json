@@ -23,7 +23,7 @@
   "fzf": { "branch": "master", "commit": "d226d841a1f2b849b7e3efab2a44ecbb3e61a5a5" },
   "gitsigns.nvim": { "branch": "main", "commit": "43b0c856ae5f32a195d83f4a27fe21d63e6c966c" },
   "godoc.nvim": { "branch": "main", "commit": "356f79853dbb3b3e200064367603751895153c29" },
-  "grug-far.nvim": { "branch": "main", "commit": "6ff8a205a29db3a9b08e5debe09452b4d6fd6591" },
+  "grug-far.nvim": { "branch": "main", "commit": "c5a7bc18e6d3a3822e1740c49cbfa62aa5608f87" },
   "helpview.nvim": { "branch": "main", "commit": "8df486915a29483c7955067a7c17bffdf3b1e5f5" },
   "hlargs.nvim": { "branch": "main", "commit": "063fa2ba05f5eee5a1ab3da76ecb19770b7725cf" },
   "inlay-hint.nvim": { "branch": "main", "commit": "9dce1b25bc60fd9cf06e548c2143ab87517c5cd6" },
