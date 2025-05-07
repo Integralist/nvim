@@ -221,64 +221,66 @@ return {
 				}
 			})
 
-			mason_lspconfig.setup_handlers({
-				function(server_name)
-					local lspconfig = require("lspconfig")
-					local server = lspconfig[server_name] or {}
-					local capabilities = require('blink.cmp').get_lsp_capabilities()
-					-- Skip gopls and rust_analyzer as we manually configure them.
-					-- Otherwise the following `setup()` would override our config.
-					if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
-						-- Unfortunately had to if/else so I could configure 'settings' for yamlls.
-						if server_name == "yamlls" then
-							server.setup({
-								diagnostics = {
-									virtual_text = false -- don't use neovim's default virtual_text now we're using "rachartier/tiny-inline-diagnostic.nvim"
-								},
-								capabilities = vim.tbl_deep_extend(
-									"force", {}, capabilities, server.capabilities or {}
-								),
-								on_attach = function(client, bufnr)
-									mappings(client, bufnr)
-									require("illuminate").on_attach(client)
-								end,
-								settings = {
-									yaml = {
-										keyOrdering = false -- Disable alphabetical ordering of keys
-									}
-								}
-							})
-						else
-							if server_name ~= "zls" then
-								-- don't show parse errors in a separate window
-								vim.g.zig_fmt_parse_errors = 0
-								-- disable format-on-save from `ziglang/zig.vim`
-								-- it'll be handled by stevearc/conform.nvim instead
-								vim.g.zig_fmt_autosave = 0
-							end
-
-							-- generic setup for all other lsp
-							server.setup({
-								diagnostics = {
-									virtual_text = false -- don't use neovim's default virtual_text now we're using "rachartier/tiny-inline-diagnostic.nvim"
-								},
-								capabilities = vim.tbl_deep_extend(
-									"force", {}, capabilities, server.capabilities or {}
-								),
-								on_attach = function(client, bufnr)
-									mappings(client, bufnr)
-									require("illuminate").on_attach(client)
-									if server_name == "terraformls" then
-										require("treesitter-terraform-doc").setup({})
-										vim.keymap.set("n", "<leader><leader>D", "<Cmd>OpenDoc<CR>",
-											{ noremap = true, silent = true, desc = "open terraform docs" })
-									end
-								end
-							})
-						end
-					end
-				end
-			})
+			-- DISABLED: removed in https://github.com/mason-org/mason-lspconfig.nvim/commit/80f2cd7734ff21da4cf1489c9695e440cdcd139f
+			--
+			-- mason_lspconfig.setup_handlers({
+			-- 	function(server_name)
+			-- 		local lspconfig = require("lspconfig")
+			-- 		local server = lspconfig[server_name] or {}
+			-- 		local capabilities = require('blink.cmp').get_lsp_capabilities()
+			-- 		-- Skip gopls and rust_analyzer as we manually configure them.
+			-- 		-- Otherwise the following `setup()` would override our config.
+			-- 		if server_name ~= "gopls" and server_name ~= "rust_analyzer" then
+			-- 			-- Unfortunately had to if/else so I could configure 'settings' for yamlls.
+			-- 			if server_name == "yamlls" then
+			-- 				server.setup({
+			-- 					diagnostics = {
+			-- 						virtual_text = false -- don't use neovim's default virtual_text now we're using "rachartier/tiny-inline-diagnostic.nvim"
+			-- 					},
+			-- 					capabilities = vim.tbl_deep_extend(
+			-- 						"force", {}, capabilities, server.capabilities or {}
+			-- 					),
+			-- 					on_attach = function(client, bufnr)
+			-- 						mappings(client, bufnr)
+			-- 						require("illuminate").on_attach(client)
+			-- 					end,
+			-- 					settings = {
+			-- 						yaml = {
+			-- 							keyOrdering = false -- Disable alphabetical ordering of keys
+			-- 						}
+			-- 					}
+			-- 				})
+			-- 			else
+			-- 				if server_name ~= "zls" then
+			-- 					-- don't show parse errors in a separate window
+			-- 					vim.g.zig_fmt_parse_errors = 0
+			-- 					-- disable format-on-save from `ziglang/zig.vim`
+			-- 					-- it'll be handled by stevearc/conform.nvim instead
+			-- 					vim.g.zig_fmt_autosave = 0
+			-- 				end
+			--
+			-- 				-- generic setup for all other lsp
+			-- 				server.setup({
+			-- 					diagnostics = {
+			-- 						virtual_text = false -- don't use neovim's default virtual_text now we're using "rachartier/tiny-inline-diagnostic.nvim"
+			-- 					},
+			-- 					capabilities = vim.tbl_deep_extend(
+			-- 						"force", {}, capabilities, server.capabilities or {}
+			-- 					),
+			-- 					on_attach = function(client, bufnr)
+			-- 						mappings(client, bufnr)
+			-- 						require("illuminate").on_attach(client)
+			-- 						if server_name == "terraformls" then
+			-- 							require("treesitter-terraform-doc").setup({})
+			-- 							vim.keymap.set("n", "<leader><leader>D", "<Cmd>OpenDoc<CR>",
+			-- 								{ noremap = true, silent = true, desc = "open terraform docs" })
+			-- 						end
+			-- 					end
+			-- 				})
+			-- 			end
+			-- 		end
+			-- 	end
+			-- })
 		end
 	},
 	{
