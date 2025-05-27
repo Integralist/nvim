@@ -35,3 +35,4 @@ config
 REQ
 init
 deserialize
+upserts
