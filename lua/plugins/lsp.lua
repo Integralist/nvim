@@ -214,7 +214,7 @@ return {
 			-- ◍ golangci-lint
 			mason_lspconfig.setup({
 				ensure_installed = {
-					"bashls", "dagger", "dockerls", "gopls", "html",
+					"bashls", "dagger", "dockerls", "gopls", "helm_ls", "html",
 					"jsonls", "lua_ls", "marksman", "pylsp", "ruby_lsp", "rust_analyzer",
 					"spectral", "taplo", "terraformls", "tflint", "ts_ls", "vimls",
 					"yamlls", "zls"
