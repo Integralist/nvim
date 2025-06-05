@@ -116,8 +116,7 @@ return {
 					-- https://github.com/mvdan/gofumpt
 					-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
 					-- https://github.com/incu6us/goimports-reviser
-					-- https://github.com/segmentio/golines
-					go = { "gofumpt", "goimports", "goimports-reviser", "golines" },
+					go = { "gofumpt", "goimports", "goimports-reviser" },
 					-- https://github.com/threedaymonk/htmlbeautifier
 					html = { "htmlbeautifier" },
 					-- https://github.com/mantoni/eslint_d.js/
