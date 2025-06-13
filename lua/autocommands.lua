@@ -37,6 +37,11 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.tf" },
+	command = "set filetype=terraform"
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.mdx" },
 	command = "set filetype=markdown"
 })
