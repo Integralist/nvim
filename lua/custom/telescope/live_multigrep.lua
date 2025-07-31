@@ -16,7 +16,19 @@ local live_multigrep = function(opts)
 			end
 
 			local pieces = vim.split(prompt, "  ")
-			local args = { "rg" }
+			local args = {
+				"rg",
+				"--glob",
+				"!node_modules/",
+				"--glob",
+				"!.git/",
+				"--glob",
+				"!aider*",
+				"--glob",
+				"!.aider*",
+				"--no-ignore",
+				"--hidden",
+			}
 			if pieces[1] then
 				table.insert(args, "--regexp")
 				table.insert(args, pieces[1])
@@ -29,7 +41,7 @@ local live_multigrep = function(opts)
 
 			---@diagnostic disable-next-line: deprecated
 			return vim.tbl_flatten({ args,
-				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--no-ignore", "--hidden" } }
+				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" } }
 			)
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
