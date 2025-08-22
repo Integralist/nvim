@@ -216,7 +216,7 @@ return {
 				ensure_installed = {
 					"bashls", "dagger", "dockerls", "gopls", "helm_ls", "html",
 					"jsonls", "lua_ls", "marksman", "pylsp", "ruby_lsp", "rust_analyzer",
-					"spectral", "taplo", "terraformls", "tflint", "ts_ls", "vimls",
+					"taplo", "terraformls", "tflint", "ts_ls", "vimls",
 					"yamlls", "zls"
 				},
 				automatic_enable = {
