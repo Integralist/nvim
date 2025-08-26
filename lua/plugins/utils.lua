@@ -21,7 +21,7 @@ return {
 		--
 		-- :echo $PATH
 		--
-		-- /Users/integralist/.local/share/nvim/mason/bin
+		-- $HOME/.local/share/nvim/mason/bin
 		--
 		-- In ./plugins/lsp.lua we install a companion plugin called:
 		-- williamboman/mason-lspconfig.nvim which helps to configure
