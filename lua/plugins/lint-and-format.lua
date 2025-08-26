@@ -128,7 +128,7 @@ return {
 					jq = { "jq" },
 					-- https://github.com/rhysd/fixjson
 					json = { "fixjson" },
-					-- https://github.com/executablebooks/mdformat
+					-- https://github.com/hukkin/mdformat
 					markdown = { "mdformat" },
 					-- https://github.com/rust-lang/rustfmt
 					rust = { "rustfmt" },
