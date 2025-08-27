@@ -93,7 +93,7 @@ function M.setup(mappings)
 			gopls = {
 				-- I only include features that aren't already enabled by default
 				analyses = {
-					shadow = true,
+					shadow = false, -- DISABLED: as the `err` variable warning was driving me nuts
 				},
 				codelenses = {
 					gc_details = false,
