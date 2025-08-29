@@ -88,13 +88,15 @@ function M.setup(mappings)
 			vim.opt.formatprg = ""
 		end,
 		settings = {
+			-- https://tip.golang.org/gopls/settings
 			-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 			-- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
 			gopls = {
 				-- I only include features that aren't already enabled by default
 				analyses = {
-					shadow = false, -- DISABLED: as the `err` variable warning was driving me nuts
+					shadow = false,         -- DISABLED: as the `err` variable warning was driving me nuts
 				},
+				buildFlags = { "-tags=e2e" }, -- any project that uses build tags can break `go list`, which is used when discovering files.
 				codelenses = {
 					gc_details = false,
 					generate = true,
