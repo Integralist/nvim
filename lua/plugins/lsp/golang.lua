@@ -97,6 +97,9 @@ function M.setup(mappings)
 					shadow = false,         -- DISABLED: as the `err` variable warning was driving me nuts
 				},
 				buildFlags = { "-tags=e2e" }, -- any project that uses build tags can break `go list`, which is used when discovering files.
+				-- The tag issue is being tracked here -> https://github.com/golang/go/issues/65089
+				-- There is mention of the issue here -> https://go.dev/gopls/workspace
+				-- "Gopls is currently unable to guess build flags that include arbitrary user-defined build constraints"
 				codelenses = {
 					gc_details = false,
 					generate = true,
