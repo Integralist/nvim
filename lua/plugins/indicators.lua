@@ -21,10 +21,13 @@ return {
 		-- HIGHLIGHT YANKED REGION
 		"machakann/vim-highlightedyank"
 	},
-	-- {
-	--   "tris203/precognition.nvim",
-	--   opts = {
-	--     startVisible = true
-	--   }
-	-- }
+	{
+		-- DISPLAY CONTEXTUAL INFORMATION DIRECTLY ABOVE FUNCTIONS
+		'oribarilan/lensline.nvim',
+		tag = '1.0.0', -- or: branch = 'release/1.x' for latest non-breaking updates
+		event = 'LspAttach',
+		config = function()
+			require("lensline").setup()
+		end
+	}
 }
