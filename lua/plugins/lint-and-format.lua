@@ -18,6 +18,10 @@
 --
 -- alex
 -- <!--alex ignore host-hostess-->
+--
+-- revive (disable rule across entire file, can use `:enable:` to re-enable after a block of code)
+-- //revive:disable:<rule-name>
+-- https://github.com/mgechev/revive?tab=readme-ov-file#comment-directives
 return {
 	{
 		-- LINTING
