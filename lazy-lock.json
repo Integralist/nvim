@@ -20,7 +20,7 @@
   "eyeliner.nvim": { "branch": "main", "commit": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6" },
   "feed.nvim": { "branch": "main", "commit": "92fa8e9eef8c509f79df5c3b1d99e0181db008af" },
   "fidget.nvim": { "branch": "main", "commit": "4d5858bd4c471c895060e1b9f3575f1551184dc5" },
-  "fzf": { "branch": "master", "commit": "de4059c8fa9d88247e0716f546a76d65fa3eb17b" },
+  "fzf": { "branch": "master", "commit": "10d712824a133863562c6ad1f01bc79a1f1a2f7b" },
   "gitsigns.nvim": { "branch": "main", "commit": "6e3c66548035e50db7bd8e360a29aec6620c3641" },
   "godoc.nvim": { "branch": "main", "commit": "356f79853dbb3b3e200064367603751895153c29" },
   "grug-far.nvim": { "branch": "main", "commit": "c5b629399c0f2e436c00df381e44852a13b7313a" },
