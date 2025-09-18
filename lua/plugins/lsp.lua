@@ -110,13 +110,12 @@ return {
 		config = function()
 			require("plugins.lsp.golang").setup(mappings)
 
-			local lspconfig = require("lspconfig")
-
-			lspconfig.cue.setup({
+			vim.lsp.config.cue = {
 				on_attach = function(client, bufnr)
 					mappings(client, bufnr)
 				end
-			})
+			}
+			vim.lsp.enable('cue')
 		end
 	},
 	{
