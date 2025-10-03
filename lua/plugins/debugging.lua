@@ -105,18 +105,18 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = true
 	},
-	{
-		"mfussenegger/nvim-dap-python",
-		dependencies = { "mfussenegger/nvim-dap" },
-		config = function()
-			-- TODO: Investigate using `require("mason-registry").get_package("python3"):get_bin_path()`
-			-- source ~/.local/share/nvim/mason/packages/debugpy/venv/bin/activate
-			-- python3 -m pip install -r requirements.txt
-			local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-			require("dap-python").setup(mason_path ..
-				"packages/debugpy/venv/bin/python")
-			-- https://github.com/mfussenegger/nvim-dap-python/issues/46#issuecomment-1124175484
-			require("dap").configurations.python[1].justMyCode = false
-		end
-	}
+	-- {
+	-- 	"mfussenegger/nvim-dap-python",
+	-- 	dependencies = { "mfussenegger/nvim-dap" },
+	-- 	config = function()
+	-- 		-- TODO: Investigate using `require("mason-registry").get_package("python3"):get_bin_path()`
+	-- 		-- source ~/.local/share/nvim/mason/packages/debugpy/venv/bin/activate
+	-- 		-- python3 -m pip install -r requirements.txt
+	-- 		local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+	-- 		require("dap-python").setup(mason_path ..
+	-- 			"packages/debugpy/venv/bin/python")
+	-- 		-- https://github.com/mfussenegger/nvim-dap-python/issues/46#issuecomment-1124175484
+	-- 		require("dap").configurations.python[1].justMyCode = false
+	-- 	end
+	-- }
 }
