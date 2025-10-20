@@ -17,6 +17,7 @@
 -- //codespell:ignore
 --
 -- alex
+-- <!--alex disable failures failure conservative-->
 -- <!--alex ignore host-hostess-->
 --
 -- revive (disable rule across entire file, can use `:enable:` to re-enable after a block of code)
