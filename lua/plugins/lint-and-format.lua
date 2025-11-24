@@ -15,6 +15,7 @@
 --
 -- codespell
 -- //codespell:ignore
+-- // codespell:ignore deatil
 --
 -- alex
 -- <!--alex disable failures failure conservative-->
