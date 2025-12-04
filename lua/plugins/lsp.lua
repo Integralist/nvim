@@ -26,6 +26,8 @@ local function mappings(client, bufnr)
 
 	local buf_code_action = "<Cmd>lua vim.lsp.buf.code_action()<CR>"
 	local buf_code_action_opts = merge({ desc = "View code actions" }, opts)
+	local buf_codelens = "<Cmd>lua vim.lsp.codelens.run()<CR>"
+	local buf_codelens_opts = merge({ desc = "Run Code Lens (e.g., Run Test)" }, opts)
 	local buf_def = "<Cmd>lua vim.lsp.buf.definition()<CR>"
 	local buf_def_split = "<Cmd>sp | lua vim.lsp.buf.definition()<CR>"
 	local buf_def_vsplit = "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>"
@@ -68,10 +70,11 @@ local function mappings(client, bufnr)
 	vim.keymap.set('n', 'K', function()
 		vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 100 }
 	end, opts)
-	vim.keymap.set('n', 'ga', buf_code_action, buf_code_action_opts)
+	vim.keymap.set({ 'n', 'v' }, 'ga', buf_code_action, buf_code_action_opts)
 	vim.keymap.set('n', 'gi', buf_incoming_calls, buf_incoming_calls_opts)
 	vim.keymap.set('n', 'gd', buf_doc_sym, buf_doc_sym_opts)
 	vim.keymap.set('n', 'gh', buf_sig_help, buf_sig_help_opts)
+	vim.keymap.set('n', 'gl', buf_codelens, buf_codelens_opts)
 	vim.keymap.set('n', 'gm', buf_impl, buf_impl_opts)
 	vim.keymap.set('n', 'gn', buf_rename, buf_rename_opts)
 	vim.keymap.set('n', 'gp', buf_project, buf_project_opts)

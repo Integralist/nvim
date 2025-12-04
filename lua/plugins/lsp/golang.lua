@@ -29,6 +29,19 @@ function M.setup(mappings)
 					}
 				end
 
+				-- support things like "run test" virtual_text overlays
+				-- e.g. see `gl` mapping for running the highlighted test
+				if client.supports_method("textDocument/codeLens") then
+					local group = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
+					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+						group = group,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.codelens.refresh()
+						end,
+					})
+				end
+
 				-- DISABLED: FixGoImports
 				--
 				-- Instead I use https://github.com/incu6us/goimports-reviser
