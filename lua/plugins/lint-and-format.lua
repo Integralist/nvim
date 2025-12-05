@@ -31,12 +31,27 @@ return {
 		config = function()
 			local lint = require("lint")
 
+			-- scopeguard is installed via ~/.config/zsh/tools.zsh
+			lint.linters.scopeguard = {
+				cmd = 'scopeguard',
+				stdin = false,
+				append_fname = true,
+				args = {},
+				stream = 'stderr',
+				ignore_exitcode = true,
+				parser = require('lint.parser').from_pattern(
+					[[^(.+):(%d+):(%d+):%s+(.*)$]],
+					{ 'file', 'lnum', 'col', 'message' },
+					{ ['source'] = 'scopeguard', ['severity'] = vim.diagnostic.severity.HINT }
+				)
+			}
+
 			lint.linters_by_ft = {
 				-- https://www.gnu.org/software/gawk/
 				awk = { "gawk" },
 				-- https://github.com/codespell-project/codespell
 				-- https://golangci-lint.run/
-				go = { "codespell", "golangcilint" },
+				go = { "codespell", "golangcilint", "scopeguard" },
 				-- https://htmlhint.com/
 				-- https://www.html-tidy.org/
 				html = { "tidy" },
