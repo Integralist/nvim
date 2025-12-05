@@ -37,4 +37,4 @@ function ExtractMessages(split)
 	-- But as we've split the Ex commands over multiple vim.cmd calls it seems `put! m` is fine.
 end
 
--- vim.cmd("command! -nargs=? Messages lua ExtractMessages(<q-args>)")
+vim.cmd("command! -nargs=? Messages lua ExtractMessages(<q-args>)")
