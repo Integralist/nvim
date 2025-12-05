@@ -1,5 +1,7 @@
--- always open quickfix window automatically.
--- this uses cwindows which will open it only if there are entries.
+-- automatically open the quickfix window after certain quickfix commands are executed.
+-- when a relevant command is run, the QuickFixCmdPost event is triggered,
+-- then this autocommand calls cwindows which will open the quickfix window if there are entries.
+-- the pattern avoids calling cwindow if the command was a locationlist command
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	group = vim.api.nvim_create_augroup("AutoOpenQuickfix", { clear = true }),
 	pattern = { "[^l]*" },
