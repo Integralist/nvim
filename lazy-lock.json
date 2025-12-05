@@ -36,7 +36,7 @@
   "lsp-progress.nvim": { "branch": "main", "commit": "ae52979ad412371ea6dc39ff70c8dfc681fb42b8" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
   "markdown-table-mode.nvim": { "branch": "main", "commit": "bb1ea9b76c1b29e15e14806fdfbb2319df5c06f1" },
-  "markview.nvim": { "branch": "main", "commit": "bf62f7d173f4b42cd02794c6c5f5a8bd3047a58a" },
+  "markview.nvim": { "branch": "main", "commit": "3d357f2742f20a23192c82df0842c61dbad29efa" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "0b9bb925c000ae649ff7e7149c8cd00031f4b539" },
   "mason.nvim": { "branch": "main", "commit": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800" },
   "messenger.nvim": { "branch": "main", "commit": "309fec2ddd3de55eba2781b676931b37ce8190af" },
