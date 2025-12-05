@@ -97,6 +97,7 @@ return {
 					elseif vim.bo.filetype == "yaml" then
 						local first_line = vim.fn.getline(1)
 						if string.find(first_line, "openapi:") then
+							lint.try_lint("vacuum") -- IMPORTANT: only works for files named openapi.{yaml|json} https://github.com/mfussenegger/nvim-lint/issues/880#issuecomment-3615868647
 							lint.try_lint("spectral")
 						else
 							lint.try_lint("yamllint")
