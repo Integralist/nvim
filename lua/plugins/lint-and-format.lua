@@ -35,8 +35,12 @@ return {
 			lint.linters.scopeguard = {
 				cmd = 'scopeguard',
 				stdin = false,
-				append_fname = true,
-				args = {},
+				append_fname = false,
+				args = {
+					function()
+						return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":h")
+					end
+				},
 				stream = 'stderr',
 				ignore_exitcode = true,
 				parser = require('lint.parser').from_pattern(
