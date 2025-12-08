@@ -42,7 +42,8 @@ return {
 				parser = require('lint.parser').from_pattern(
 					[[^(.+):(%d+):(%d+):%s+(.*)$]],
 					{ 'file', 'lnum', 'col', 'message' },
-					{ ['source'] = 'scopeguard', ['severity'] = vim.diagnostic.severity.HINT }
+					nil,
+					{ ['source'] = 'scopeguard', ['severity'] = vim.diagnostic.severity.WARN }
 				)
 			}
 
