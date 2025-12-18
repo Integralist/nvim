@@ -106,6 +106,14 @@ function M.setup(mappings)
 					-- I only include features that aren't already enabled by default
 					analyses = {
 						shadow = false,        -- DISABLED: as the `err` variable warning was driving me nuts
+						-- v0.21.0 analyzers
+						reflecttypefor = true, -- modernize reflect.TypeOf to reflect.TypeFor
+						newexpr = true,        -- modernize pointer-returning funcs to use new(expr)
+						stditerators = true,   -- replace loops with iterator-based APIs
+						stringscut = true,     -- modernize strings.Index patterns to strings.Cut
+						plusbuild = true,      -- remove redundant old-style +build comments
+						errorsastype = true,   -- modernize errors.As to errors.AsType
+						unsafefuncs = true,    -- modernize unsafe pointer arithmetic to unsafe.Add
 					},
 					buildFlags = { "-tags=e2e" }, -- any project that uses build tags can break `go list`, which is used when discovering files.
 					-- The tag issue is being tracked here -> https://github.com/golang/go/issues/65089
