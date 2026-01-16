@@ -156,6 +156,9 @@ return {
 					-- https://github.com/rhysd/fixjson
 					json = { "fixjson" },
 					-- https://github.com/hukkin/mdformat
+					-- pipx install mdformat
+					-- pipx inject mdformat mdformat-gfm
+					-- pipx inject mdformat mdformat-frontmatter
 					markdown = { "mdformat" },
 					-- https://github.com/rust-lang/rustfmt
 					rust = { "rustfmt" },
