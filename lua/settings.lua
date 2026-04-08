@@ -68,9 +68,7 @@ vim.cmd("packadd cfilter")
 -- LSP UI boxes improvements
 --
 -- NOTE: Noice plugin can/will override these settings.
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-	vim.lsp.handlers.signature_help, { border = "rounded" }
-)
+-- NOTE: signature_help border is configured at the call site in plugins/lsp.lua
 vim.diagnostic.config({
 	underline = true,
 	float = { border = "rounded", style = "minimal" }

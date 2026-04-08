@@ -44,7 +44,7 @@ local function mappings(client, bufnr)
 	local buf_ref_opts = merge({ desc = "List all references" }, opts)
 	local buf_rename = "<Cmd>lua vim.lsp.buf.rename()<CR>"
 	local buf_rename_opts = merge({ desc = "Rename symbol" }, opts)
-	local buf_sig_help = "<Cmd>lua vim.lsp.buf.signature_help()<CR>"
+	local buf_sig_help = "<Cmd>lua vim.lsp.buf.signature_help({ border = 'rounded' })<CR>"
 	local buf_sig_help_opts = merge({ desc = "Sig help (cursor over arg)" }, opts)
 	local buf_type = "<Cmd>lua vim.lsp.buf.type_definition()<CR>"
 	local buf_type_opts = merge({ desc = "Go to 'type' definition" }, opts)
@@ -68,7 +68,7 @@ local function mappings(client, bufnr)
 	vim.keymap.set('n', ']r', diag_open_float, diag_open_float_opts)
 	vim.keymap.set('n', ']s', diag_show, diag_show_opts)
 	vim.keymap.set('n', 'K', function()
-		vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 100 }
+		vim.lsp.buf.hover { border = "rounded", max_height = 25, max_width = 100 }
 	end, opts)
 	vim.keymap.set({ 'n', 'v' }, 'ga', buf_code_action, buf_code_action_opts)
 	vim.keymap.set('n', 'gi', buf_incoming_calls, buf_incoming_calls_opts)
