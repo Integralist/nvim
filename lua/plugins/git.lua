@@ -110,9 +110,9 @@ return {
 		},
 		opts = {
 			default_to_projects_v2 = true,
-			-- suppress_missing_scope = {
-			--   projects_v2 = true,   -- Suppresses the error: Cannot request projects v2, missing scope 'read:project'
-			-- }
+			suppress_missing_scope = {
+				projects_v2 = true,
+			},
 		}
 	},
 	-- FLOATING COMMIT WINDOW
