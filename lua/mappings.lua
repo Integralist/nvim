@@ -11,12 +11,11 @@ vim.keymap.set("", "<leader><leader>;", "<Cmd>cp<CR>",
 	{ desc = "move to the prev item in the quickfix list" })
 
 vim.keymap.set("n", "<leader><leader>dd", function()
-	vim.diagnostic.disable()
-	-- vim.diagnostic.reset(nil, 0)
+	vim.diagnostic.enable(false)
 end, { desc = "Disable diagnostics" })
 
 vim.keymap.set("n", "<leader><leader>de", function()
-	vim.diagnostic.enable()
+	vim.diagnostic.enable(true)
 end, { desc = "Enable diagnostics" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz",
