@@ -117,14 +117,6 @@ return {
 	{
 		-- MINIMAP
 		"gorbit99/codewindow.nvim",
-		opts = {
-			auto_enable = false,
-			use_treesitter = true, -- disable to lose colours
-			exclude_filetypes = {
-				"Outline", "neo-tree", "qf", "packer", "help", "noice",
-				"Trouble"
-			}
-		},
 		keys = {
 			{
 				"<leader><leader>m",
@@ -134,6 +126,17 @@ return {
 				noremap = true,
 				silent = true
 			}
-		}
+		},
+		config = function()
+			require("codewindow.config").setup({
+				auto_enable = false,
+				use_treesitter = false, -- doesn't work anymore with latest treesitter (and codewindow is no longer maintained/updated)
+				exclude_filetypes = {
+					"Outline", "neo-tree", "qf", "packer", "help", "noice",
+					"Trouble"
+				}
+			})
+			require("codewindow").setup()
+		end
 	}
 }
