@@ -137,6 +137,14 @@ return {
 
 			conform.setup({
 				log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
+				formatters = {
+					["goimports-reviser"] = {
+						args = function()
+							local module = vim.trim(vim.fn.system("go list -m"))
+							return { "-company-prefixes", "github.com/fastly", "-project-name", module, "-format", "$FILENAME" }
+						end,
+					},
+				},
 				formatters_by_ft = {
 					-- https://www.gnu.org/software/gawk/manual/gawk.html
 					awk = { "gawk" },
