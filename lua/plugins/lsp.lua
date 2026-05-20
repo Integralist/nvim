@@ -152,7 +152,6 @@ return {
 				server = {
 					on_attach = function(client, bufnr)
 						mappings(client, bufnr)
-						require("illuminate").on_attach(client)
 
 						local bufopts = {
 							noremap = true,
