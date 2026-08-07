@@ -170,6 +170,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
+-- Change line number colour in INSERT mode.
+-- The current line is left alone, so it keeps its yellow CursorLineNr.
+-- Colours are captured on entry (not at load time) so switching
+-- colourscheme via <leader>C still reverts to the right colours.
+local line_nr_saved = nil
+
+local insert_mode_line_num = vim.api.nvim_create_augroup(
+	"InsertModeLineNum", { clear = true })
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+	group = insert_mode_line_num,
+	callback = function()
+		if line_nr_saved then return end
+		line_nr_saved = vim.api.nvim_get_hl(0, { name = 'LineNr' })
+		vim.api.nvim_set_hl(0, 'LineNr', { fg = "#ff9500" })
+	end
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+	group = insert_mode_line_num,
+	callback = function()
+		if not line_nr_saved then return end
+		vim.api.nvim_set_hl(0, 'LineNr', line_nr_saved)
+		line_nr_saved = nil
+	end
+})
+
 -- -- Dim inactive windows
 --
 -- vim.cmd("highlight default DimInactiveWindows guifg=#666666")
