@@ -162,3 +162,91 @@ So `.setup()` calls configure plugins globally, whereas `ftplugin` is
 filetype-specific. If you place `.setup()` in `ftplugin/`, it will only run when
 a file of that type is opened, which can lead to incomplete or missing
 configurations.
+
+## Linters and Formatters
+
+Tools configured for `nvim-lint` and `conform.nvim` in
+`lua/plugins/lint-and-format.lua`.
+
+### Homebrew
+
+Install all available linter and formatter CLI tools via Homebrew:
+
+```bash
+brew install \
+  actionlint \
+  checkmake \
+  codespell \
+  dockerfmt \
+  eslint_d \
+  gawk \
+  get-woke/tap/woke \
+  gofumpt \
+  golangci-lint \
+  jq \
+  js-beautify \
+  jsonlint \
+  markdownlint-cli \
+  ruff \
+  shellcheck \
+  spectral-cli \
+  taplo \
+  tflint \
+  tidy-html5 \
+  trivy \
+  vacuum \
+  yamllint \
+  yq \
+  zig
+```
+
+> [!NOTE]
+> `terraform_fmt` relies on `terraform` or `tofu`. Install Terraform via
+> `brew install hashicorp/tap/terraform` or OpenTofu via `brew install opentofu`.
+
+### Other Package Managers
+
+Certain tools are unavailable via Homebrew or require ecosystem-specific
+plugins:
+
+#### Go (`go install`)
+
+```bash
+go install fillmore-labs.com/scopeguard@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/incu6us/goimports-reviser/v3@latest
+```
+
+#### Node (`npm`)
+
+```bash
+npm install -g alex fixjson
+```
+
+#### Python (`pipx`)
+
+`mdformat` requires plugins for GitHub Flavored Markdown and frontmatter:
+
+```bash
+pipx install mdformat
+pipx inject mdformat mdformat-gfm
+pipx inject mdformat mdformat-frontmatter
+```
+
+#### Ruby (`gem`)
+
+```bash
+gem install htmlbeautifier
+```
+
+#### Rust (`rustup`)
+
+```bash
+rustup component add clippy rustfmt
+```
+
+#### Built-in
+
+- `bash`: macOS built-in (`/bin/bash`) or `brew install bash`
+- `zsh`: macOS built-in (`/bin/zsh`)
+- `xmllint`: macOS built-in via `libxml2` (`/usr/bin/xmllint`)
