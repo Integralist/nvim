@@ -70,6 +70,8 @@ return {
 				-- https://github.com/DavidAnson/markdownlint
 				-- https://docs.getwoke.tech/
 				markdown = { "alex", "markdownlint", "woke" },
+				-- https://docs.astral.sh/ruff/
+				python = { "ruff" },
 				-- https://github.com/rust-lang/rust-clippy
 				rust = { "clippy" },
 				-- https://www.gnu.org/software/bash/
@@ -168,6 +170,8 @@ return {
 					-- pipx inject mdformat mdformat-gfm
 					-- pipx inject mdformat mdformat-frontmatter
 					markdown = { "mdformat" },
+					-- https://docs.astral.sh/ruff/
+					python = { "ruff_organize_imports", "ruff_format" },
 					-- https://github.com/rust-lang/rustfmt
 					rust = { "rustfmt" },
 					-- https://github.com/koalaman/shellcheck
