@@ -56,7 +56,7 @@ return {
 				awk = { "gawk" },
 				-- https://github.com/codespell-project/codespell
 				-- https://golangci-lint.run/
-				go = { "codespell", "golangcilint", "scopeguard" },
+				go = { "codespell", "golangcilint" },
 				-- https://htmlhint.com/
 				-- https://www.html-tidy.org/
 				html = { "tidy" },
