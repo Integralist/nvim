@@ -146,6 +146,19 @@ return {
 							return { "-company-prefixes", "github.com/fastly", "-project-name", module, "-format", "$FILENAME" }
 						end,
 					},
+					mdformat = {
+						prepend_args = { "--number" },
+						condition = function(_, ctx)
+							local name = vim.fs.basename(ctx.filename)
+							if name == "SKILL.md" or name == "AGENTS.md" or name == "CLAUDE.md" or name == "GEMINI.md" then
+								return false
+							end
+							if ctx.filename:match("/skills/") or ctx.filename:match("/prompts/") then
+								return false
+							end
+							return true
+						end,
+					},
 				},
 				formatters_by_ft = {
 					-- https://www.gnu.org/software/gawk/manual/gawk.html
